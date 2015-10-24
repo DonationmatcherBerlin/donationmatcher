@@ -39,4 +39,9 @@ EOM
 
 sudo service nginx restart
 
+# composer
+cd /var/www
+curl -sS 'https://getcomposer.org/installer' | php
+php composer.phar install
+
 echo "You've been provisioned"
