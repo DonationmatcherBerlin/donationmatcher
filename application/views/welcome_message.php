@@ -6,6 +6,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<meta charset="utf-8">
 	<title>Welcome to CodeIgniter</title>
 
+	<link rel="stylesheet" type="text/css" href="/assets/css/bootstrap.css">
+
 	<style type="text/css">
 
 	::selection { background-color: #E13300; color: white; }
@@ -68,6 +70,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <body>
 
 <div id="container">
+
+<button type="button" class="btn btn-default">button</button>
+
 	<h1>Welcome to CodeIgniter!</h1>
 
 	<div id="body">
