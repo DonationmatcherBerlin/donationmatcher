@@ -1,0 +1,16 @@
+StockList
+	Facility			: FK
+	updated_at			: timestamp
+	created_at			: timestamp
+
+StockListEntry
+	StockList:			: FK
+	Category			: FK
+	name				: string
+	demand				: int (-1: overcapacity, 0: no demand, +1: high demand)
+	updated_at			: timestamp
+	created_at			: timestamp
+
+Category
+	name				: string
+	Category (parent)	: FK
