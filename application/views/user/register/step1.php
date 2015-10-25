@@ -21,6 +21,11 @@
 			</div>
 			<?= form_open() ?>
 				<div class="form-group">
+					<label for="facility_name">Facility Name</label>
+					<input type="text" class="form-control" id="facility_name" value="<?php echo set_value('facility_name'); ?>" name="facility_name" placeholder="Enter your facility name">
+					<p class="help-block">Your name</p>
+				</div>
+				<div class="form-group">
 					<label for="username">Username</label>
 					<input type="text" class="form-control" id="username" value="<?php echo set_value('username'); ?>" name="username" placeholder="Enter a username">
 					<p class="help-block">At least 4 characters, letters or numbers only</p>
@@ -29,11 +34,6 @@
 					<label for="email">Email</label>
 					<input type="email" class="form-control" id="email" value="<?php echo set_value('email'); ?>" name="email" placeholder="Enter your email">
 					<p class="help-block">A valid email address</p>
-				</div>
-				<div class="form-group">
-					<label for="facility_name">Facility Name</label>
-					<input type="text" class="form-control" id="facility_name" value="<?php echo set_value('facility_name'); ?>" name="facility_name" placeholder="Enter your facility name">
-					<p class="help-block">Your name</p>
 				</div>
 				<div class="form-group">
 					<label for="facility_phone">Telefon</label>
