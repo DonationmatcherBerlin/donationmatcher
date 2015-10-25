@@ -41,11 +41,11 @@
 
             <div class="row">
                 <div class="col-sm-6">
-                    <button type="button" class="btn btn-primary btn-lg" style="width:100%; padding:30px 0px;"><p style="margin:0;">Wo wird was benötigt?</p></button>
+                    <a href="<?=site_url('/landingpage')?>" class="btn btn-primary btn-lg" style="width:100%; padding:30px 0px;"><p style="margin:0;">Wo wird was benötigt?</p></a>
                     <small style="color:white; margin-left:25%;">Ich bin daran interessiert zu spenden</small>
                 </div>
                 <div class="col-sm-6">
-                    <button type="button" class="btn btn-success btn-lg" style="min-width:100%; padding:30px 0px;" ><p style="margin:0;">Ich bin Teil einer Hilfsgruppe</p></button>
+                    <a href="<?=site_url('/user/login')?>" class="btn btn-success btn-lg" style="min-width:100%; padding:30px 0px;" ><p style="margin:0;">Ich bin Teil einer Hilfsgruppe</p></a>
                     <small style="color:white; margin-left:25%;">Bearbeite deine Bedarfsliste</small>
                 </div>
             </div>
