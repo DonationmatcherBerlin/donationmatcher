@@ -1,13 +1,28 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 	</main><!-- #site-content -->
 
-	<footer id="site-footer" role="contentinfo">
-	</footer><!-- #site-footer -->
+<footer class="footer" style="background-color:#e7e7e7; height:50px;" >
+  <div class="container" style="padding-top:10px;">
+    <div class="row">
+     <div class="col-sm-2 pull-right">
+       <a href="#">Hilfe</a>
+     </div>
+     <div class="col-sm-2 pull-right">
+       <a href="#">Impressum</a>
+     </div>
+    </div>
+  </div>
+</footer>
 
 	<!-- js -->
 	<script src="<?= base_url('assets/js/jquery-2.1.4.min.js') ?>"></script>
 	<script src="<?= base_url('assets/js/bootstrap.min.js') ?>"></script>
-	<script src="<?= base_url('assets/js/script.js') ?>"></script>
+  <script src="//cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js"></script>
 
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $('#myTable').DataTable();
+    });
+  </script>
 </body>
 </html>
