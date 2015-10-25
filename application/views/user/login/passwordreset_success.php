@@ -40,7 +40,7 @@
         <div class="panel panel-info" style="margin-top:100px; border-color: none;">
             <div class="panel-heading">
                 <div class="panel-title">Login</div>
-                <div style="float:right; font-size: 80%; position: relative; top:-10px"><a href="<?=site_url('/user/passwordreset')?>">Forgot password?</a></div>
+                <div style="float:right; font-size: 80%; position: relative; top:-10px"><a href="#">Forgot password?</a></div>
             </div>
 
             <div style="padding-top:30px" class="panel-body">
@@ -62,23 +62,12 @@
 
                 <form id="loginform" class="form-horizontal" role="form" action="?" method="POST">
 
-					<div style="margin-bottom: 25px" class="input-group">
-						<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-						<input id="login-username" type="text" class="form-control" name="username" value="" placeholder="E-Mail">
-					</div>
-
-					<div style="margin-bottom: 25px" class="input-group">
-						<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-						<input id="login-password" type="password" class="form-control" name="password" placeholder="Passwort">
-					</div>
-
-
 
 					<div style="margin-top:10px" class="form-group">
 					<!-- Button -->
 
 						<div class="col-sm-12 controls text-center">
-							<input type="submit" id="btn-login" class="btn btn-success btn-lg" style="min-width:200px; margin:20px 0px;">
+							Dein Passwort wurde per Email zugestellt
 
 						</div>
 					</div>

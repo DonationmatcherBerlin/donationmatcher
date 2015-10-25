@@ -87,7 +87,7 @@ class User extends CI_Controller {
 				
 				$facility->User = $user_id;
 				$this->facility_model->create_facility($facility); // @TODO: error handling
-				$this->send_email_confirmation($email,$username);
+				$this->send_email_confirmation($email,$username,'confirm');
 
 				// user creation ok
 				$this->load->view('header');
@@ -267,9 +267,61 @@ class User extends CI_Controller {
 		
 	}
 
+	public function passwordreset($confirmation_key=false, $username=false){
+
+		if($confirmation_key && $username){
+
+			$user_id = $this->user_model->get_user_id_from_username($username);
+			$user = $this->user_model->get_user($user_id);
+
+			if($confirmation_key == $user->confirmation_key){
+
+				$user->logged_in = 1;
+				$this->set_session($user);
+				redirect('/user/profile');
+
+			}else{
+				redirect('/user/login');
+			}
+
+		}else{
+
+			check_role('logged_out');
+
+			// create the data object
+			$data = new stdClass();
+			
+			// load form helper and validation library
+			$this->load->helper('form');
+			$this->load->library('form_validation');
+			
+			$this->form_validation->set_rules('username', 'Username', 'trim|required|alpha_numeric');
+			
+			if ($this->form_validation->run() === false) {
+				$this->load->view('/user/login/passwordreset');
+			}else{
+				$this->load->model('user_model');
+
+				$username = $this->input->post('username');
+				$user_id = $this->user_model->get_user_id_from_username($username);
+				$user    = $this->user_model->get_user($user_id);
+
+				$data = new stdClass;
+				$data->confirmation_key = hash('sha256',rand().uniqid()); // @TODO: Is this secure or stupid?
+				$this->user_model->update_user($user_id, $data);
+
+				$this->send_email_confirmation($user->email,$username,'passwordreset');
+
+				$this->user_model->update_user($user_id, $data);
+				$this->load->view('/user/login/passwordreset_success');
+			}
+		}
+		
+	}
 
 
-	private function send_email_confirmation($email,$username){
+
+	private function send_email_confirmation($email,$username,$template){
 
 
 
