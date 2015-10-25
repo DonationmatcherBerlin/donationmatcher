@@ -1,7 +1,7 @@
   <head>
     <style>
       #map {
-        height: 50%;
+        height: 250px;
       }
     </style>
   </head>
