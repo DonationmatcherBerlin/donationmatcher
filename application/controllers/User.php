@@ -25,9 +25,8 @@ class User extends CI_Controller {
 	
 	
 	public function index() {
-		
-
-		
+		if($_SESSION['logged_in']) redirect('/user/profile');
+		redirect('/user/register');
 	}
 	
 	/**
@@ -38,6 +37,8 @@ class User extends CI_Controller {
 	 */
 	public function register() {
 		
+		check_role('logged_out');
+
 		// create the data object
 		$data = new stdClass();
 		
@@ -53,7 +54,7 @@ class User extends CI_Controller {
 
 		$this->form_validation->set_rules('facility_person_in_charge', 'Verantwortliche Person', 'trim|required');
 		$this->form_validation->set_rules('facility_phone', 'Telefon', 'trim');
-		$this->form_validation->set_rules('facility_name', 'Telefon', 'trim');
+		$this->form_validation->set_rules('facility_name', 'Facility Name', 'trim|required');
 		
 		if ($this->form_validation->run() === false) {
 			
@@ -136,7 +137,74 @@ class User extends CI_Controller {
 			}
 
 	}
+
 	
+	public function step3(){
+		check_role('confirmed');
+		$show_progress_bar = true;
+		$this->profile($show_progress_bar);
+	}
+		
+	/**
+	 * login function.
+	 * 
+	 * @access public
+	 * @return void
+	 */
+	public function login() {
+		
+		check_role('logged_out');
+
+		// create the data object
+		$data = new stdClass();
+		
+		// load form helper and validation library
+		$this->load->helper('form');
+		$this->load->library('form_validation');
+		
+		// set validation rules
+		$this->form_validation->set_rules('username', 'Username', 'required|alpha_numeric');
+		$this->form_validation->set_rules('password', 'Password', 'required');
+		
+		if ($this->form_validation->run() == false) {
+			
+			// validation not ok, send validation errors to the view
+			
+			$this->load->view('user/login/login');
+						
+		} else {
+			
+			// set variables from the form
+			$username = $this->input->post('username');
+			$password = $this->input->post('password');
+			
+			if ($this->user_model->resolve_user_login($username, $password)) {
+				
+				$user_id = $this->user_model->get_user_id_from_username($username);
+				$user    = $this->user_model->get_user($user_id);
+				
+				$this->set_session($user);
+				
+				// user login ok
+				redirect('/user/profile');
+				
+			} else {
+				
+				// login failed
+				$data->error = 'Wrong username or password.';
+				
+				// send error to the view
+				
+				$this->load->view('user/login/login', $data);
+				
+				
+			}
+			
+		}
+		
+	}
+
+
 	/**
 	 * profile edit function.
 	 * 
@@ -162,66 +230,6 @@ class User extends CI_Controller {
 
 		
 
-	}
-		
-	/**
-	 * login function.
-	 * 
-	 * @access public
-	 * @return void
-	 */
-	public function login() {
-		
-		// create the data object
-		$data = new stdClass();
-		
-		// load form helper and validation library
-		$this->load->helper('form');
-		$this->load->library('form_validation');
-		
-		// set validation rules
-		$this->form_validation->set_rules('username', 'Username', 'required|alpha_numeric');
-		$this->form_validation->set_rules('password', 'Password', 'required');
-		
-		if ($this->form_validation->run() == false) {
-			
-			// validation not ok, send validation errors to the view
-			$this->load->view('header');
-			$this->load->view('user/login/login');
-			$this->load->view('footer');
-			
-		} else {
-			
-			// set variables from the form
-			$username = $this->input->post('username');
-			$password = $this->input->post('password');
-			
-			if ($this->user_model->resolve_user_login($username, $password)) {
-				
-				$user_id = $this->user_model->get_user_id_from_username($username);
-				$user    = $this->user_model->get_user($user_id);
-				
-				$this->set_session($user);
-				
-				// user login ok
-				$this->load->view('header');
-				$this->load->view('user/login/login_success', $data);
-				$this->load->view('footer');
-				
-			} else {
-				
-				// login failed
-				$data->error = 'Wrong username or password.';
-				
-				// send error to the view
-				$this->load->view('header');
-				$this->load->view('user/login/login', $data);
-				$this->load->view('footer');
-				
-			}
-			
-		}
-		
 	}
 	
 	/**
@@ -257,11 +265,6 @@ class User extends CI_Controller {
 		
 	}
 
-	public function step3(){
-		check_role('confirmed');
-		$show_progress_bar = true;
-		$this->profile($show_progress_bar);
-	}
 
 
 	private function send_email_confirmation($email,$username){
