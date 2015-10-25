@@ -21,7 +21,8 @@ class Migration_Install_category extends CI_Migration
 				'Parent' => array(
 					'type' => 'INT',
 					'constraint' => 11,
-					'unsigned' => TRUE
+					'unsigned' => TRUE,
+					'null' => TRUE
 				)
 			)
 		);
