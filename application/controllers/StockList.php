@@ -42,4 +42,17 @@ class StockList extends CI_Controller
         );
         echo '</pre>';
     }
+
+    /**
+     * Shows offers
+     */
+    public function offers($id)
+    {
+        $this->load->model('stock_list_entry_model');
+        echo '<pre>';
+        var_dump(
+            $this->stock_list_entry_model->get_offers($id)
+        );
+        echo '</pre>';
+    }
 }

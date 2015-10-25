@@ -12,7 +12,21 @@ class Stock_list_entry_model extends CI_Model {
 
     public function get_demand($id)
     {
-        // get all categories of entries with negative demand from own stock list
+        $category_ids = $this->get_categories($id, -1);
+        return $this->get_demand_list($id, 1, array_column($category_ids, 'category_id'));
+    }
+
+    public function get_offers($id)
+    {
+        $category_ids = $this->get_categories($id, 1);
+        return $this->get_demand_list($id, -1, array_column($category_ids, 'category_id'));
+    }
+
+    /**
+     * Get all categories of entries with negative demand from own stock list
+     */
+    private function get_categories($id, $demand)
+    {
         $query = $this->db->query(
             '
               SELECT
@@ -21,15 +35,24 @@ class Stock_list_entry_model extends CI_Model {
                 INNER JOIN category c ON sle.Category = c.category_id
               WHERE
                 sle.StockList = ?
-                AND sle.demand = -1
+                AND sle.demand = ?
               GROUP BY
                 c.category_id
             ',
-            [(int) $id]
+            [
+                (int) $id,
+                (int) $demand
+            ]
         );
-        $category_ids = $query->result_array();
 
-        // get facilities with positive demand in those categories
+        return $query->result_array();
+    }
+
+    /**
+     * Get facilities with positive demand in those categories
+     */
+    private function get_demand_list($id, $demand, array $category_ids)
+    {
         $query = $this->db->query(
             '
               SELECT
@@ -40,12 +63,13 @@ class Stock_list_entry_model extends CI_Model {
                 INNER JOIN facility f ON f.facility_id = sl.Facility
               WHERE
                 sle.StockList != ?
-                AND sle.demand = 1
+                AND sle.demand = ?
                 AND sle.Category IN (?)
             ',
             [
                 (int) $id,
-                implode(',', array_column($category_ids, 'category_id'))
+                (int) $demand,
+                implode(',', $category_ids)
             ]
         );
 
