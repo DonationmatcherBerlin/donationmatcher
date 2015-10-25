@@ -48,12 +48,10 @@ class Stock_list_model extends CI_Model {
     {
         $query = $this->db->query(
             '
-              SELECT
-                sle.*
-              FROM stock_list sl
-                INNER JOIN stock_list_entry sle ON sl.stock_list_id = sle.StockList
+              SELECT *
+              FROM stock_list_entry
               WHERE
-                stock_list_id = ?
+                StockList = ?
             ',
             [(int) $id]
         );
