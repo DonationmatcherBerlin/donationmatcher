@@ -45,7 +45,20 @@
 
             <div style="padding-top:30px" class="panel-body">
 
-                <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
+                <?php if (validation_errors()) : ?>
+                    <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12">
+                        <div class="alert alert-danger" role="alert">
+                            <?= validation_errors() ?>
+                        </div>
+                    </div>
+                <?php endif; ?>
+                <?php if (isset($error)) : ?>
+                    <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12">
+                        <div class="alert alert-danger" role="alert">
+                            <?= $error ?>
+                        </div>
+                    </div>
+                <?php endif; ?>
 
                 <form id="loginform" class="form-horizontal" role="form">
 
