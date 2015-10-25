@@ -27,7 +27,7 @@
     <table id="myTable" class="table table-bordered table-striped responsive-utilities topTentable">
       <thead>
         <tr>
-          <th>
+          <th class="th-green">
             <i class="fa fa-trophy"></i> Top 10
           </th>
         </tr>
