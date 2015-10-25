@@ -11,7 +11,7 @@
 	<meta name="author" content="">
 
 	<!-- css -->
-	<link href="<?= base_url('assets/css/bootstrap.min.css') ?>" rel="stylesheet">
+	<link href="<?= base_url('assets/css/bootstrap.min_v1.css') ?>" rel="stylesheet">
 	<link href="<?= base_url('assets/css/style.css') ?>" rel="stylesheet">
 	<link href="<?= base_url('assets/css/landingpage/landingpage_v2.css') ?>" rel="stylesheet">
 	<!-- <link href="<?= base_url('assets/css/local/local.css') ?>" rel="stylesheet"> -->
