@@ -36,14 +36,14 @@
   <!-- table -->
   <div class="row">
     <div class="col-sm-12">
-      <table class="table table-hover text-center">
+      <table class="table table-hover text-center" id="myTable">
       <thead>
         <tr>
           <th class="th-green">Spende</th>
           <th class="th-green">Wird gebraucht</th>
           <th class="th-green">Nicht gebraucht</th>
           <th class="th-green">Zu viel</th>
-          <th class="th-green">Anzahl vorhanden (optional)</th>
+          <th class="th-green">Im Lager vorhanden (optional)</th>
           <th class="th-green">Kommentar (optional)</th>
         </tr>
       </thead>

@@ -28,7 +28,7 @@
     }
 
     .panel {
-        background-color: rgba(255,255,255,.5);
+        background-color: rgba(255,255,255,.8);
     }
     </style>
 

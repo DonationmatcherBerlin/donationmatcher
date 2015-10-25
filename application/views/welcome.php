@@ -4,7 +4,7 @@
 
 <head>
 
-    <link href="<?= base_url('assets/css/bootstrap.min.css') ?>" rel="stylesheet">
+    <link href="<?= base_url('assets/css/bootstrap.min_v1.css') ?>" rel="stylesheet">
     <link href="<?= base_url('assets/css/font-awesome/css/font-awesome.min.css') ?>" rel="stylesheet">
     <link href="<?= base_url('assets/css/welcome/welcom_v5.css') ?>" rel="stylesheet">
 
@@ -34,7 +34,7 @@
     <div class="jumbotron" style="background:transparent;">
         <div class="container">
             <div class="row" style="margin-bottom:100px;">
-                <h1 class="text-center" style="color:#337ab7;">Bedarfs-planner</h1>
+                <h1 class="text-center" style="color:#337ab7;">Bedarfsplaner</h1>
                 <h2 style="color:#337ab7; text-align:center;">Alle Bedarfslisten der Berliner Hilfsgruppen auf einen Blick</h2>
             </div>
 
