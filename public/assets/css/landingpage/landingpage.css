@@ -1,0 +1,28 @@
+.navbar {
+  margin-top: 20px;
+}
+
+hr {
+  margin: 50px 0px;
+}
+
+.headline {
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+.doYouNeed {
+  margin-top: 50px;
+}
+
+.topTentable {
+  max-width: 500px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.th-green {
+  color: #468847;
+  background-color: #dff0d8!important;
+  text-align: center;
+}

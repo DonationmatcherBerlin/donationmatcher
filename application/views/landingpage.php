@@ -1,80 +1,6 @@
-<?php
-defined('BASEPATH') OR exit('No direct script access allowed');
-?><!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="utf-8">
-	<title>Bedarfs-planner</title>
-	<link rel="stylesheet" type="text/css" href="/assets/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="/assets/css/font-awesome/css/font-awesome.min.css">
-	<link rel="stylesheet" type="text/css" href="/assets/css/landingpage/landingpage.css">
-
-
-	<style type="text/css">
-
-	.navbar {
-		margin-top: 20px;
-	}
-
-	hr {
-		margin: 50px 0px;
-	}
-
-	.headline {
-		margin-bottom: 50px;
-		text-align: center;
-	}
-
-	.doYouNeed {
-		margin-top: 50px;
-	}
-
-	.topTentable {
-		max-width: 500px;
-		text-align: center;
-		margin: 0 auto;
-	}
-
-	th {
-		color: #468847;
-    background-color: #dff0d8!important;
-    text-align: center;
-	}
-
-	footer {
-		margin-top: 100px;
-		padding: 20px 0px;
-		background-color: #e7e7e7;
-	}
-
-
-	</style>
-</head>
 <body>
 
 <div class="container">
-
-	<!-- Static navbar -->
-	<nav class="navbar navbar-default">
-		<div class="container-fluid">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-					<span class="sr-only">Toggle navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="#">#Bedarf-planner <i class="fa fa-twitter"></i></a>
-			</div>
-			<div id="navbar" class="navbar-collapse collapse">
-				<ul class="nav navbar-nav navbar-right">
-					<li class="active"><a href="#">Bedarfsplan Berlin</a></li>
-					<li><a href="#">Login (Helfergruppe)</a></li>
-				</ul>
-			</div><!--/.nav-collapse -->
-		</div><!--/.container-fluid -->
-	</nav>
-
 	<div class="row doYouNeed">
 		<div class="col-sm-6 text-right">
 			<h2>Braucht ihr eigentlich noch <h2>
@@ -234,21 +160,3 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 </div> <!-- container -->
-
-<footer class="footer">
-  <div class="container">
-    <div class="row">
-    	<div class="col-sm-1 pull-right">
-    		<a href="#">Hilfe</a>
-    	</div>
-    	<div class="col-sm-1 pull-right">
-    		<a href="#">Impressum</a>
-    	</div>
-    </div>
-  </div>
-</footer>
-
-<script type="text/javascript" src="/assets/js/jquery-2.1.4.min.js"></script>
-<script type="text/javascript" src="/assets/js/bootstrap.min.js"></script>
-</body>
-</html>
