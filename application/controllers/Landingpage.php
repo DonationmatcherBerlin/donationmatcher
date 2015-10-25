@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class landingpage extends CI_Controller {
+class Landingpage extends CI_Controller {
 
   /**
    * Index Page for this controller.

@@ -28,7 +28,7 @@
     }
 
     .panel {
-        background-color: rgba(255,255,255,.8);
+        background-color: rgba(255,255,255,.5);
     }
     </style>
 
@@ -60,28 +60,28 @@
                     </div>
                 <?php endif; ?>
 
-                <form id="loginform" class="form-horizontal" role="form">
+                <form id="loginform" class="form-horizontal" role="form" action="?" method="POST">
 
-                    <div style="margin-bottom: 25px" class="input-group">
-                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                <input id="login-username" type="text" class="form-control" name="username" value="" placeholder="E-Mail">
-                            </div>
+					<div style="margin-bottom: 25px" class="input-group">
+						<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+						<input id="login-username" type="text" class="form-control" name="username" value="" placeholder="E-Mail">
+					</div>
 
-                    <div style="margin-bottom: 25px" class="input-group">
-                                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                                <input id="login-password" type="password" class="form-control" name="password" placeholder="Passwort">
-                            </div>
+					<div style="margin-bottom: 25px" class="input-group">
+						<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+						<input id="login-password" type="password" class="form-control" name="password" placeholder="Passwort">
+					</div>
 
 
 
-                        <div style="margin-top:10px" class="form-group">
-                            <!-- Button -->
+					<div style="margin-top:10px" class="form-group">
+					<!-- Button -->
 
-                            <div class="col-sm-12 controls text-center">
-                              <a id="btn-login" href="#" class="btn btn-success btn-lg" style="min-width:200px; margin:20px 0px;">Login  </a>
+						<div class="col-sm-12 controls text-center">
+							<input type="submit" id="btn-login" class="btn btn-success btn-lg" style="min-width:200px; margin:20px 0px;">
 
-                            </div>
-                        </div>
+						</div>
+					</div>
 
 
                         <div class="form-group">

@@ -12,4 +12,25 @@ class Facility_model extends CI_Model {
         $query = $this->db->get('facility');
         return $query->result();
     }
+
+    public function get_facility_by_user_id($user_id)
+    {
+        $this->db->where('User', $user_id);
+        $query = $this->db->get('facility');
+        return $query->row();
+    }
+    
+    /**
+     * create_facility function.
+     * 
+     * @access public
+     * @param array $data
+     * @return bool true on success, false on failure
+     */
+    public function create_facility($data) {
+
+        $data->created_at = date('Y-m-j H:i:s');        
+        return $this->db->insert('facility', $data);
+        
+    }
 }

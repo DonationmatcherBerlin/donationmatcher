@@ -9,7 +9,7 @@
 
   <div class="row">
     <div class="col-sm-12 pull-left">
-      <h2 style="color: #337ab7;;">Wo gibt es was?</h2>
+      <h2 style="color:green;">Wo gibt es was?</h2>
     </div>
   </div>
   <div class="row">
@@ -84,7 +84,7 @@
 <!-- lower row -->
   <div class="row">
     <div class="col-sm-12 pull-left">
-      <h2 style="color: #337ab7;;">Wer braucht etwas, das ich habe?</h2>
+      <h2 style="color:red;">Wer braucht etwas, das ich habe?</h2>
     </div>
   </div>
   <div class="row">

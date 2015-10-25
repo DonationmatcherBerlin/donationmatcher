@@ -23,11 +23,10 @@
 
 	<!-- TABLE -->
 	<h2 class="headline">Das brauchen wir am meisten.</h2>
-	<div class="container">
-    <table id="myTable" class="table table-bordered table-striped responsive-utilities topTentable">
+    <table class="table table-bordered table-striped responsive-utilities topTentable">
       <thead>
         <tr>
-          <th class="th-green">
+          <th>
             <i class="fa fa-trophy"></i> Top 10
           </th>
         </tr>
@@ -65,7 +64,7 @@
         </tr>
       </tbody>
     </table>
-    </div>
+
 
 
 <hr>
@@ -157,9 +156,6 @@
       </tbody>
     </table>
   </div>
-
-
-
 
 
 
