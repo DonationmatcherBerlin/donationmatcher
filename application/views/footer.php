@@ -25,6 +25,8 @@
       $('#myTable').DataTable();
       $('#username').mapUserName('#facility_name');
     });
+	
+
   </script>
 </body>
 </html>
