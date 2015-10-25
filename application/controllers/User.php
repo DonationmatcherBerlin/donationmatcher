@@ -60,6 +60,7 @@ class User extends CI_Controller {
 			
 			// validation not ok, send validation errors to the view
 			$this->load->view('header');
+			$this->load->view('user/register/progressbar', array('step' => 1));
 			$this->load->view('user/register/step1', $data);
 			$this->load->view('footer');
 			
@@ -90,6 +91,7 @@ class User extends CI_Controller {
 
 				// user creation ok
 				$this->load->view('header');
+				$this->load->view('user/register/progressbar', array('step' => 2));
 				$this->load->view('user/register/step2', array('user' => $user, 'facility' => $facility));
 				$this->load->view('footer');
 				
@@ -100,6 +102,7 @@ class User extends CI_Controller {
 				
 				// send error to the view
 				$this->load->view('header');
+				$this->load->view('user/register/progressbar', array('step' => 1));
 				$this->load->view('user/register/step1', array('user' => $user, 'facility' => $facility));
 				$this->load->view('footer');
 				
@@ -138,7 +141,7 @@ class User extends CI_Controller {
 
 	}
 
-	
+
 	public function step3(){
 		check_role('confirmed');
 		$show_progress_bar = true;
@@ -223,8 +226,9 @@ class User extends CI_Controller {
 		$facility = $this->facility_model->get_facility_by_user_id($_SESSION['user_id']);
 
 
-		if($show_progress_bar) echo 'progressbar';
+		
 		$this->load->view('header');
+		if($show_progress_bar) $this->load->view('user/register/progressbar', array('step' => 3));
 		$this->load->view('user/register/step3', array('user' => $user, 'facility' => $facility));
 		$this->load->view('footer');
 
@@ -251,15 +255,13 @@ class User extends CI_Controller {
 			}
 			
 			// user logout ok
-			$this->load->view('header');
-			$this->load->view('user/logout/logout_success', $data);
-			$this->load->view('footer');
+			redirect('/user/login');
 			
 		} else {
 			
 			// there user was not logged in, we cannot logged him out,
 			// redirect him to site root
-			redirect('/');
+			redirect('/user/login');
 			
 		}
 		
