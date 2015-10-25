@@ -35,4 +35,13 @@ class Category_model extends CI_Model {
 
         return $nested;
     }
+
+    public function get_all(){
+        $categories = $this->db->get('category')->result();
+        foreach ($categories as $category) {
+            $result[$category->category_id] = $category;
+        }
+        return $result;
+    }
+
 }

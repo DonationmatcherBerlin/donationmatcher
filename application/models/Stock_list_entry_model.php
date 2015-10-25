@@ -75,4 +75,15 @@ class Stock_list_entry_model extends CI_Model {
 
         return $query->result_array();
     }
+
+    
+    public function update($stocklist, $entries){
+
+        $this->db->trans_start();
+        $this->db->where('StockList', $stocklist);
+        $this->db->delete('stock_list_entry');
+        $this->db->insert_batch('stock_list_entry', $entries);
+        $this->db->trans_complete();
+
+    }
 }
