@@ -1,9 +1,3 @@
-body {
-	margin-top: 50px;
-	margin-bottom: 50px;
-	background: none;
-}
-
 .full {
   background: url('/assets/images/sky-bg.jpg') no-repeat center center fixed; 
   -webkit-background-size: cover;
