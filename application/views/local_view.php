@@ -1,4 +1,6 @@
 <div class="container">
+
+  <!-- alert panel -->
   <div class="row">
     <div class="col-sm-6 col-sm-offset-3">
       <div class="alert alert-danger text-center" style="margin: 50px 0px;" role="alert">
@@ -7,6 +9,31 @@
     </div>
   </div>
 
+  <!-- local contact -->
+  <div class="panel panel-success">
+    <div class="panel-heading">
+      <h3 class="panel-title text-center">Moabit Hilft!</h3>
+    </div>
+    <div class="panel-body text-center">
+      <div class="row">
+        <div class="col-sm-12">
+          <h4><b>Adresse:</b> Testadresse 127</h4>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <h4><b>Mail:</b> mail@test.com</h4>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <h4><b>Telefon:</b> 030 / 217 27 63</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- table -->
   <div class="row">
     <div class="col-sm-12">
       <table class="table table-hover text-center">
@@ -40,7 +67,7 @@
           </td>
           <td>
             <div class="input-group" style="max-width:150px;">
-              <input type="text" class="form-control" placeholder="10">
+              <input type="number" class="form-control" placeholder="10">
               <div class="input-group-addon">Stück</div>
             </div>
           </td>

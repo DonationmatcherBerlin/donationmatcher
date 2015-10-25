@@ -24,4 +24,11 @@ class Local extends CI_Controller {
     $this->load->view('local_view');
     $this->load->view('footer');
   }
+
+  public function match()
+  {
+    $this->load->view('header');
+    $this->load->view('match_view');
+    $this->load->view('footer');
+  }
 }
