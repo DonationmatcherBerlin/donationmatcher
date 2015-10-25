@@ -20,14 +20,6 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('header');
-		$this->load->view('landingpage');
-		$this->load->view('footer');
-	}
-
-	public function local($group = 'LaGeSo'){
-		$this->load->view('header');
-		$this->load->view('local_view');
-		$this->load->view('footer');
+		$this->load->view('welcome');
 	}
 }

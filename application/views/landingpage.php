@@ -23,7 +23,8 @@
 
 	<!-- TABLE -->
 	<h2 class="headline">Das brauchen wir am meisten.</h2>
-    <table class="table table-bordered table-striped responsive-utilities topTentable">
+	<div class="container">
+    <table id="myTable" class="table table-bordered table-striped responsive-utilities topTentable">
       <thead>
         <tr>
           <th>
@@ -64,7 +65,7 @@
         </tr>
       </tbody>
     </table>
-
+    </div>
 
 
 <hr>
@@ -156,6 +157,9 @@
       </tbody>
     </table>
   </div>
+
+
+
 
 
 
