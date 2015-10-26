@@ -5,6 +5,7 @@ class Migrate extends CI_Controller {
 
 	public function index(){
 
+		check_role('admin');
 		$this->load->library('migration');
 
 		if ( ! $this->migration->latest())
@@ -14,7 +15,9 @@ class Migrate extends CI_Controller {
 
 	}
 
-	public function reset(){
+	public function reset()
+	{
+		check_role('admin');
 		$this->load->library('migration');
 		
 		$this->migration->version(0);
