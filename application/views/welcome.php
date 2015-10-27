@@ -54,9 +54,8 @@
     </div>
     <!-- /.container -->
 
-    <nav class="navbar navbar-fixed-bottom" role="navigation">
+    <!-- <nav class="navbar navbar-fixed-bottom" role="navigation">
         <div class="container">
-            <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse pull-right" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
@@ -67,10 +66,8 @@
                     </li>
                 </ul>
             </div>
-            <!-- /.navbar-collapse -->
         </div>
-        <!-- /.container -->
-    </nav>
+    </nav> -->
 
     <!-- js -->
     <script src="<?= base_url('assets/js/jquery-2.1.4.min.js') ?>"></script>
