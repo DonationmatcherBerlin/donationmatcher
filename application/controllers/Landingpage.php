@@ -20,8 +20,6 @@ class Landingpage extends CI_Controller {
    */
   public function index()
   {
-    $this->load->view('header');
-    $this->load->view('landingpage');
-    $this->load->view('footer');
+    $this->load->view('under_construction_view');
   }
 }

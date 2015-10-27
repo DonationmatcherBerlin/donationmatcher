@@ -17,7 +17,7 @@
 
     <style type="text/css">
     .full {
-      background: url('/assets/images/bg.png') no-repeat center center fixed;
+      background: url('/assets/images/background.jpg') no-repeat center center fixed;
       -webkit-background-size: cover;
       -moz-background-size: cover;
       -o-background-size: cover;
@@ -29,30 +29,25 @@
 
 <body class="full">
 
-    <!-- Page Content -->
-    <div class="container">
-    <div class="jumbotron" style="background:transparent;">
-        <div class="container">
-            <div class="row" style="margin-bottom:100px;">
-                <h1 class="text-center" style="color:#337ab7;">Bedarfsplaner</h1>
-                <h2 style="color:#337ab7; text-align:center;">Alle Bedarfslisten der Berliner Hilfsgruppen auf einen Blick</h2>
-            </div>
-
-
-            <div class="row">
+<div class="container">
+    <div class="jumbotron" style="margin-top:150px; background-color: rgba(255,255,255,.7); color:#337ab7;">
+        <div class="container text-center">
+            <h1 class="text-center" style="color:#337ab7;">Bedarfsplaner.org</h1>
+            <h2 style="color:#337ab7; text-align:center;">Alle Bedarfslisten Hilfsgruppen auf einen Blick</h2>
+            <hr>
+                        <div class="row">
                 <div class="col-sm-6">
-                    <a href="<?=site_url('/landingpage')?>" class="btn btn-primary btn-lg" style="width:100%; padding:30px 0px;"><p style="margin:0;">Wo wird was benötigt?</p></a>
-                    <small style="color:white; margin-left:25%;">Ich bin daran interessiert zu spenden</small>
+                    <a href="<?=site_url('/landingpage')?>" class="btn btn-primary btn-lg" style="width:100%; padding:30px 0px;"><p style="margin:0;">Ich möchte meine Sachen spenden</p></a>
+                    <small style="color:#337ab7; margin-left:5%;">Wo werden meine Sachen benötigt?</small>
                 </div>
                 <div class="col-sm-6">
                     <a href="<?=site_url('/user/login')?>" class="btn btn-success btn-lg" style="min-width:100%; padding:30px 0px;" ><p style="margin:0;">Ich bin Teil einer Hilfsgruppe</p></a>
-                    <small style="color:white; margin-left:25%;">Bearbeite deine Bedarfsliste</small>
+                    <small style="color:#337ab7; margin-left:5%;">Bedarfslisten erstellen und mit anderen Hilfsgruppen vernetzen.</small>
                 </div>
             </div>
         </div>
     </div>
-    </div>
-    <!-- /.container -->
+</div>
 
     <!-- <nav class="navbar navbar-fixed-bottom" role="navigation">
         <div class="container">

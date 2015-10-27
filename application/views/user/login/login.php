@@ -16,7 +16,7 @@
 
     <style type="text/css">
     .full {
-      background: url('/assets/images/bg.png') no-repeat center center fixed;
+      background: url('/assets/images/background.jpg') no-repeat center center fixed;
       -webkit-background-size: cover;
       -moz-background-size: cover;
       -o-background-size: cover;
@@ -28,7 +28,7 @@
     }
 
     .panel {
-        background-color: rgba(255,255,255,.5);
+        background-color: rgba(255,255,255,.8);
     }
     </style>
 
@@ -37,10 +37,9 @@
 
 <div class="container">
     <div class="col-sm-6 col-sm-offset-3">
-        <div class="panel panel-info" style="margin-top:100px; border-color: none;">
+        <div class="panel panel-primary" style="margin-top:100px; border-color: none;">
             <div class="panel-heading">
-                <div class="panel-title">Login</div>
-                <div style="float:right; font-size: 80%; position: relative; top:-10px"><a href="<?=site_url('/user/passwordreset')?>">Forgot password?</a></div>
+                <div class="panel-title text-center">Login</div>
             </div>
 
             <div style="padding-top:30px" class="panel-body">
@@ -78,8 +77,7 @@
 					<!-- Button -->
 
 						<div class="col-sm-12 controls text-center">
-							<input type="submit" id="btn-login" class="btn btn-success btn-lg" style="min-width:200px; margin:20px 0px;">
-
+							<input type="submit" id="btn-login" class="btn btn-success btn-lg" style="min-width:200px; margin:20px 0px;" value="Senden">
 						</div>
 					</div>
 
@@ -92,6 +90,7 @@
                                     Registriere dich hier
                                 </a>
                                 </div>
+                                <div style="float:left; font-size: 80%; position: relative;"><a href="<?=site_url('/user/passwordreset')?>">Passwort vergessen?</a></div>
                             </div>
                         </div>
                     </form>

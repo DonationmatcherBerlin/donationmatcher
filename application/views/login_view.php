@@ -16,19 +16,15 @@
 
     <style type="text/css">
     .full {
-      background: url('/assets/images/bg.png') no-repeat center center fixed;
+      background: url('/assets/images/background.jpg') no-repeat center center fixed;
       -webkit-background-size: cover;
       -moz-background-size: cover;
       -o-background-size: cover;
       background-size: cover;
     }
 
-    body {
-        background-color: transparent;
-    }
-
     .panel {
-        background-color: rgba(255,255,255,.8);
+        background-color: rgba(255,255,255,.7);
     }
     </style>
 
