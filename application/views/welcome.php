@@ -33,7 +33,7 @@
     <div class="jumbotron" style="margin-top:150px; background-color: rgba(255,255,255,.7); color:#337ab7;">
         <div class="container text-center">
             <h1 class="text-center" style="color:#337ab7;">Bedarfsplaner.org</h1>
-            <h2 style="color:#337ab7; text-align:center;">Alle Bedarfslisten Hilfsgruppen auf einen Blick</h2>
+            <h2 style="color:#337ab7; text-align:center;">Alle Bedarfslisten der Hilfsgruppen auf einen Blick</h2>
             <hr>
                         <div class="row">
                 <div class="col-sm-6">
