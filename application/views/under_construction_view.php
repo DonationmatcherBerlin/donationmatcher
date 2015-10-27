@@ -59,7 +59,6 @@
 <div class="container">
     <div class="jumbotron" style="margin-top:150px; background-color: rgba(255,255,255,.7); color:#337ab7;">
         <div class="container text-center">
-            <i class="fa fa-exclamation-triangle text-center" style="font-size:5em; color:rgba(255,255,70,.9);"></i>
             <h1>Diese Seite ist demnächst für Sie verfügbar!</h1>
             <hr>
             <p style="color:#337ab7;">Freiwillige Programmierer, die sich beim <a href="http://refugeehackathon.de">RefugeeHackathon</a> zusammengefunden haben, sind gerade dabei diese Seite vollständig zu implementieren. Bitte haben Sie noch ein wenig Geduld.</p>
