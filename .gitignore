@@ -28,3 +28,4 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 
 .vagrant
 composer.phar
+application/config/production
