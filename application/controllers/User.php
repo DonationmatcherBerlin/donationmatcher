@@ -173,7 +173,7 @@ class User extends CI_Controller {
 
 			// validation not ok, send validation errors to the view
 
-			$this->load->view('user/login/login');
+			$this->load->view('under_construction_view');
 
 		} else {
 
