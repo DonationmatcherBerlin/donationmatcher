@@ -5,9 +5,9 @@ class Facility extends CI_Controller {
 
 	public function index()
 	{
+		check_role('confirmed');
 		$this->load->model('facility_model');
 		print_r($this->facility_model->get_all());
-
 	}
 
 }

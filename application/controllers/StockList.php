@@ -8,6 +8,7 @@ class StockList extends CI_Controller
      */
     public function index()
     {
+        check_role('confirmed');
         $this->load->model('stock_list_model');
         print_r($this->stock_list_model->get_all());
     }
