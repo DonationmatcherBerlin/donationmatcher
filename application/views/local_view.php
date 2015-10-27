@@ -1,519 +1,113 @@
 <div class="container">
+  <?php echo form_open(); ?>
 
-  <!-- alert panel -->
-  <div class="row">
-    <div class="col-sm-6 col-sm-offset-3">
-      <div class="alert alert-danger text-center" style="margin: 50px 0px;" role="alert">
-        <b>Hey Name!</b> Deine Bedarfsliste wurde das letzte mal am dd.mm.yyyy geupdatet.
+    <!-- alert panel -->
+    <!--
+    <div class="row">
+      <div class="col-sm-6 col-sm-offset-3">
+      
+        <div class="alert alert-danger text-center" style="margin: 50px 0px;" role="alert">
+          <b>Hey Name!</b> Deine Bedarfsliste wurde das letzte mal am geupdatet.
+        </div>
+        
       </div>
     </div>
-  </div>
+    -->
 
-  <!-- local contact -->
-  <div class="panel panel-success">
-    <div class="panel-heading">
-      <h3 class="panel-title text-center">Moabit Hilft!</h3>
-    </div>
-    <div class="panel-body text-center">
-      <div class="row">
-        <div class="col-sm-12">
-          <h4><b>Adresse:</b> Testadresse 127</h4>
+    <!-- local contact -->
+    <div class="panel panel-success">
+      <div class="panel-heading">
+        <h3 class="panel-title text-center"><?=$facility->name?></h3>
+      </div>
+      <div class="panel-body text-center">
+        <div class="row">
+          <div class="col-sm-12">
+            <h4><b>Adresse:</b> <?=$facility->address?></h4>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <h4><b>Mail:</b> <?=$facility->email?></h4>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <h4><b>Telefon:</b> <?=$facility->phone?></h4>
+          </div>
         </div>
       </div>
-      <div class="row">
-        <div class="col-sm-12">
-          <h4><b>Mail:</b> mail@test.com</h4>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-12">
-          <h4><b>Telefon:</b> 030 / 217 27 63</h4>
-        </div>
-      </div>
     </div>
-  </div>
 
-  <!-- table -->
-  <div class="row">
-    <div class="col-sm-12">
-      <table class="table table-hover text-center" id="myTable">
-      <thead>
+    <!-- table -->
+    <div class="row">
+      <div class="col-sm-12">
+        <table class="table table-hover text-center">
+        <thead>
+          <tr>
+            <th class="th-green">Spende</th>
+            <th class="th-green">Wird gebraucht</th>
+            <th class="th-green">Nicht gebraucht</th>
+            <th class="th-green">Zu viel</th>
+            <th class="th-green">Anzahl vorhanden (optional)</th>
+            <th class="th-green">Kommentar (optional)</th>
+          </tr>
+        </thead>
+        <tbody>
+
+        <?php
+          foreach ($stocklist as $category) {
+            //foreach ($category['entries'] as $entry) {
+                $entry = isset($category['entries'][0]) 
+                        ? $category['entries'][0] 
+                        : array('demand' => 0, 'comment' => '', 'count' => '');
+
+                $checked = $entry['demand'];
+              ?>
+                <tr>
+                  <th><?=$category['name']?></th>
+                  <td>
+                    <div class="radio">
+                      <label><input <?php if($checked=='-1'){echo 'checked="checked"';};?> value="-1" type="radio" name="demand[<?=$category['category_id']?>]"></label>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="radio" >
+                      <label><input <?php if($checked=='0'){echo 'checked="checked"';};?> value="0" type="radio" name="demand[<?=$category['category_id']?>]"></label>
+                    </div>
+                  </td>
+                  <td>
+                    <div classin="radio" >
+                      <label><input <?php if($checked=='1'){echo 'checked="checked"';};?> value="1" type="radio" name="demand[<?=$category['category_id']?>]"></label>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="input-group" style="max-width:150px;">
+                      <input value="<?=$entry['count']?>" name="count[<?=$category['category_id']?>]" type="number" class="form-control" placeholder="(optional)">
+                      <div class="input-group-addon">Stück</div>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="form-group">
+                      <input type="text" class="form-control" value="<?=$entry['comment']?>" name="comment[<?=$category['category_id']?>]">
+                    </div>
+                  </td>
+                </tr>
+          <?php
+            //}
+          }
+        ?>
+
         <tr>
-          <th class="th-green">Spende</th>
-          <th class="th-green">Wird gebraucht</th>
-          <th class="th-green">Nicht gebraucht</th>
-          <th class="th-green">Zu viel</th>
-          <th class="th-green">Im Lager vorhanden (optional)</th>
-          <th class="th-green">Kommentar (optional)</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th>Spende</th>
-          <td>
-            <div class="radio">
-              <label><input type="radio" name="optradio"></label>
-            </div>
-          </td>
-          <td>
-            <div class="radio" >
-              <label><input type="radio" name="optradio" checked></label>
-            </div>
-          </td>
-          <td>
-            <div classin="radio" >
-              <label><input type="radio" name="optradio"></label>
-            </div>
-          </td>
-          <td>
-            <div class="input-group" style="max-width:150px;">
-              <input type="number" class="form-control" placeholder="10">
-              <div class="input-group-addon">Stück</div>
-            </div>
-          </td>
-          <td>
+          <th>Aktion</th>
+          <td colspan="5">
             <div class="form-group">
-              <input type="text" class="form-control" id="usr">
+              <input type="submit" class="form-control btn btn-primary" value="Speichern" >
             </div>
           </td>
         </tr>
-        <tr>
-          <th>Spende</th>
-          <td>
-            <div class="radio">
-              <label><input type="radio" name="optradio2"></label>
-            </div>
-          </td>
-          <td>
-            <div class="radio" >
-              <label><input type="radio" name="optradio2" checked></label>
-            </div>
-          </td>
-          <td>
-            <div classin="radio" >
-              <label><input type="radio" name="optradio2"></label>
-            </div>
-          </td>
-          <td>
-            <div class="input-group" style="max-width:150px;">
-              <input type="text" class="form-control" placeholder="10">
-              <div class="input-group-addon">Stück</div>
-            </div>
-          </td>
-          <td>
-            <div class="form-group">
-              <input type="text" class="form-control" id="usr">
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <th>Spende</th>
-          <td>
-            <div class="radio">
-              <label><input type="radio" name="optradio3"></label>
-            </div>
-          </td>
-          <td>
-            <div class="radio" >
-              <label><input type="radio" name="optradio3" checked></label>
-            </div>
-          </td>
-          <td>
-            <div classin="radio" >
-              <label><input type="radio" name="optradio3"></label>
-            </div>
-          </td>
-          <td>
-            <div class="input-group" style="max-width:150px;">
-              <input type="text" class="form-control" placeholder="10">
-              <div class="input-group-addon">Stück</div>
-            </div>
-          </td>
-          <td>
-            <div class="form-group">
-              <input type="text" class="form-control" id="usr">
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <th>Spende</th>
-          <td>
-            <div class="radio">
-              <label><input type="radio" name="optradio4"></label>
-            </div>
-          </td>
-          <td>
-            <div class="radio" >
-              <label><input type="radio" name="optradio4" checked></label>
-            </div>
-          </td>
-          <td>
-            <div classin="radio" >
-              <label><input type="radio" name="optradio4"></label>
-            </div>
-          </td>
-          <td>
-            <div class="input-group" style="max-width:150px;">
-              <input type="text" class="form-control" placeholder="10">
-              <div class="input-group-addon">Stück</div>
-            </div>
-          </td>
-          <td>
-            <div class="form-group">
-              <input type="text" class="form-control" id="usr">
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <th>Spende</th>
-          <td>
-            <div class="radio">
-              <label><input type="radio" name="optradio5"></label>
-            </div>
-          </td>
-          <td>
-            <div class="radio" >
-              <label><input type="radio" name="optradio5" checked></label>
-            </div>
-          </td>
-          <td>
-            <div classin="radio" >
-              <label><input type="radio" name="optradio5"></label>
-            </div>
-          </td>
-          <td>
-            <div class="input-group" style="max-width:150px;">
-              <input type="text" class="form-control" placeholder="10">
-              <div class="input-group-addon">Stück</div>
-            </div>
-          </td>
-          <td>
-            <div class="form-group">
-              <input type="text" class="form-control" id="usr">
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <th>Spende</th>
-          <td>
-            <div class="radio">
-              <label><input type="radio" name="optradio6"></label>
-            </div>
-          </td>
-          <td>
-            <div class="radio" >
-              <label><input type="radio" name="optradio6" checked></label>
-            </div>
-          </td>
-          <td>
-            <div classin="radio" >
-              <label><input type="radio" name="optradio6"></label>
-            </div>
-          </td>
-          <td>
-            <div class="input-group" style="max-width:150px;">
-              <input type="text" class="form-control" placeholder="10">
-              <div class="input-group-addon">Stück</div>
-            </div>
-          </td>
-          <td>
-            <div class="form-group">
-              <input type="text" class="form-control" id="usr">
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <th>Spende</th>
-          <td>
-            <div class="radio">
-              <label><input type="radio" name="optradio7"></label>
-            </div>
-          </td>
-          <td>
-            <div class="radio" >
-              <label><input type="radio" name="optradio7" checked></label>
-            </div>
-          </td>
-          <td>
-            <div classin="radio" >
-              <label><input type="radio" name="optradio7"></label>
-            </div>
-          </td>
-          <td>
-            <div class="input-group" style="max-width:150px;">
-              <input type="text" class="form-control" placeholder="10">
-              <div class="input-group-addon">Stück</div>
-            </div>
-          </td>
-          <td>
-            <div class="form-group">
-              <input type="text" class="form-control" id="usr">
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <th>Spende</th>
-          <td>
-            <div class="radio">
-              <label><input type="radio" name="optradio8"></label>
-            </div>
-          </td>
-          <td>
-            <div class="radio" >
-              <label><input type="radio" name="optradio8" checked></label>
-            </div>
-          </td>
-          <td>
-            <div classin="radio" >
-              <label><input type="radio" name="optradio8"></label>
-            </div>
-          </td>
-          <td>
-            <div class="input-group" style="max-width:150px;">
-              <input type="text" class="form-control" placeholder="10">
-              <div class="input-group-addon">Stück</div>
-            </div>
-          </td>
-          <td>
-            <div class="form-group">
-              <input type="text" class="form-control" id="usr">
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <th>Spende</th>
-          <td>
-            <div class="radio">
-              <label><input type="radio" name="optradio9"></label>
-            </div>
-          </td>
-          <td>
-            <div class="radio" >
-              <label><input type="radio" name="optradio9" checked></label>
-            </div>
-          </td>
-          <td>
-            <div classin="radio" >
-              <label><input type="radio" name="optradio9"></label>
-            </div>
-          </td>
-          <td>
-            <div class="input-group" style="max-width:150px;">
-              <input type="text" class="form-control" placeholder="10">
-              <div class="input-group-addon">Stück</div>
-            </div>
-          </td>
-          <td>
-            <div class="form-group">
-              <input type="text" class="form-control" id="usr">
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <th>Spende</th>
-          <td>
-            <div class="radio">
-              <label><input type="radio" name="optradio10"></label>
-            </div>
-          </td>
-          <td>
-            <div class="radio" >
-              <label><input type="radio" name="optradio10" checked></label>
-            </div>
-          </td>
-          <td>
-            <div classin="radio" >
-              <label><input type="radio" name="optradio10"></label>
-            </div>
-          </td>
-          <td>
-            <div class="input-group" style="max-width:150px;">
-              <input type="text" class="form-control" placeholder="10">
-              <div class="input-group-addon">Stück</div>
-            </div>
-          </td>
-          <td>
-            <div class="form-group">
-              <input type="text" class="form-control" id="usr">
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <th>Spende</th>
-          <td>
-            <div class="radio">
-              <label><input type="radio" name="optradio11"></label>
-            </div>
-          </td>
-          <td>
-            <div class="radio" >
-              <label><input type="radio" name="optradio11" checked></label>
-            </div>
-          </td>
-          <td>
-            <div classin="radio" >
-              <label><input type="radio" name="optradio11"></label>
-            </div>
-          </td>
-          <td>
-            <div class="input-group" style="max-width:150px;">
-              <input type="text" class="form-control" placeholder="10">
-              <div class="input-group-addon">Stück</div>
-            </div>
-          </td>
-          <td>
-            <div class="form-group">
-              <input type="text" class="form-control" id="usr">
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <th>Spende</th>
-          <td>
-            <div class="radio">
-              <label><input type="radio" name="optradio12"></label>
-            </div>
-          </td>
-          <td>
-            <div class="radio" >
-              <label><input type="radio" name="optradio12" checked></label>
-            </div>
-          </td>
-          <td>
-            <div classin="radio" >
-              <label><input type="radio" name="optradio12"></label>
-            </div>
-          </td>
-          <td>
-            <div class="input-group" style="max-width:150px;">
-              <input type="text" class="form-control" placeholder="10">
-              <div class="input-group-addon">Stück</div>
-            </div>
-          </td>
-          <td>
-            <div class="form-group">
-              <input type="text" class="form-control" id="usr">
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <th>Spende</th>
-          <td>
-            <div class="radio">
-              <label><input type="radio" name="optradio13"></label>
-            </div>
-          </td>
-          <td>
-            <div class="radio" >
-              <label><input type="radio" name="optradio13" checked></label>
-            </div>
-          </td>
-          <td>
-            <div classin="radio" >
-              <label><input type="radio" name="optradio13"></label>
-            </div>
-          </td>
-          <td>
-            <div class="input-group" style="max-width:150px;">
-              <input type="text" class="form-control" placeholder="10">
-              <div class="input-group-addon">Stück</div>
-            </div>
-          </td>
-          <td>
-            <div class="form-group">
-              <input type="text" class="form-control" id="usr">
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <th>Spende</th>
-          <td>
-            <div class="radio">
-              <label><input type="radio" name="optradio14"></label>
-            </div>
-          </td>
-          <td>
-            <div class="radio" >
-              <label><input type="radio" name="optradio14" checked></label>
-            </div>
-          </td>
-          <td>
-            <div classin="radio" >
-              <label><input type="radio" name="optradio14"></label>
-            </div>
-          </td>
-          <td>
-            <div class="input-group" style="max-width:150px;">
-              <input type="text" class="form-control" placeholder="10">
-              <div class="input-group-addon">Stück</div>
-            </div>
-          </td>
-          <td>
-            <div class="form-group">
-              <input type="text" class="form-control" id="usr">
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <th>Spende</th>
-          <td>
-            <div class="radio">
-              <label><input type="radio" name="optradio15"></label>
-            </div>
-          </td>
-          <td>
-            <div class="radio" >
-              <label><input type="radio" name="optradio15" checked></label>
-            </div>
-          </td>
-          <td>
-            <div classin="radio" >
-              <label><input type="radio" name="optradio15"></label>
-            </div>
-          </td>
-          <td>
-            <div class="input-group" style="max-width:150px;">
-              <input type="text" class="form-control" placeholder="10">
-              <div class="input-group-addon">Stück</div>
-            </div>
-          </td>
-          <td>
-            <div class="form-group">
-              <input type="text" class="form-control" id="usr">
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <th>Spende</th>
-          <td>
-            <div class="radio">
-              <label><input type="radio" name="optradio16"></label>
-            </div>
-          </td>
-          <td>
-            <div class="radio" >
-              <label><input type="radio" name="optradio16" checked></label>
-            </div>
-          </td>
-          <td>
-            <div classin="radio" >
-              <label><input type="radio" name="optradio16"></label>
-            </div>
-          </td>
-          <td>
-            <div class="input-group" style="max-width:150px;">
-              <input type="text" class="form-control" placeholder="10">
-              <div class="input-group-addon">Stück</div>
-            </div>
-          </td>
-          <td>
-            <div class="form-group">
-              <input type="text" class="form-control" id="usr">
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+        </tbody>
+      </table>
+      </div>
     </div>
-  </div>
+  </form>
 </div>

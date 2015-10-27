@@ -38,6 +38,18 @@ class Stock_list_model extends CI_Model {
     }
 
     /**
+     * Returns single stock list
+     *
+     * @param $id
+     * @return array
+     */
+    public function get_by_facility($facility_id)
+    {
+        $this->db->where('Facility', $facility_id);
+        return $this->db->get('stock_list')->row();
+    }
+
+    /**
      * Returns stock list entries grouped by categories
      *
      * @param int $id

@@ -20,9 +20,11 @@ class StockList extends CI_Controller
 
         check_role('confirmed');
 
-        $this->load->model('facility_model');
+        $this->load->model(array('facility_model', 'stock_list_model'));
         $facility = $this->facility_model->get_facility_by_user_id($_SESSION['user_id']);
-        $id = $facility->facility_id;
+        $stocklist = $this->stock_list_model->get_by_facility($facility->facility_id);
+        
+        $id = $stocklist->stock_list_id;
 
         $this->load->model('stock_list_model');
         $this->load->model('stock_list_entry_model');
