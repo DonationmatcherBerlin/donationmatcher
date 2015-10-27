@@ -62,7 +62,7 @@
             <i class="fa fa-exclamation-triangle text-center" style="font-size:5em; color:rgba(255,255,70,.9);"></i>
             <h1>Diese Seite ist demnächst für Sie verfügbar!</h1>
             <hr>
-            <p style="color:#337ab7;">Freiwillige Programmierer, die sich beim <a href="http://refugeehackathon.de">RefugeeHackathon</a> zusammengefunden haben, sind gerade dabei diese Seite vollständig zu implementieren. Bitte haben sie noch ein wenig Geduld.</p>
+            <p style="color:#337ab7;">Freiwillige Programmierer, die sich beim <a href="http://refugeehackathon.de">RefugeeHackathon</a> zusammengefunden haben, sind gerade dabei diese Seite vollständig zu implementieren. Bitte haben Sie noch ein wenig Geduld.</p>
         </div>
     </div>
 </div>
