@@ -25,14 +25,17 @@ server {
   root /var/www/public;
   index index.php;
   location / {
-    try_files \$uri \$uri/ /index.php;
+    try_files $uri /index.php$is_args$args;
   }
-  # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
   location ~ \.php$ {
     fastcgi_pass unix:/var/run/php5-fpm.sock;
-    fastcgi_index index.php;
-    fastcgi_param SCRIPT_FILENAME \$document_root\$fastcgi_script_name;
+    fastcgi_split_path_info ^(.+\.php)(/.*)$;
     include fastcgi_params;
+    fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name;
+    fastcgi_param DOCUMENT_ROOT $realpath_root;
+    #fastcgi_param HTTPS on;
+    #fastcgi_param CI_ENV production;
+    internal;
   }
 }
 EOM
