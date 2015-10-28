@@ -47,59 +47,53 @@
             <th class="th-green">Spende</th>
             <th class="th-green">Wird gebraucht</th>
             <th class="th-green">Nicht gebraucht</th>
-            <th class="th-green">Zu viel</th>
+            <th class="th-green">Zu viel vorhanden</th>
             <th class="th-green">Anzahl vorhanden (optional)</th>
             <th class="th-green">Kommentar (optional)</th>
           </tr>
         </thead>
         <tbody>
-
-        <?php
-          foreach ($stocklist as $category) {
-            //foreach ($category['entries'] as $entry) {
-                $entry = isset($category['entries'][0]) 
-                        ? $category['entries'][0] 
-                        : array('demand' => 0, 'comment' => '', 'count' => '');
-
-                $checked = $entry['demand'];
-              ?>
+        <?php foreach ($stocklist as $category) : ?>
+            <tr>
+                <td colspan="6">
+                    <h3 style="text-align: left"><?= $category['name'] ?></h3>
+                </td>
+            </tr>
+            <?php foreach ($category['entries'] as $entry) : ?>
+                <?php $checked = $entry['demand']; ?>
                 <tr>
-                  <th><?=$category['name']?></th>
-                  <td>
-                    <div class="radio">
-                      <label><input <?php if($checked=='-1'){echo 'checked="checked"';};?> value="-1" type="radio" name="demand[<?=$category['category_id']?>]"></label>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="radio" >
-                      <label><input <?php if($checked=='0'){echo 'checked="checked"';};?> value="0" type="radio" name="demand[<?=$category['category_id']?>]"></label>
-                    </div>
-                  </td>
-                  <td>
-                    <div classin="radio" >
-                      <label><input <?php if($checked=='1'){echo 'checked="checked"';};?> value="1" type="radio" name="demand[<?=$category['category_id']?>]"></label>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="input-group" style="max-width:150px;">
-                      <input value="<?=$entry['count']?>" name="count[<?=$category['category_id']?>]" type="number" class="form-control" placeholder="(optional)">
-                      <div class="input-group-addon">Stück</div>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="form-group">
-                      <input type="text" class="form-control" value="<?=$entry['comment']?>" name="comment[<?=$category['category_id']?>]">
-                    </div>
-                  </td>
+                    <th><?=$entry['name']?></th>
+                    <td>
+                        <div class="radio">
+                            <label><input <?php if($checked=='-1'){echo 'checked="checked"';};?> value="-1" type="radio" name="demand[<?=$entry['stock_list_entry_id']?>]"></label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="radio" >
+                            <label><input <?php if($checked=='0'){echo 'checked="checked"';};?> value="0" type="radio" name="demand[<?=$entry['stock_list_entry_id']?>]"></label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="radio" >
+                            <label><input <?php if($checked=='1'){echo 'checked="checked"';};?> value="1" type="radio" name="demand[<?=$entry['stock_list_entry_id']?>]"></label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group" style="max-width:150px;">
+                            <input value="<?=$entry['count']?>" name="count[<?=$entry['stock_list_entry_id']?>]" type="number" class="form-control" placeholder="(optional)">
+                            <div class="input-group-addon">Stück</div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form-group">
+                            <input type="text" class="form-control" value="<?=$entry['comment']?>" name="comment[<?=$entry['stock_list_entry_id']?>]">
+                        </div>
+                    </td>
                 </tr>
-          <?php
-            //}
-          }
-        ?>
-
+            <?php endforeach; ?>
+        <?php endforeach; ?>
         <tr>
-          <th>Aktion</th>
-          <td colspan="5">
+          <td colspan="6">
             <div class="form-group">
               <input type="submit" class="form-control btn btn-primary" value="Speichern" >
             </div>

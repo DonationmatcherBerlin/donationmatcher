@@ -3,32 +3,42 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Local extends CI_Controller {
 
-  /**
-   * Index Page for this controller.
-   *
-   * Maps to the following URL
-   *    http://example.com/index.php/welcome
-   *  - or -
-   *    http://example.com/index.php/welcome/index
-   *  - or -
-   * Since this controller is set as the default controller in
-   * config/routes.php, it's displayed at http://example.com/
-   *
-   * So any other public methods not prefixed with an underscore will
-   * map to /index.php/welcome/<method_name>
-   * @see http://codeigniter.com/user_guide/general/urls.html
-   */
-  public function index()
-  {
-    $this->load->view('header');
-    $this->load->view('local_view');
-    $this->load->view('footer');
-  }
+    /**
+     * Demand and offers matching list
+     */
+    public function match()
+    {
+        check_role('confirmed');
+        $this->load->view('header');
+        $this->load->view('match_view');
+        $this->load->view('footer');
+    }
 
-  public function match()
-  {
-    $this->load->view('header');
-    $this->load->view('match_view');
-    $this->load->view('footer');
-  }
+    /**
+     * Shows demand
+     */
+    public function demand($stock_list_id)
+    {
+        check_role('confirmed');
+        $this->load->model('stock_list_entry_model');
+        echo '<pre>';
+        var_dump(
+            $this->stock_list_entry_model->get_demand($stock_list_id)
+        );
+        echo '</pre>';
+    }
+
+    /**
+     * Shows offers
+     */
+    public function offers($stock_list_id)
+    {
+        check_role('confirmed');
+        $this->load->model('stock_list_entry_model');
+        echo '<pre>';
+        var_dump(
+            $this->stock_list_entry_model->get_offers($stock_list_id)
+        );
+        echo '</pre>';
+    }
 }

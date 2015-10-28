@@ -10,22 +10,22 @@ class Stock_list_entry_model extends CI_Model {
         parent::__construct();
     }
 
-    public function get_demand($id)
+    public function get_demand($stock_list_id)
     {
-        $category_ids = $this->get_categories($id, -1);
-        return $this->get_demand_list($id, 1, array_column($category_ids, 'category_id'));
+        $category_ids = $this->get_categories($stock_list_id, -1);
+        return $this->get_demand_list($stock_list_id, 1, array_column($category_ids, 'category_id'));
     }
 
-    public function get_offers($id)
+    public function get_offers($stock_list_id)
     {
-        $category_ids = $this->get_categories($id, 1);
-        return $this->get_demand_list($id, -1, array_column($category_ids, 'category_id'));
+        $category_ids = $this->get_categories($stock_list_id, 1);
+        return $this->get_demand_list($stock_list_id, -1, array_column($category_ids, 'category_id'));
     }
 
     /**
      * Get all categories of entries with negative demand from own stock list
      */
-    private function get_categories($id, $demand)
+    private function get_categories($stock_list_id, $demand)
     {
         $query = $this->db->query(
             '
@@ -40,7 +40,7 @@ class Stock_list_entry_model extends CI_Model {
                 c.category_id
             ',
             [
-                (int) $id,
+                (int) $stock_list_id,
                 (int) $demand
             ]
         );
@@ -51,7 +51,7 @@ class Stock_list_entry_model extends CI_Model {
     /**
      * Get facilities with positive demand in those categories
      */
-    private function get_demand_list($id, $demand, array $category_ids)
+    private function get_demand_list($stock_list_id, $demand, array $category_ids)
     {
         $query = $this->db->query(
             '
@@ -67,7 +67,7 @@ class Stock_list_entry_model extends CI_Model {
                 AND sle.Category IN (?)
             ',
             [
-                (int) $id,
+                (int) $stock_list_id,
                 (int) $demand,
                 implode(',', $category_ids)
             ]
@@ -76,14 +76,8 @@ class Stock_list_entry_model extends CI_Model {
         return $query->result_array();
     }
 
-    
-    public function update($stocklist, $entries){
 
-        $this->db->trans_start();
-        $this->db->where('StockList', $stocklist);
-        $this->db->delete('stock_list_entry');
-        $this->db->insert_batch('stock_list_entry', $entries);
-        $this->db->trans_complete();
-
+    public function update(array $entries){
+        $this->db->update_batch('stock_list_entry', $entries, 'stock_list_entry_id');
     }
 }

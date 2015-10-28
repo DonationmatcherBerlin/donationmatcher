@@ -172,9 +172,11 @@ class User extends CI_Controller {
 		if ($this->form_validation->run() == false) {
 
 			// validation not ok, send validation errors to the view
-
-			$this->load->view('under_construction_view');
-
+            if (in_array($_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1'], true)) {
+                $this->load->view('user/login/login');
+            } else {
+                $this->load->view('under_construction_view');
+            }
 		} else {
 
 			// set variables from the form
