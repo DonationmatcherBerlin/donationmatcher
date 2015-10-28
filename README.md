@@ -31,5 +31,5 @@ mysql -uroot -proot donationmatcher < dummies.sql
 ## URLS
 
 **user profile**: http://192.168.50.4/user/profile
-**stock list**: http://192.168.50.4/stocklist/get
+**stock list**: http://192.168.50.4/stockList/get
 **match**: http://192.168.50.4/local/match

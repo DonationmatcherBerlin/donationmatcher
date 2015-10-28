@@ -170,9 +170,8 @@ class User extends CI_Controller {
 		$this->form_validation->set_rules('password', 'Password', 'required');
 
 		if ($this->form_validation->run() == false) {
-
 			// validation not ok, send validation errors to the view
-            if (in_array($_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1'], true)) {
+            if (in_array($_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1', '192.168.50.1'], true)) {
                 $this->load->view('user/login/login');
             } else {
                 $this->load->view('under_construction_view');
