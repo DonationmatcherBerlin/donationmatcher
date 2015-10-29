@@ -167,42 +167,42 @@
     <script>
 
 function initMap() {
-	var LocationLat = [
-    52.5196530,
-    52.493830,
-    52.4938300
+	//data from DB
+	var addresses = [
+    'Hauptstr.13 Berlin Germany',
+    'Turmstr.13 Berlin Germany',
+    'Eisenacherstr.13 Berlin 10777 Germany' //needed format zipcode important because of double street entries
 	];	
-	var LocationLng = [
-    13.3728780,
-    13.423123,
-    13.999945
-	];	
-	var Organisation = [
-    'www.google.de',
-    'www.facebook.de',
-    'www.youtube.de'
-	];
+	//build new map
 	var map = new google.maps.Map(document.getElementById('map'), {
     zoom: 11,
     center: {lat: 52.493830, lng: 13.423598}
 	});
-	  for (i = 0; i < LocationLat.length; i++) {
-	    var myLatLng = {lat: LocationLat[i], lng: LocationLng[i]};
-		var marker = new google.maps.Marker({
-		position: myLatLng,
-		map: map,
-		url: Organisation[i],
-		title: 'Hello World!',
+	  for (i = 0; i < addresses.length; i++) {
+		  
+		var geocoder = new google.maps.Geocoder();     //new geocoder (needed to get geolocation)
+		var address = addresses[i];			 
+
+			geocoder.geocode( { 'address': address }, function(results, status) { //get the geocode
+			if ( status == google.maps.GeocoderStatus.OK ){
+				var marker = new google.maps.Marker( { 		//build new marker
+				position: results[0].geometry.location,     //comes from geocoder
+				map: map,      
+				title: address
+			});
+				var contentString = "";			//info which will be shown by click
+				var infowindow = new google.maps.InfoWindow( { content: contentString } );
+				
+				google.maps.event.addListener( marker, 'click', function() { infowindow.open( map, marker ); }); 
+				} 
+				else     
+				alert("Geocode was not successful for the following reason: " + status);        
 		});
-		google.maps.event.addListener(marker, 'click', function() {
-		window.location.href = this.url;  //changed from markers[i] to this
-    });
 	  }
 }
 
     </script>
 
-    <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBJ1d7DryuY_ypyZ-NIZvwla-XfJ9EiTmE&signed_in=true&callback=initMap"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBJ1d7DryuY_ypyZ-NIZvwla-XfJ9EiTmE&signed_in=true&callback=initMap"></script>
 
 </div> <!-- container -->
