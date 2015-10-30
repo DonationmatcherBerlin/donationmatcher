@@ -10,12 +10,24 @@ class Stock_list_entry_model extends CI_Model {
         parent::__construct();
     }
 
+    /**
+     * Returns stock list entries of other stock lists that offers stuff you need
+     *
+     * @param $stock_list_id
+     * @return array
+     */
     public function get_demand($stock_list_id)
     {
         $category_ids = $this->get_categories($stock_list_id, -1);
         return $this->get_demand_list($stock_list_id, 1, array_column($category_ids, 'category_id'));
     }
 
+    /**
+     * Returns stock list entries of other stock lists that demand stuff you have
+     *
+     * @param $stock_list_id
+     * @return array
+     */
     public function get_offers($stock_list_id)
     {
         $category_ids = $this->get_categories($stock_list_id, 1);
@@ -56,27 +68,38 @@ class Stock_list_entry_model extends CI_Model {
         $query = $this->db->query(
             '
               SELECT
-                sle.name AS sle_name,
-                f.name AS f_name
+                sle.name AS `name`,
+                c.name AS category,
+                CONCAT(f.name, " / ", CONCAT_WS(" ", f.address, f.zip, f.city)) AS facility
               FROM stock_list_entry sle
                 INNER JOIN stock_list sl ON sl.stock_list_id = sle.StockList
                 INNER JOIN facility f ON f.facility_id = sl.Facility
+                INNER JOIN category c ON sle.Category = c.category_id
               WHERE
                 sle.StockList != ?
                 AND sle.demand = ?
-                AND sle.Category IN (?)
+                AND sle.Category IN ('.implode(',', $category_ids).')
             ',
             [
                 (int) $stock_list_id,
-                (int) $demand,
-                implode(',', $category_ids)
+                (int) $demand
             ]
         );
+        $results = $query->result_array();
 
-        return $query->result_array();
+        $grouped = [];
+        foreach ($results as $entry) {
+            $grouped[$entry['facility']][$entry['category']][] = $entry['name'];
+        }
+
+        return $grouped;
     }
 
-
+    /**
+     * BUlk updates stock list entries
+     *
+     * @param array $entries
+     */
     public function update(array $entries){
         $this->db->update_batch('stock_list_entry', $entries, 'stock_list_entry_id');
     }

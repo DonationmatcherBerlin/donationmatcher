@@ -9,36 +9,18 @@ class Local extends CI_Controller {
     public function match()
     {
         check_role('confirmed');
+
+        $this->load->model(array('stock_list_entry_model', 'stock_list_model'));
+        $stocklist = $this->stock_list_model->get_by_user($_SESSION['user_id']);
+
+        $demand = $this->stock_list_entry_model->get_demand($stocklist['stock_list_id']);
+        $offers = $this->stock_list_entry_model->get_offers($stocklist['stock_list_id']);
+
         $this->load->view('header');
-        $this->load->view('match_view');
+        $this->load->view('match_view', [
+            'demand' => $demand,
+            'offers' => $offers
+        ]);
         $this->load->view('footer');
-    }
-
-    /**
-     * Shows demand
-     */
-    public function demand($stock_list_id)
-    {
-        check_role('confirmed');
-        $this->load->model('stock_list_entry_model');
-        echo '<pre>';
-        var_dump(
-            $this->stock_list_entry_model->get_demand($stock_list_id)
-        );
-        echo '</pre>';
-    }
-
-    /**
-     * Shows offers
-     */
-    public function offers($stock_list_id)
-    {
-        check_role('confirmed');
-        $this->load->model('stock_list_entry_model');
-        echo '<pre>';
-        var_dump(
-            $this->stock_list_entry_model->get_offers($stock_list_id)
-        );
-        echo '</pre>';
     }
 }

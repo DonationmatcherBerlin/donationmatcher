@@ -40,13 +40,33 @@ class Stock_list_model extends CI_Model {
     /**
      * Returns single stock list
      *
-     * @param $id
+     * @param $facility_id
      * @return array
      */
     public function get_by_facility($facility_id)
     {
         $this->db->where('Facility', $facility_id);
         return $this->db->get('stock_list')->row();
+    }
+
+    /**
+     * Gets stock list by user
+     *
+     * @param $user_id
+     * @return array
+     */
+    public function get_by_user($user_id)
+    {
+        $query = $this->db->query(
+            'SELECT sl.*
+              FROM stock_list sl
+              INNER JOIN facility f ON f.facility_id = sl.Facility
+              INNER JOIN users u ON u.id = f.User
+              WHERE u.id = ?',
+            [(int) $user_id]
+        );
+
+        return $query->result_array()[0];
     }
 
     /**

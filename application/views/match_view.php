@@ -1,3 +1,22 @@
+<?php
+function list_entries($list_entries)
+{
+    foreach ($list_entries as $facility => $categories) {
+        echo "<h3>$facility</h3>";
+        foreach ($categories as $category => $entries) {
+            echo '<div class="pull-left well" style="margin: 10px;">';
+            echo "<h4>$category</h4>";
+            echo "<ul>";
+            foreach ($entries as $name) {
+                echo "<li><strong>$name</strong></li>";
+            }
+            echo "</ul>";
+            echo "</div>";
+        }
+    }
+}
+?>
+
 <div class="container">
 
 <div class="row" style="margin:20px 0px;">
@@ -14,71 +33,13 @@
   </div>
   <div class="row">
     <div class="col-sm-12 pull-left">
-      <h4>Diese Hilfsgruppen haben noch etwas im Lager, was du gebrauchten könntest!</h4>
+      <p>Diese Hilfsgruppen haben noch etwas im Lager, was du gebrauchten könntest!</p>
+        <?php list_entries($demand) ?>
     </div>
   </div>
-
-
-<!-- table -->
-  <div class="row">
-    <div class="col-sm-12">
-      <table class="table table-hover text-center">
-      <thead>
-        <tr>
-          <th class="th-green">Hilfsgruppe</th>
-          <th class="th-green">Spenden zuviel</th>
-          <th class="th-green">Telefon</th>
-          <th class="th-green">Adresse</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th>Spende</th>
-          <td>
-              <p>Name der Spende</p>
-          </td>
-          <td>
-              <p>030 238647</p>
-          </td>
-          <td>
-              <p>Adresse</p>
-          </td>
-        </tr>
-        <tr>
-          <th>Spende</th>
-          <td>
-              <p>Name der Spende</p>
-          </td>
-          <td>
-              <p>030 238647</p>
-          </td>
-          <td>
-              <p>Adresse</p>
-          </td>
-        </tr>
-        <tr>
-          <th>Spende</th>
-          <td>
-              <p>Name der Spende</p>
-          </td>
-          <td>
-              <p>030 238647</p>
-          </td>
-          <td>
-              <p>Adresse</p>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    </div>
-  </div>
-
-
 
 
 <hr>
-
-
 
 
 <!-- lower row -->
@@ -90,65 +51,8 @@
   <div class="row">
     <div class="col-sm-12 pull-left">
       <p>Diese Hilfsgruppen brauchen noch spenden, die ihr zuviel habt!</p>
+      <?php list_entries($offers) ?>
     </div>
   </div>
-
-
-<!-- table -->
-  <div class="row" style="margin-bottom:100px;">
-    <div class="col-sm-12">
-      <table class="table table-hover text-center">
-      <thead>
-        <tr>
-          <th class="th-green">Hilfsgruppe</th>
-          <th class="th-green">Spenden zuviel</th>
-          <th class="th-green">Telefon</th>
-          <th class="th-green">Adresse</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th>Spende</th>
-          <td>
-              <p>Name der Spende</p>
-          </td>
-          <td>
-              <p>030 238647</p>
-          </td>
-          <td>
-              <p>Adresse</p>
-          </td>
-        </tr>
-        <tr>
-          <th>Spende</th>
-          <td>
-              <p>Name der Spende</p>
-          </td>
-          <td>
-              <p>030 238647</p>
-          </td>
-          <td>
-              <p>Adresse</p>
-          </td>
-        </tr>
-        <tr>
-          <th>Spende</th>
-          <td>
-              <p>Name der Spende</p>
-          </td>
-          <td>
-              <p>030 238647</p>
-          </td>
-          <td>
-              <p>Adresse</p>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    </div>
-  </div>
-
-
-
 
 </div>

@@ -4,17 +4,9 @@ TODO description
 
 ## Install
 
-vagrant:
-```
-sudo apt-get install virtualbox
-sudo apt-get install vagrant
-```
+Install [VirtualBox](https://www.virtualbox.org/) and [Vagrant ](https://www.vagrantup.com/)
 
-run:
-```
-vagrant up
-```
-This will download and setup the VM.
+run `vagrant up` in directory of this file to download and setup the VM.
 
 go to http://192.168.50.4/
 
@@ -31,5 +23,7 @@ mysql -uroot -proot donationmatcher < dummies.sql
 ## URLS
 
 **user profile**: http://192.168.50.4/user/profile
+
 **stock list**: http://192.168.50.4/stockList/get
+
 **match**: http://192.168.50.4/local/match

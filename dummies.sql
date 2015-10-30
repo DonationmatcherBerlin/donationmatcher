@@ -23,7 +23,7 @@ INSERT INTO facility (`User`, `name`, `association`, `organisation`, `homepage`,
   (1, "name", "association", "organisation", "homepage", "email", "phone", "opening_hours", "person_in_charge", "type", "2015-10-25 23:01:47", "address", "zip", "city"),
   (2, "name", "association", "organisation", "homepage", "email", "phone", "opening_hours", "person_in_charge", "type", "2015-10-25 23:01:47", "address", "zip", "city"),
   (3, "Die Wohnanlage am Ostpreußendamm 108", null, "Evangelischer Diakonieverein Berlin-Zehlendorf e.V.", "http://www.diakonieverein.de/diakonieverein/unterstuetzen-und-helfen/spenden/spendenprojekte/fluechtlingsbetreuung.html", "info@diakonieverein.de", "Tel: (030) 80 99 70-0", "Mo-Fr- 8-17", NULL, "WH", "2015-10-25 23:01:47", "Glockenstraße 8", "14163", "Berlin"),
-  (4, "Notunterkunft für Flüchtlinge", "Willkommen in Marzan", "Christliches Jugenddorf Deutschlands e.V.:", "http://www.diakonie-portal.de/arbeitsbereiche/existenzsicherung-integration/spenden-fuer-fluechtlinge/fluechtlingsunterkunft-mitte", "info.glambeckerring@cjd-berlin.de", "T: 0176 817 875 21", NULL, NULL, "NUK", "2015-10-25 23:01:47", "??", "12679", "Berlin-Marzahn"),
+  (4, "Notunterkunft für Flüchtlinge", "Willkommen in Marzan", "Christliches Jugenddorf Deutschlands e.V.:", "http://www.diakonie-portal.de/arbeitsbereiche/existenzsicherung-integration/spenden-fuer-fluechtlinge/fluechtlingsunterkunft-mitte", "info.glambeckerring@cjd-berlin.de", "T: 0176 817 875 21", NULL, NULL, "NUK", "2015-10-25 23:01:47", "Grünweg 18", "12679", "Berlin-Marzahn"),
   (5, "name", "association", "organisation", "homepage", "email", "phone", "opening_hours", "person_in_charge", "type", "2015-10-25 23:01:47", "address", "zip", "city"),
   (6, "name", "association", "organisation", "homepage", "email", "phone", "opening_hours", "person_in_charge", "type", "2015-10-25 23:01:47", "address", "zip", "city")
 ;
@@ -61,23 +61,23 @@ INSERT INTO category (`name`, `Parent`) VALUES
 #
 DELETE FROM stock_list_entry;
 ALTER TABLE stock_list_entry AUTO_INCREMENT = 1;
-INSERT INTO stock_list_entry (`StockList`, `Category`, `name`, `created_at`) VALUES
+INSERT INTO stock_list_entry (`StockList`, `Category`, `demand`, `name`, `created_at`) VALUES
   #("StockList", "Category", "name", "created_at"),
-  (3, 1, "Gurken", "2015-10-25 23:01:47"),
-  (3, 1, "Kekse", "2015-10-25 23:01:47"),
-  (3, 2, "Strumpfhosen", "2015-10-25 23:01:47"),
-  (3, 2, "Babycreme", "2015-10-25 23:01:47"),
-  (3, 3, "Aftershave", "2015-10-25 23:01:47"),
-  (3, 3, "Allzwecktücher", "2015-10-25 23:01:47"),
-  (3, 4, "Armbanduhren", "2015-10-25 23:01:47"),
-  (3, 4, "Bälle", "2015-10-25 23:01:47"),
+  (3, 1, 1, "Gurken", "2015-10-25 23:01:47"),
+  (3, 1, -1, "Kekse", "2015-10-25 23:01:47"),
+  (3, 2, -1, "Strumpfhosen", "2015-10-25 23:01:47"),
+  (3, 2, -1, "Babycreme", "2015-10-25 23:01:47"),
+  (3, 3, 1, "Aftershave", "2015-10-25 23:01:47"),
+  (3, 3, -1, "Allzwecktücher", "2015-10-25 23:01:47"),
+  (3, 4, 1, "Armbanduhren", "2015-10-25 23:01:47"),
+  (3, 4, 1, "Bälle", "2015-10-25 23:01:47"),
 
-  (4, 1, "Gurken", "2015-10-25 23:01:47"),
-  (4, 1, "Kekse", "2015-10-25 23:01:47"),
-  (4, 2, "Strumpfhosen", "2015-10-25 23:01:47"),
-  (4, 2, "Babycreme", "2015-10-25 23:01:47"),
-  (4, 3, "Aftershave", "2015-10-25 23:01:47"),
-  (4, 3, "Allzwecktücher", "2015-10-25 23:01:47"),
-  (4, 4, "Armbanduhren", "2015-10-25 23:01:47"),
-  (4, 4, "Bälle", "2015-10-25 23:01:47")
+  (4, 1, -1, "Gurken", "2015-10-25 23:01:47"),
+  (4, 1, 1, "Kekse", "2015-10-25 23:01:47"),
+  (4, 2, 1, "Strumpfhosen", "2015-10-25 23:01:47"),
+  (4, 2, 1, "Babycreme", "2015-10-25 23:01:47"),
+  (4, 3, -1, "Aftershave", "2015-10-25 23:01:47"),
+  (4, 3, 1, "Allzwecktücher", "2015-10-25 23:01:47"),
+  (4, 4, -1, "Armbanduhren", "2015-10-25 23:01:47"),
+  (4, 4, -1, "Bälle", "2015-10-25 23:01:47")
 ;
