@@ -120,7 +120,6 @@ class User extends CI_Controller {
 	 */
 	public function confirm($confirmation_key,$username){
 
-
 			$user_id = $this->user_model->get_user_id_from_username($username);
 			$user = $this->user_model->get_user($user_id);
 
@@ -132,7 +131,7 @@ class User extends CI_Controller {
 				$user->is_confirmed = 1;
 				$user->logged_in = 1;
 				$this->set_session($user);
-				redirect('/user/profile');
+				redirect('/user/step3');
 			}else{ // @TODO: Handle also already confirmed users.
 				$data = new stdClass;
 				$data->error = 'Ungültiger Confirmation Code';
@@ -200,6 +199,9 @@ class User extends CI_Controller {
 
 	}
 
+	public function step3($is_signup = false){
+		$this->profile(true);
+	}
 
 	/**
 	 * profile edit function.
@@ -207,7 +209,7 @@ class User extends CI_Controller {
 	 * @access public
 	 * @return void
 	 */
-	public function profile(){
+	public function profile($is_signup = false){
 
 		check_role('confirmed');
 
@@ -231,7 +233,7 @@ class User extends CI_Controller {
 		$this->form_validation->set_rules('facility_phone', 'Telefon', 'trim');
 		$this->form_validation->set_rules('facility_name', 'Facility Name', 'trim|required');
 
-		$this->form_validation->set_rules('facility_organisation', 'Facility Organisation', 'trim|required');
+		$this->form_validation->set_rules('facility_organisation', 'Facility Organisation', 'trim');
 		$this->form_validation->set_rules('facility_address', 'Facility Address', 'trim|required');
 		$this->form_validation->set_rules('facility_zip', 'Facility ZIP', 'trim|required');
 		$this->form_validation->set_rules('facility_city', 'Facility City', 'trim|required');
@@ -361,6 +363,7 @@ class User extends CI_Controller {
 		$this->config->load('email',true);
 		$this->load->library('email', NULL, 'ci_email');
 
+		$email_config['protocol'] = 'smtp';
 		$email_config['smtp_host'] = $this->config->item('SMTP_HOST', 'email');
 		$email_config['smtp_user'] = $this->config->item('SMTP_USER', 'email');
 		$email_config['smtp_pass'] = $this->config->item('SMTP_PASS', 'email');
@@ -388,6 +391,7 @@ class User extends CI_Controller {
 		
 
 		$this->ci_email->send();
+		$this->ci_email->print_debugger();
 
 	}
 
