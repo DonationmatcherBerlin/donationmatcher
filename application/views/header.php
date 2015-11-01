@@ -37,16 +37,16 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="<?= base_url() ?>">Bedarfsplaner.org</a>
+					<a class="navbar-brand" href="<?= base_url(); ?>">Bedarfsplaner.org</a>
 				</div>
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav navbar-right">
-							<li class="active"><a href="#">Bedarfsplan Berlin</a></li>
+							<li class="<?php echo !isset($current_view) ? 'active' : ''; ?>"><a href="<?= base_url(); ?>">Bedarfsplan Berlin</a></li>
 						<?php if (isset($_SESSION['username']) && $_SESSION['logged_in'] === true) : ?>
 							<li><a href="<?= base_url('/user/logout') ?>">Logout</a></li>
 						<?php else : ?>
-							<li><a href="<?= base_url('/user/register') ?>">Register</a></li>
-							<li><a href="<?= base_url('/user/login') ?>">Login</a></li>
+							<li class="<?php echo isset($current_view) && $current_view === 'register' ? 'active' : ''; ?>"><a href="<?= base_url('/user/register') ?>">Register</a></li>
+							<li class="<?php echo isset($current_view) && $current_view === 'login' ? 'active' : ''; ?>"><a href="<?= base_url('/user/login') ?>">Login</a></li>
 						<?php endif; ?>
 					</ul>
 				</div><!-- .navbar-collapse -->

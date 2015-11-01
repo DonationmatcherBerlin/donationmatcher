@@ -59,7 +59,7 @@ class User extends CI_Controller {
 		if ($this->form_validation->run() === false) {
 
 			// validation not ok, send validation errors to the view
-			$this->load->view('header');
+			$this->load->view('header', array('current_view' => 'register'));
 			$this->load->view('user/register/progressbar', array('step' => 1));
 			$this->load->view('user/register/step1', $data);
 			$this->load->view('footer');
@@ -90,7 +90,7 @@ class User extends CI_Controller {
 				$this->send_email_confirmation($email,$username,'confirm');
 
 				// user creation ok
-				$this->load->view('header');
+				$this->load->view('header', array('current_view' => 'register'));
 				$this->load->view('user/register/progressbar', array('step' => 2));
 				$this->load->view('user/register/step2', array('user' => $user, 'facility' => $facility));
 				$this->load->view('footer');
@@ -101,7 +101,7 @@ class User extends CI_Controller {
 				$data->error = 'There was a problem creating your new account. Please try again.';
 
 				// send error to the view
-				$this->load->view('header');
+				$this->load->view('header', array('current_view' => 'register'));
 				$this->load->view('user/register/progressbar', array('step' => 1));
 				$this->load->view('user/register/step1', array('user' => $user, 'facility' => $facility));
 				$this->load->view('footer');
