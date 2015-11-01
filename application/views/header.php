@@ -21,7 +21,6 @@
 	<link href="<?= base_url('assets/css/components/site-header.css') ?>" rel="stylesheet">
 	<link href="<?= base_url('assets/css/components/site-content.css') ?>" rel="stylesheet">
 	<link href="<?= base_url('assets/css/components/footer.css') ?>" rel="stylesheet">
-	<link href="<?= base_url('assets/css/landingpage/landingpage.css') ?>" rel="stylesheet">
 	<link href="<?= base_url('assets/css/components/progressbar.css') ?>" rel="stylesheet">
 
 	<!-- Styles: Components -->
@@ -52,7 +51,12 @@
 						<ul class="nav navbar-nav navbar-right">
 								<li class="<?php echo !isset($current_view) ? 'active' : ''; ?>"><a href="<?= base_url(); ?>">Bedarfsplan Berlin</a></li>
 							<?php if (isset($_SESSION['username']) && $_SESSION['logged_in'] === true) : ?>
+<<<<<<< HEAD
 								<li><a href="<?= base_url('/stockList') ?>">Deine Bedarfsliste</a></li>
+=======
+                                <li><a href="<?= base_url('/local/match') ?>">Bedarfsplaner</a></li>
+								<li><a href="<?= base_url('/stocklist') ?>">Deine Bedarfsliste</a></li>
+>>>>>>> origin/master
                                 <li><a href="<?= base_url('/user/profile') ?>">Dein Profil</a></li>
 								<li><a href="<?= base_url('/user/logout') ?>">Logout</a></li>
 							<?php else : ?>
