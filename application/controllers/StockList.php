@@ -8,22 +8,13 @@ class StockList extends CI_Controller
      */
     public function index()
     {
-        check_role('confirmed');
-        $this->load->model('stock_list_model');
-        print_r($this->stock_list_model->get_all());
-    }
 
-    /**
-     * Shows full stock list view with entries grouped by category
-     */
-    public function get()
-    {
         check_role('confirmed');
 
         $this->load->model(array('facility_model', 'category_model', 'stock_list_model', 'stock_list_entry_model'));
         $facility = $this->facility_model->get_facility_by_user_id($_SESSION['user_id']);
         $stocklist = $this->stock_list_model->get_by_facility($facility->facility_id);
-        
+
         $id = $stocklist->stock_list_id;
 
         $this->load->helper('form');
@@ -48,10 +39,14 @@ class StockList extends CI_Controller
             redirect('/stocklist/get');
         }
 
-        $stocklist = $this->stock_list_model->get_grouped_entries($id,$this->category_model->get_tree());
+        $entries = $this->stock_list_model->get_grouped_entries($id,$this->category_model->get_tree());
 
         $this->load->view('header');
-        $this->load->view('local_view', array('stocklist' => $stocklist, 'facility' => $facility));
+        $this->load->view('local_view', array(
+            'stocklist' => $stocklist,
+            'entries' => $entries,
+            'facility' => $facility
+        ));
         $this->load->view('footer');
     }
 }
