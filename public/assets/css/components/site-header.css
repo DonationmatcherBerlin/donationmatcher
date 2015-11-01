@@ -1,13 +1,13 @@
 /* General styles */
 
-.main-header {
-    /* ... */
+.site-header {
+    min-width: 320px;
 }
 
 /* Mobile styles */
 
 @media (max-width: 767px){
-    .main-header .container{
+    .site-header .container{
         padding-left: 0;
         padding-right: 0;
     }
