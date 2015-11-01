@@ -57,6 +57,8 @@ class StockList extends CI_Controller
 
         $this->load->model(array('facility_model', 'stock_list_model', 'category_model'));
         $this->load->library('pdf');
+        $this->load->helper('opening_hours');
+
 
         $facility = $this->facility_model->get_facility($facility_id);
         $stock_list = $this->stock_list_model->get_by_facility($facility_id);
@@ -84,6 +86,7 @@ class StockList extends CI_Controller
     {
         $this->load->model(array('facility_model', 'stock_list_model', 'category_model'));
         $this->load->library('pdf');
+        $this->load->helper('opening_hours');
 
         $facility = $this->facility_model->get_facility($facility_id);
         $stock_list = $this->stock_list_model->get_by_facility($facility_id);
