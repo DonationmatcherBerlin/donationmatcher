@@ -26,7 +26,7 @@
             </div>
             <div class="row">
               <div class="col-sm-12">
-                <h4 style="color: #558ED8; margin-top: 30px;"><b>Letztes Update der Bedarfsliste:</b> TODO<!-- TODO: Backend, Date wann das letzte Mal geupdatet wurde --></h4>
+                <h4 style="color: #558ED8; margin-top: 30px;"><b>Letztes Update der Bedarfsliste:</b> <?= $stocklist['updated_at'] ?: 'Diese Liste wurde noch nie bearbeitet.'; ?></h4>
               </div>
             </div>
           </div>
@@ -35,12 +35,22 @@
     </div>
 
     <!-- table -->
-    <div class="row" style="margin-bottom: 30px;">
+    <div class="row">
       <div class="col-sm-12 text-center" >
         <h2>Bearbeitung Ihrer lokalen Bedarfsliste</h2>
         <p style="color: #558ED8; text-align: center;">Sie müssen Änderungen unten mit dem Knopf "Speichern" bestätigen.</p>
       </div>
     </div>
+
+    <div class="row" style="margin: 50px 0px;">
+      <div class="col-sm-3 col-sm-offset-3">
+        <button type="button" class="btn btn-primary btn-lg btn-lg" style="width: 100%;">Link Bedarfsliste</button>
+      </div>
+      <div class="col-sm-3">
+        <button type="button" class="btn btn-primary btn-lg btn-lg" style="width: 100%;"> <i class="fa fa-print"></i> Jetzt ausdrucken</button>
+      </div>
+    </div>
+
     <div class="row">
       <div class="col-sm-12">
         <table class="table table-hover text-center">
@@ -81,7 +91,8 @@
                         </div>
                     </td>
                     <td>
-                        <div class="input-group" style="max-width:150px;">
+                        <button type="button" class="btn btn-default list-entry-count-button">Anzahl eingeben</button>
+                        <div class="input-group hidden" style="max-width:150px;">
                             <input value="<?=$entry['count']?>" name="count[<?=$entry['stock_list_entry_id']?>]" type="number" class="form-control" placeholder="(optional)">
                             <div class="input-group-addon">Stück</div>
                         </div>
@@ -96,7 +107,7 @@
         <?php endforeach; ?>
         <tr>
           <td colspan="6">
-              <input type="submit" class="btn btn-success btn-lg btn-block" value="Speichern" style="margin-top: 20px;">
+              <input type="submit" class="btn btn-success btn-lg btn-block" value="Speichern" style="margin: 40px 0px;">
           </td>
         </tr>
         </tbody>
