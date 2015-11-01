@@ -36,7 +36,7 @@ class StockList extends CI_Controller
             }
 
             $this->stock_list_entry_model->update($entries);
-
+            redirect('/stocklist/get');
         }
 
         $entries = $this->stock_list_model->get_grouped_entries($id,$this->category_model->get_tree());
