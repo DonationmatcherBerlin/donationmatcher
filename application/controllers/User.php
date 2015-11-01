@@ -87,7 +87,7 @@ class User extends CI_Controller {
 
 				$facility->User = $user_id;
 				$this->facility_model->create_facility($facility); // @TODO: error handling
-				$this->send_email_confirmation($email,$username,'confirm');
+				$this->send_email($email,$username,'confirm',array('confirmation_key' => $confirmation_key));
 
 				// user creation ok
 				$this->load->view('header');
@@ -170,12 +170,11 @@ class User extends CI_Controller {
 		$this->form_validation->set_rules('password', 'Password', 'required');
 
 		if ($this->form_validation->run() == false) {
+
 			// validation not ok, send validation errors to the view
-            if (in_array($_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1', '192.168.50.1'], true)) {
-                $this->load->view('user/login/login');
-            } else {
-                $this->load->view('under_construction_view');
-            }
+
+			$this->load->view('user/login/login');
+
 		} else {
 
 			// set variables from the form
@@ -226,14 +225,45 @@ class User extends CI_Controller {
 		$user = $this->user_model->get_user($_SESSION['user_id']);
 		$facility = $this->facility_model->get_facility_by_user_id($_SESSION['user_id']);
 
-
-
 		$this->load->view('header');
 		if($show_progress_bar) $this->load->view('user/register/progressbar', array('step' => 3));
 		$this->load->view('user/register/step3', array('user' => $user, 'facility' => $facility));
 		$this->load->view('footer');
 
 
+		$this->form_validation->set_rules('username', 'Username', 'trim|required|alpha_numeric|min_length[4]|is_unique[users.username]', array('is_unique' => 'This username already exists. Please choose another one.'));
+		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|is_unique[users.email]');
+		if($this->input->post('password') == ''){
+			$this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[6]');
+			$this->form_validation->set_rules('password_confirm', 'Confirm Password', 'trim|required|min_length[6]|matches[password]');
+		}
+
+		$this->form_validation->set_rules('facility_person_in_charge', 'Verantwortliche Person', 'trim|required');
+		$this->form_validation->set_rules('facility_phone', 'Telefon', 'trim');
+		$this->form_validation->set_rules('facility_name', 'Facility Name', 'trim|required');
+
+		$this->form_validation->set_rules('facility_organisation', 'Facility Organisation', 'trim|required');
+		$this->form_validation->set_rules('facility_address', 'Facility Address', 'trim|required');
+		$this->form_validation->set_rules('facility_zip', 'Facility ZIP', 'trim|required');
+		$this->form_validation->set_rules('facility_city', 'Facility City', 'trim|required');
+		$this->form_validation->set_rules('facility_country', 'Facility Country', 'trim|required');
+
+		$facility = new stdClass;
+		$facility->person_in_charge = $this->input->post('facility_person_in_charge');
+		$facility->phone = $this->input->post('facility_phone');
+		$facility->name = $this->input->post('facility_name');
+		$facility->organisation = $this->input->post('facility_organisation');
+		$facility->address = $this->input->post('facility_address');
+		$facility->zip = $this->input->post('facility_zip');
+		$facility->city = $this->input->post('facility_city');
+		$facility->country = $this->input->post('facility_country');
+
+		$user = new stdClass;
+		$user->username   = $username;
+		$user->email      = $email;
+		if($password) $user->password   = $password;
+
+		//@TODO: Save the records
 
 	}
 
@@ -311,7 +341,7 @@ class User extends CI_Controller {
 				$data->confirmation_key = hash('sha256',rand().uniqid()); // @TODO: Is this secure or stupid?
 				$this->user_model->update_user($user_id, $data);
 
-				$this->send_email_confirmation($user->email,$username,'passwordreset');
+				$this->send_email($user->email,$username,'passwordreset');
 
 				$this->user_model->update_user($user_id, $data);
 				$this->load->view('/user/login/passwordreset_success');
@@ -321,10 +351,38 @@ class User extends CI_Controller {
 	}
 
 
+	private function send_email($email,$username,$template,$data=false){
 
-	private function send_email_confirmation($email,$username,$template){
+		$this->config->load('email',true);
+		$this->load->library('email', NULL, 'ci_email');
 
+		$email_config['smtp_host'] = $this->config->item('SMTP_HOST', 'email');
+		$email_config['smtp_user'] = $this->config->item('SMTP_USER', 'email');
+		$email_config['smtp_pass'] = $this->config->item('SMTP_PASS', 'email');
+		$email_config['smtp_port'] = $this->config->item('SMTP_PORT', 'email');
 
+		$this->ci_email->initialize($email_config);
+		$this->ci_email->from('noreply@bedarfsplaner.org', 'Bedarfsplaner');
+		$this->ci_email->to($email);
+
+		$this->ci_email->subject('Bedarfplaner Bestätigungsemail');
+
+		switch ($template) {
+			case 'confirmation':
+				$this->ci_email->message('Bitte Email-Adresse mit folgendem Link bestätigen: '.$data->confirmation_key);
+				break;
+
+			case 'passwordreset':
+				$this->ci_email->message('');
+				break;
+			
+			default:
+				$this->ci_email->message('');
+				break;
+		}
+		
+
+		$this->ci_email->send();
 
 	}
 
