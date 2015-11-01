@@ -18,6 +18,7 @@
 	<link href="//cdn.datatables.net/1.10.9/css/jquery.dataTables.min.css" rel="stylesheet">
 
 	<!-- Styles: Shared components -->
+	<link href="<?= base_url('assets/css/components/main-header.css') ?>" rel="stylesheet">
 	<link href="<?= base_url('assets/css/landingpage/landingpage.css') ?>" rel="stylesheet">
 	<link href="<?= base_url('assets/css/components/progressbar.css') ?>" rel="stylesheet">
 
@@ -32,7 +33,7 @@
 	<![endif]-->
 </head>
 <body>
-	<header id="site-header">
+	<header id="site-header" class="main-header">
 		<div class="container">
 			<nav class="navbar navbar-default" role="navigation">
 				<div class="container-fluid">
