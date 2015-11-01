@@ -19,13 +19,21 @@ class Facility_model extends CI_Model {
         return $result;
     }
 
+    public function get_facility($facility_id)
+    {
+        $this->db->from('facility');
+        $this->db->where('facility_id', $facility_id);
+        return $this->db->get()->row();
+    }
+
+
     public function get_facility_by_user_id($user_id)
     {
         $this->db->where('User', $user_id);
         $query = $this->db->get('facility');
         return $query->row();
     }
-    
+
     /**
      * create_facility function.
      * 

@@ -102,6 +102,26 @@ class Stock_list_model extends CI_Model {
         return $this->group_by_category($category_tree, $rows);
     }
 
+    public function get_grouped_demanded_entries($id, array $category_tree)
+    {
+        $query  =$this->db->query(
+            '
+                SELECT *
+                FROM stock_list_entry
+                WHERE StockList = ? AND demand < 0
+            ',
+            [(int) $id]
+        );
+
+        $rows = $query->result_array();
+        foreach ($rows as &$row) {
+            $row['created_at'] = $this->transformDate($row['created_at']);
+            $row['updated_at'] = $this->transformDate($row['updated_at']);
+        }
+
+        return $this->group_by_category($category_tree, $rows);
+    }
+
     /**
      * @param array $category_tree
      * @param array $rows
