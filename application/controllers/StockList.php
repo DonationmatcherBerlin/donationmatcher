@@ -50,4 +50,59 @@ class StockList extends CI_Controller
         $this->load->view('footer');
     }
 
+
+    public function pdf($facility_id)
+    {
+        check_role('confirmed');
+
+        $this->load->model(array('facility_model', 'stock_list_model', 'category_model'));
+        $this->load->library('pdf');
+
+        $facility = $this->facility_model->get_facility($facility_id);
+        $stock_list = $this->stock_list_model->get_by_facility($facility_id);
+        $grouped_stock_list = $this->stock_list_model->get_grouped_entries($stock_list->stock_list_id,$this->category_model->get_tree());
+
+        $clean_facility_name = preg_replace('/[^\da-z]/i', '_', $facility->name);
+        $pdf_name = 'bedarfsliste-' . date('Ymd_Hi') . '-' . strtolower($clean_facility_name) . '.pdf';
+
+        $this->pdf->load_view('stocklist/pdf/internal', array(
+            'facility' => $facility,
+            'stock_list' => $stock_list,
+            'grouped_stock_list' => $grouped_stock_list,
+            'demand_label' => array(
+                '-1' => 'Bedarf',
+                '0' => 'OK',
+                '1' => 'Überschuss',
+            ),
+        ));
+        $this->pdf->render();
+        $this->pdf->stream($pdf_name);
+    }
+
+    public function public_pdf($facility_id)
+    {
+        $this->load->model(array('facility_model', 'stock_list_model', 'category_model'));
+        $this->load->library('pdf');
+
+        $facility = $this->facility_model->get_facility($facility_id);
+        $stock_list = $this->stock_list_model->get_by_facility($facility_id);
+        $grouped_stock_list = $this->stock_list_model->get_grouped_demanded_entries($stock_list->stock_list_id,$this->category_model->get_tree());
+
+        $clean_facility_name = preg_replace('/[^\da-z]/i', '_', $facility->name);
+        $pdf_name = 'bedarfsliste-fuer-spender-' . date('Ymd_Hi') . '-' . strtolower($clean_facility_name) . '.pdf';
+
+        $this->pdf->load_view('stocklist/pdf/public', array(
+            'facility' => $facility,
+            'stock_list' => $stock_list,
+            'grouped_stock_list' => $grouped_stock_list,
+            'demand_label' => array(
+                '-1' => 'Bedarf',
+                '0' => 'OK',
+                '1' => 'Überschuss',
+            ),
+        ));
+        $this->pdf->render();
+        $this->pdf->stream($pdf_name);
+    }
+
 }

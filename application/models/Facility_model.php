@@ -10,8 +10,22 @@ class Facility_model extends CI_Model {
     function get_all()
     {
         $query = $this->db->get('facility');
-        return $query->result();
+
+        $result = [];
+        foreach ($query->result() as $row) {
+            $result[$row->facility_id] = $row;
+        }
+
+        return $result;
     }
+
+    public function get_facility($facility_id)
+    {
+        $this->db->from('facility');
+        $this->db->where('facility_id', $facility_id);
+        return $this->db->get()->row();
+    }
+
 
     public function get_facility_by_user_id($user_id)
     {
@@ -19,7 +33,7 @@ class Facility_model extends CI_Model {
         $query = $this->db->get('facility');
         return $query->row();
     }
-    
+
     /**
      * create_facility function.
      * 
