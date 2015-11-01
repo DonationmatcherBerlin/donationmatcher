@@ -2,13 +2,14 @@
 function list_entries($list_entries)
 {
     foreach ($list_entries as $facility => $categories) {
-        echo "<h3>$facility</h3>";
+        echo "<h3 style='clear: both;'>$facility</h3>";
         foreach ($categories as $category => $entries) {
             echo '<div class="pull-left well" style="margin: 10px;">';
             echo "<h4>$category</h4>";
             echo "<ul>";
-            foreach ($entries as $name) {
-                echo "<li><strong>$name</strong></li>";
+            foreach ($entries as $entry) {
+                $name = $entry['exact'] ? "<strong>{$entry['name']}</strong>" : $entry['name'];
+                echo "<li>$name</li>";
             }
             echo "</ul>";
             echo "</div>";

@@ -357,19 +357,28 @@ class User extends CI_Controller {
 
 	}
 
+	public function wait_for_confirmation(){
+		$this->load->view('header');
+		$this->load->view('user/register/wait_for_confirmation');
+		$this->load->view('footer');
+	}
+
 
 	private function send_email($email,$username,$template,$data=false){
 
 		$this->config->load('email',true);
 		$this->load->library('email', NULL, 'ci_email');
 
-		$email_config['protocol'] = 'smtp';
+		$email_config['protocol']  = 'smtp';
+		$email_config['charset']   = 'utf-8';
+		$email_config['mailtype']  = 'html';
 		$email_config['smtp_host'] = $this->config->item('SMTP_HOST', 'email');
 		$email_config['smtp_user'] = $this->config->item('SMTP_USER', 'email');
 		$email_config['smtp_pass'] = $this->config->item('SMTP_PASS', 'email');
 		$email_config['smtp_port'] = $this->config->item('SMTP_PORT', 'email');
 
 		$this->ci_email->initialize($email_config);
+		$this->ci_email->set_newline("\r\n");
 		$this->ci_email->from('noreply@bedarfsplaner.org', 'Bedarfsplaner');
 		$this->ci_email->to($email);
 
@@ -391,7 +400,7 @@ class User extends CI_Controller {
 		
 
 		$this->ci_email->send();
-		$this->ci_email->print_debugger();
+
 
 	}
 
