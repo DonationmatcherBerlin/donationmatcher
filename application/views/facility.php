@@ -68,39 +68,26 @@
     <div id="map"></div>
     <script>
 
-function initMap() {
-	var LocationLat = [
-    52.5196530,
-    52.493830,
-    52.4938300
-	];	
-	var LocationLng = [
-    13.3728780,
-    13.423123,
-    13.999945
-	];	
-	var Organisation = [
-    'www.google.de',
-    'www.facebook.de',
-    'www.youtube.de'
-	];
-	var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 11,
-    center: {lat: 52.493830, lng: 13.423598}
-	});
-	  for (i = 0; i < LocationLat.length; i++) {
-	    var myLatLng = {lat: LocationLat[i], lng: LocationLng[i]};
-		var marker = new google.maps.Marker({
-		position: myLatLng,
-		map: map,
-		url: Organisation[i],
-		title: 'Hello World!',
-		});
-		google.maps.event.addListener(marker, 'click', function() {
-		window.location.href = this.url;  //changed from markers[i] to this
-    });
-	  }
-}
+        function initMap() {
+            var facilities = <?= json_encode($facilities); ?>;
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 11,
+                center: {lat: 52.493830, lng: 13.423598}
+            });
+
+            $.each(facilities, function(idx, facility) {
+                var marker = new google.maps.Marker({
+                    position: { lat: facility.lat, lng: facility.lon },
+                    map: map,
+                    url: facility.url,
+                    title: facility.name,
+                });
+
+                google.maps.event.addListener(marker, 'click', function() {
+                    window.location.href = this.url;  //changed from markers[i] to this
+                });
+            });
+        }
 
     </script>
 
