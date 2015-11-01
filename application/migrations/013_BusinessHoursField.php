@@ -12,13 +12,7 @@ class Migration_BusinessHoursField extends CI_Migration
 			array(
 				'opening_hours' => array(
 					'type' => 'TEXT',
-					'default' => '[{"isActive":false,"timeFrom":null,"timeTill":null},
-					                {"isActive":false,"timeFrom":null,"timeTill":null},
-					                {"isActive":false,"timeFrom":null,"timeTill":null},
-					                {"isActive":false,"timeFrom":null,"timeTill":null},
-					                {"isActive":false,"timeFrom":null,"timeTill":null},
-					                {"isActive":false,"timeFrom":null,"timeTill":null},
-					                {"isActive":false,"timeFrom":null,"timeTill":null}]'
+					'default' => '',
 				)
 			)
 		);
