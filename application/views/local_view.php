@@ -1,5 +1,5 @@
 <div class="container">
-  <?php echo form_open(); ?>
+  <?php echo form_open('/stocklist'); ?>
 
     <!-- local contact -->
     <div class="row" style="margin: 50px 0;">
