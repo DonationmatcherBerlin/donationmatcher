@@ -184,4 +184,14 @@ class Stock_list_entry_model extends CI_Model
     public function update(array $entries){
         $this->db->update_batch('stock_list_entry', $entries, 'stock_list_entry_id');
     }
+
+    public function insert_empty_stocklist_entries($stock_list_id){
+      $sql = "insert into stock_list_entry (StockList,Category,name,demand,created_at) 
+              select 
+                (select stock_list_id from stock_list where Facility = ".$stock_list_id."),
+              category_id, name, 0, '".date("Y-m-d H:i:s")."' from category";
+
+      $this->db->query($sql);
+    }
+
 }

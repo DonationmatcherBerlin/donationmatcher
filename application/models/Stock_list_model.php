@@ -140,4 +140,9 @@ class Stock_list_model extends CI_Model {
 
         return $created_at;
     }
+
+    public function createStockList($facility_id){
+        $sql = "insert into stock_list (Facility,created_at) values (".$facility_id.",'".date("Y-m-d H:i:s")."');";
+        $this->db->query($sql);
+    }
 }
