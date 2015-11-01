@@ -16,9 +16,10 @@
         </footer>
 
         <!-- js -->
-        <script src="<?= base_url('assets/js/jquery-2.1.4.min.js') ?>"></script>
         <script src="<?= base_url('assets/js/bootstrap.min.js') ?>"></script>
         <script src="<?= base_url('assets/js/jquery.stickyheader.js') ?>"></script>
+        <script src="<?= base_url('assets/js/jquery.businessHours.min.js') ?>"></script>
+
         <script src="//cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js"></script>
         <script src="<?= base_url('assets/js/map_user_input.js') ?>"></script>
         <script type="text/javascript">
@@ -28,6 +29,7 @@
                     $('#myTable').DataTable();
                     $('#username').mapUserName('#facility_name');
                     $('.stickytable').stickyTableHeaders();
+
                 });
             })( jQuery, window, window.document );
         </script>

@@ -14,6 +14,7 @@
 	<!-- Styles: General -->
 	<?php /* <link href="<?= base_url('assets/css/local/local.css') ?>" rel="stylesheet"> */ ?>
 	<link href="<?= base_url('assets/css/bootstrap.min_v1.css') ?>" rel="stylesheet">
+	<link href="<?= base_url('assets/css/jquery.businessHours.css') ?>" rel="stylesheet">
 	<link href="<?= base_url('assets/css/font-awesome/css/font-awesome.min.css') ?>" rel="stylesheet">
 	<link href="//cdn.datatables.net/1.10.9/css/jquery.dataTables.min.css" rel="stylesheet">
 
@@ -23,6 +24,8 @@
 	<link href="<?= base_url('assets/css/components/footer.css') ?>" rel="stylesheet">
 	<link href="<?= base_url('assets/css/landingpage/landingpage.css') ?>" rel="stylesheet">
 	<link href="<?= base_url('assets/css/components/progressbar.css') ?>" rel="stylesheet">
+
+	<script src="<?= base_url('assets/js/jquery-2.1.4.min.js') ?>"></script>
 
 	<!-- Styles: Components -->
 	<?php if (isset($current_view) && $current_view === 'register') : ?>

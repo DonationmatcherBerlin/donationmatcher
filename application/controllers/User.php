@@ -247,6 +247,7 @@ class User extends CI_Controller {
 		$this->form_validation->set_rules('facility_zip', 'Facility ZIP', 'trim|required');
 		$this->form_validation->set_rules('facility_city', 'Facility City', 'trim|required');
 		$this->form_validation->set_rules('facility_country', 'Facility Country', 'trim|required');
+		$this->form_validation->set_rules('businesshours', 'Öffnungszeiten', 'trim');
 
 		if ($this->form_validation->run() != false) {
 
@@ -258,6 +259,7 @@ class User extends CI_Controller {
 			$facility->zip = $this->input->post('facility_zip');
 			$facility->city = $this->input->post('facility_city');
 			$facility->country = $this->input->post('facility_country');
+			$facility->opening_hours = $this->input->post('businesshours');
 
 			$user = new stdClass;
 			$user->email      = $email;

@@ -16,6 +16,10 @@ table.stickytable thead {
     background-color: #FFF;
 }
 
+div#businessHoursContainer {
+    min-height: 100px;
+}
+
 /* Mobile styles */
 
 @media (max-width: 767px){

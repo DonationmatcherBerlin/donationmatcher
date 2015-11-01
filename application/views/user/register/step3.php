@@ -21,7 +21,7 @@
 			<div class="page-header">
 				<h1>Register</h1>
 			</div>
-			<?= form_open() ?>
+			<?= form_open('',array('id' => 'profileform')) ?>
 			<div class="row">
 				<div class="col-sm-6">
 					<div class="form-group">
@@ -84,6 +84,15 @@
 			<div class="row">
 				<div class="col-sm-6">
 					<div class="form-group">
+						<div id="businessHoursContainer"></div>
+						<textarea class="hidden" name="businesshours" id="businessHours"><?php echo set_value('businesshours', $facility->opening_hours); ?></textarea>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-sm-6">
+					<div class="form-group">
 						<label for="facility_person_in_charge">Verantwortliche Person (Vor- und Nachname)</label>
 						<input style="max-width: 500px;" type="text" class="form-control" id="facility_person_in_charge" value="<?php echo set_value('facility_person_in_charge', $facility->person_in_charge); ?>" name="facility_person_in_charge" placeholder="Enter the name of the responsible person">
 						<small class="help-block" style="color: #337ab7;">Verantworltiche Person</small>
@@ -101,7 +110,7 @@
 				</div>
 				<div class="col-sm-6">
 					<div class="form-group" style="margin-top: 40%;">
-						<input style="max-width: 500px;" type="submit" class="btn btn-success btn-block" value="Speichern" >
+						<input id="save" style="max-width: 500px;" type="submit" class="btn btn-success btn-block" value="Speichern" >
 					</div>
 				</div>
 			</div>
@@ -109,3 +118,23 @@
 		</div>
 	</div><!-- .row -->
 </div><!-- .container -->
+<script>
+       ;(function( $, window, document, undefined ) {
+                "use strict";
+                $( document ).ready(function() {
+                    $('#myTable').DataTable();
+                    $('#username').mapUserName('#facility_name');
+                    $('.stickytable').stickyTableHeaders();
+
+                    var businessHoursManager = $("#businessHoursContainer").businessHours({operationTime:<?php echo $facility->opening_hours; ?>});
+
+                    $("#save").click(function(e) {
+                        // use: businessHoursManager.serialize() to get serialized business hours in JSON
+                        $("#businessHours").val(JSON.stringify(businessHoursManager.serialize()));
+                        $('#profileform').submit();
+                        return true;
+                    });
+
+                });
+            })( jQuery, window, window.document );
+</script>
