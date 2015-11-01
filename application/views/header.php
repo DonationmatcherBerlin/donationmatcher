@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="min-height: 100%; position: relative;">
 <head>
 	<!-- Meta -->
 	<meta charset="utf-8">
@@ -36,14 +36,14 @@
 		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 	<![endif]-->
 </head>
-<body>
+<body style="min-height: 100%; margin: 0 0 50px;">
 	<header id="site-header" class="site-header">
 		<div class="container">
 			<nav class="navbar navbar-default" role="navigation">
 				<div class="container-fluid">
 					<div class="navbar-header">
 						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-							<span class="sr-only">Toggle navigation</span>
+							<span class="sr-only">öffne Navigation</span>
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
@@ -59,7 +59,7 @@
                                 <li><a href="<?= base_url('/user/profile') ?>">Dein Profil</a></li>
 								<li><a href="<?= base_url('/user/logout') ?>">Logout</a></li>
 							<?php else : ?>
-								<li class="<?php echo isset($current_view) && $current_view === 'register' ? 'active' : ''; ?>"><a href="<?= base_url('/user/register') ?>">Register</a></li>
+								<li class="<?php echo isset($current_view) && $current_view === 'register' ? 'active' : ''; ?>"><a href="<?= base_url('/user/register') ?>">Registrieren</a></li>
 								<li class="<?php echo isset($current_view) && $current_view === 'login' ? 'active' : ''; ?>"><a href="<?= base_url('/user/login') ?>">Login</a></li>
 							<?php endif; ?>
 						</ul>

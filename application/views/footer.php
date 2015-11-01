@@ -2,7 +2,7 @@
 
         </main><!-- #site-content -->
 
-        <footer class="footer" style="background-color:#e7e7e7; height:50px;" >
+        <footer class="footer" style="background-color:#e7e7e7; height:50px; position: absolute; bottom: 0; width: 100%;" >
             <div class="container" style="padding-top:10px;">
                 <div class="row">
                     <div class="col-sm-2 pull-right">

@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 
-<div class="container">
+<div class="container" style="min-height: 100%;">
 	<div class="row">
 		<?php if (validation_errors()) : ?>
 			<div class="col-md-12">
@@ -92,7 +92,7 @@
 					<div class="form-group">
 						<label for="facility_person_in_charge">Verantwortliche Person (Vor- und Nachname)</label>
 						<input style="max-width: 500px;" type="text" class="form-control" id="facility_person_in_charge" value="<?php echo set_value('facility_person_in_charge', $facility->person_in_charge); ?>" name="facility_person_in_charge" placeholder="Name einer Ansprechsperson">
-						<small class="help-block" style="color: #337ab7;">Verantworltiche Person</small>
+						<small class="help-block" style="color: #337ab7;">Verantwortliche Person</small>
 					</div>
 					<div class="form-group">
 						<label for="password">Neues Passwort</label>

@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" style="min-height: 100%;">
   <?php echo form_open('/stocklist'); ?>
 
     <!-- local contact -->
@@ -16,7 +16,7 @@
             </div>
             <div class="row">
               <div class="col-sm-12">
-                <h4><b>Mail:</b> <?=$facility->email?></h4>
+                <h4><b>E-Mail:</b> <?=$facility->email?></h4>
               </div>
             </div>
             <div class="row">
