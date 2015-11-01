@@ -38,7 +38,7 @@ function list_entries($list_entries)
     </div>
   </div>
   <div class="row">
-    <div class="col-sm-12">
+    <div class="col-sm-13">
       <?php list_entries($demand) ?>
     </div>
   </div>
@@ -49,7 +49,7 @@ function list_entries($list_entries)
 
 <!-- lower row -->
   <div class="row">
-    <div class="col-sm-12 pull-left">
+    <div class="col-sm-12 text-center">
       <h2 style="color:red;">Wer braucht etwas, das ich habe?</h2>
     </div>
   </div>
