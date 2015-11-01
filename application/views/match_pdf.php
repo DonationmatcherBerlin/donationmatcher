@@ -7,7 +7,7 @@
         .table { width: 100%; }
         a[data-print] { display: none; }
 
-        @page { margin: 0px 50px 50px; }
+        @page { margin: 50px; }
         #header { position: fixed; left: 0px; top: -180px; right: 0px; height: 150px; text-align: center; }
         #footer { position: fixed; left: 0px; bottom: -50px; right: 0px; height: 50px; text-align: right; }
         #footer .page:after { content: counter(page, decimal); }
