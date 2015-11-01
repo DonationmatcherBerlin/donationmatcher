@@ -1,10 +1,17 @@
 <?php
-function list_entries($list_entries)
+function list_entries(array $facilities, $list_entries)
 {
-    foreach ($list_entries as $facility => $categories) {
+    // group by facility id
+    $group = [];
+    foreach ($list_entries as $entry) {
+        $group[$entry['facility_id']][] = $entry;
+    }
+
+    foreach ($group as $facility_id => $entries) {
         echo "<tr>";
-        echo "<td>$facility</td>";
-        echo "<td>" . implode(', ', array_column($categories, 'name')) . "</td>";
+        echo "<td>{$facilities[$facility_id]->name}</td>";
+        echo "<td>" . implode(', ', array_column($entries, 'name')) . "</td>";
+        echo "<td>{$facilities[$facility_id]->phone}</td>";
         echo "</tr>";
     }
 }
@@ -35,10 +42,11 @@ function list_entries($list_entries)
           <tr>
               <th>facility</th>
               <th>demand</th>
+              <th>phone</th>
           </tr>
           </thead>
           <tbody>
-            <?php list_entries($demand) ?>
+            <?php list_entries($facilities, $demand) ?>
           </tbody>
       </table>
   </div>
@@ -64,7 +72,7 @@ function list_entries($list_entries)
             </tr>
             </thead>
             <tbody>
-            <?php list_entries($offers) ?>
+            <?php list_entries($facilities, $offers) ?>
             </tbody>
         </table>
     </div>

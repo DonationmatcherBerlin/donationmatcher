@@ -10,7 +10,7 @@ class Local extends CI_Controller {
     {
         check_role('confirmed');
 
-        $this->load->model(array('stock_list_entry_model', 'stock_list_model'));
+        $this->load->model(array('stock_list_entry_model', 'stock_list_model', 'facility_model'));
         $stocklist = $this->stock_list_model->get_by_user($_SESSION['user_id']);
 
         $demand = $this->stock_list_entry_model->get_demand($stocklist['stock_list_id']);
@@ -19,7 +19,8 @@ class Local extends CI_Controller {
         $this->load->view('header');
         $this->load->view('match_view', [
             'demand' => $demand,
-            'offers' => $offers
+            'offers' => $offers,
+            'facilities' => $this->facility_model->get_all()
         ]);
         $this->load->view('footer');
     }

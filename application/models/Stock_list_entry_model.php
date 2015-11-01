@@ -24,9 +24,7 @@ class Stock_list_entry_model extends CI_Model
         }
 
         $foreign_list = $this->get_demand_list($stock_list_id, 1, array_column($category_ids, 'category_id'));
-        return $this->group(
-            $this->handle_exact_match($stock_list_id, $foreign_list, 1)
-        );
+        return $this->handle_exact_match($stock_list_id, $foreign_list, 1);
     }
 
     /**
@@ -44,9 +42,7 @@ class Stock_list_entry_model extends CI_Model
 
         $foreign_list = $this->get_demand_list($stock_list_id, -1, array_column($category_ids, 'category_id'));
 
-        return $this->group(
-            $this->handle_exact_match($stock_list_id, $foreign_list, -1)
-        );
+        return $this->handle_exact_match($stock_list_id, $foreign_list, -1);
     }
 
     /**
@@ -156,7 +152,7 @@ class Stock_list_entry_model extends CI_Model
                 sle.name AS `name`,
                 c.category_id AS `category_id`,
                 c.name AS category_name,
-                CONCAT(f.name, " / ", CONCAT_WS(" ", f.address, f.zip, f.city)) AS facility
+                f.facility_id
               FROM stock_list_entry sle
                 INNER JOIN stock_list sl ON sl.stock_list_id = sle.StockList
                 INNER JOIN facility f ON f.facility_id = sl.Facility
