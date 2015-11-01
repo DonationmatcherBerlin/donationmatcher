@@ -18,7 +18,7 @@ function list_entries(array $facilities,$list_entries)
     }
 }
 ?>
-<div class="container">
+<div class="container" style="min-height:800px">
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-8">
