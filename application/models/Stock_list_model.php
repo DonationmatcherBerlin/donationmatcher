@@ -46,7 +46,12 @@ class Stock_list_model extends CI_Model {
     public function get_by_facility($facility_id)
     {
         $this->db->where('Facility', $facility_id);
-        return $this->db->get('stock_list')->row();
+        $row = $this->db->get('stock_list')->row();
+
+        $row->created_at = new \DateTime($row->created_at);
+        $row->updated_at = $row->updated_at !== null ? new \DateTime($row->updated_at) : null;
+
+        return $row;
     }
 
     /**

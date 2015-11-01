@@ -113,7 +113,7 @@ class Stock_list_entry_model extends CI_Model
     {
         $grouped = [];
         foreach ($list as $entry) {
-            $grouped[$entry['facility']][$entry['category_name']][] = $entry;
+            $grouped[$entry['facility']][] = $entry;
         }
 
         return $grouped;

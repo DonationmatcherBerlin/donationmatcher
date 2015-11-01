@@ -2,18 +2,10 @@
 function list_entries($list_entries)
 {
     foreach ($list_entries as $facility => $categories) {
-        echo "<h3 style='clear: both;'>$facility</h3>";
-        foreach ($categories as $category => $entries) {
-            echo '<div class="pull-left well" style="margin: 10px;">';
-            echo "<h4>$category</h4>";
-            echo "<ul>";
-            foreach ($entries as $entry) {
-                $name = $entry['exact'] ? "<strong>{$entry['name']}</strong>" : $entry['name'];
-                echo "<li>$name</li>";
-            }
-            echo "</ul>";
-            echo "</div>";
-        }
+        echo "<tr>";
+        echo "<td>$facility</td>";
+        echo "<td>" . implode(', ', array_column($categories, 'name')) . "</td>";
+        echo "</tr>";
     }
 }
 ?>
@@ -38,9 +30,17 @@ function list_entries($list_entries)
     </div>
   </div>
   <div class="row">
-    <div class="col-sm-13">
-      <?php list_entries($demand) ?>
-    </div>
+      <table>
+          <thead>
+          <tr>
+              <th>facility</th>
+              <th>demand</th>
+          </tr>
+          </thead>
+          <tbody>
+            <?php list_entries($demand) ?>
+          </tbody>
+      </table>
   </div>
 
 
@@ -56,7 +56,17 @@ function list_entries($list_entries)
   <div class="row">
     <div class="col-sm-12 pull-left">
       <p>Diese Hilfsgruppen brauchen noch spenden, die ihr zuviel habt!</p>
-      <?php list_entries($offers) ?>
+        <table>
+            <thead>
+            <tr>
+                <th>facility</th>
+                <th>demand</th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php list_entries($offers) ?>
+            </tbody>
+        </table>
     </div>
   </div>
 

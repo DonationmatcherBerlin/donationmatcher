@@ -26,7 +26,7 @@
             </div>
             <div class="row">
               <div class="col-sm-12">
-                <h4 style="color: #558ED8; margin-top: 30px;"><b>Letztes Update der Bedarfsliste:</b> <?= $stocklist['updated_at'] ?: 'Liste wurde noch nie bearbeitet.'; ?></h4>
+                <h4 style="color: #558ED8; margin-top: 30px;"><b>Letztes Update der Bedarfsliste:</b> <?= $stocklist->updated_at ? $stocklist->updated_at->format('d.m.Y H:i') : 'Liste wurde noch nie bearbeitet.'; ?></h4>
               </div>
             </div>
           </div>
