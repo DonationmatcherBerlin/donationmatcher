@@ -16,7 +16,7 @@
             </div>
             <div class="row">
               <div class="col-sm-12">
-                <h4><b>Mail:</b> <?=$facility->email?></h4>
+                <h4><b>E-Mail:</b> <?=$facility->email?></h4>
               </div>
             </div>
             <div class="row">
