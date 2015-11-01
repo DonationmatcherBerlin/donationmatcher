@@ -29,14 +29,9 @@ function list_entries(array $facilities,$list_entries)
 				</div>
 			</div>
 		</div>
-    <div class="row">
-        <div class="col-sm-8">
-            <h2 style="color:#337ab7;">Wo gibt es Spenden, die wir benötigen?</h2>
-        </div>
-        <div class="col-sm-3">
-            <a data-print class="btn btn-primary btn-lg btn-lg" href="<?= site_url('local/pdf'); ?>" style="width: 100%;"> <i class="fa fa-print"></i> Ausdrucken</a>
-        </div>
-    </div>  
+    </div>
+
+  
 	<div class="row">
 		<div class="col-sm-12 text-left">
 			<p>Diese Hilfsgruppen brauchen noch spenden, die ihr zuviel habt!</p>
