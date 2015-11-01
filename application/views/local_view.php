@@ -44,10 +44,10 @@
 
     <div class="row" style="margin: 50px 0px;">
       <div class="col-sm-3 col-sm-offset-3">
-        <button type="button" class="btn btn-primary btn-lg btn-lg" style="width: 100%;">Link Bedarfsliste</button>
+        <a class="btn btn-primary btn-lg btn-lg" href="<?= site_url('stocklist/public_pdf/'.$facility->facility_id); ?>" style="width: 100%;" target="_blank">Link Bedarfsliste</a>
       </div>
       <div class="col-sm-3">
-        <button type="button" class="btn btn-primary btn-lg btn-lg" style="width: 100%;"> <i class="fa fa-print"></i> Jetzt ausdrucken</button>
+        <a class="btn btn-primary btn-lg btn-lg" href="<?= site_url('stocklist/pdf/'.$facility->facility_id); ?>" style="width: 100%;"> <i class="fa fa-print"></i> Jetzt ausdrucken</a>
       </div>
     </div>
 

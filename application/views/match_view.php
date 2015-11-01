@@ -12,7 +12,7 @@ function list_entries(array $facilities,$list_entries)
         echo "<td>{$facilities[$facility_id]->name}</td>";
 		echo "<td>" . implode(', ', array_column($entries, 'name')) . "</td>";
 		echo "<td>{$facilities[$facility_id]->phone}</td>";
-		echo "<td>{$facilities[$facility_id]->address},{$facilities[$facility_id]->zip}{$facilities[$facility_id]->city}</td>";
+		echo "<td>{$facilities[$facility_id]->address},{$facilities[$facility_id]->zip} {$facilities[$facility_id]->city}</td>";
         echo "</tr>";
     }
 }
@@ -24,7 +24,7 @@ function list_entries(array $facilities,$list_entries)
             <h2 style="color:#337ab7;">Wo gibt es Spenden, die wir benötigen?</h2>
         </div>
         <div class="col-sm-3">
-            <button type="button" class="btn btn-primary btn-lg btn-lg" style="width: 100%;"> <i class="fa fa-print"></i> Ausdrucken</button>
+            <a data-print class="btn btn-primary btn-lg btn-lg" href="<?= site_url('local/pdf'); ?>" style="width: 100%;"> <i class="fa fa-print"></i> Ausdrucken</a>
         </div>
     </div>
 </div>

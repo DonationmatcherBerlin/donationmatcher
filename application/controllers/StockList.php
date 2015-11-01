@@ -75,6 +75,7 @@ class StockList extends CI_Controller
                 '1' => 'Überschuss',
             ),
         ));
+        $this->pdf->set_paper('A4', 'portrait');
         $this->pdf->render();
         $this->pdf->stream($pdf_name);
     }
@@ -101,6 +102,7 @@ class StockList extends CI_Controller
                 '1' => 'Überschuss',
             ),
         ));
+        $this->pdf->set_paper('A4', 'portrait');
         $this->pdf->render();
         $this->pdf->stream($pdf_name);
     }
