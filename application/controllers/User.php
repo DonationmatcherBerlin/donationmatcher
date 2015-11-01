@@ -191,7 +191,7 @@ class User extends CI_Controller {
 				$this->set_session($user);
 
 				// user login ok
-				redirect('/stockList');
+				redirect('/stocklist');
 
 			} else {
 
@@ -237,8 +237,8 @@ class User extends CI_Controller {
 			$password = $this->input->post('password');
 		}
 
-		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
-		$this->form_validation->set_rules('facility_person_in_charge', 'Verantwortliche Person', 'trim|required');
+		$this->form_validation->set_rules('facility_email', 'Email', 'trim|required|valid_email');
+		$this->form_validation->set_rules('facility_person_in_charge', 'Verantwortliche Person', 'trim');
 		$this->form_validation->set_rules('facility_phone', 'Telefon', 'trim');
 		$this->form_validation->set_rules('facility_name', 'Facility Name', 'trim|required');
 
@@ -259,15 +259,17 @@ class User extends CI_Controller {
 			$facility->zip = $this->input->post('facility_zip');
 			$facility->city = $this->input->post('facility_city');
 			$facility->country = $this->input->post('facility_country');
+            $facility->email = $this->input->post('facility_email');
 			$facility->opening_hours = $this->input->post('businesshours');
 
-			$user = new stdClass;
-			$user->email      = $email;
-			$user->username      = $username;
-			if($password) $user->password   = $password;
+            if($this->input->post('password') != '') {
+                $user_update = new stdClass;
+                $user_update->password = $password;
+                $this->user_model->update_user($user->id, $user_update);
+            }
 
 			$this->facility_model->update_facility($facility);
-			$this->user_model->update_user($user->user_id, $user);
+
 			
 			$this->load->view('header');
 			
