@@ -1,0 +1,11 @@
+/* General styles */
+
+.footer{
+    min-width: 320px;
+}
+
+/* Mobile styles */
+
+@media (max-width:767px){
+
+}
