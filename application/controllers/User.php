@@ -132,21 +132,15 @@ class User extends CI_Controller {
 				$user->is_confirmed = 1;
 				$user->logged_in = 1;
 				$this->set_session($user);
-				redirect('/user/step3');
+				redirect('/user/profile');
 			}else{ // @TODO: Handle also already confirmed users.
 				$data = new stdClass;
 				$data->error = 'Ungültiger Confirmation Code';
-				print_r($data); // @TODO: Load error view
+				//print_r($data); // @TODO: Load error view
 			}
 
 	}
 
-
-	public function step3(){
-		check_role('confirmed');
-		$show_progress_bar = true;
-		$this->profile($show_progress_bar);
-	}
 
 	/**
 	 * login function.
@@ -197,7 +191,6 @@ class User extends CI_Controller {
 				$data->error = 'Wrong username or password.';
 
 				// send error to the view
-
 				$this->load->view('user/login/login', $data);
 
 
@@ -214,7 +207,7 @@ class User extends CI_Controller {
 	 * @access public
 	 * @return void
 	 */
-	public function profile($show_progress_bar = false){
+	public function profile(){
 
 		check_role('confirmed');
 
@@ -223,21 +216,17 @@ class User extends CI_Controller {
 		$this->load->library('form_validation');
 
 		$user = $this->user_model->get_user($_SESSION['user_id']);
+		$username = $user->username;
 		$facility = $this->facility_model->get_facility_by_user_id($_SESSION['user_id']);
 
-		$this->load->view('header');
-		if($show_progress_bar) $this->load->view('user/register/progressbar', array('step' => 3));
-		$this->load->view('user/register/step3', array('user' => $user, 'facility' => $facility));
-		$this->load->view('footer');
-
-
-		$this->form_validation->set_rules('username', 'Username', 'trim|required|alpha_numeric|min_length[4]|is_unique[users.username]', array('is_unique' => 'This username already exists. Please choose another one.'));
-		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|is_unique[users.email]');
-		if($this->input->post('password') == ''){
+		// password required by sign up or by changing it
+		if($this->input->post('password') != ''){
 			$this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[6]');
 			$this->form_validation->set_rules('password_confirm', 'Confirm Password', 'trim|required|min_length[6]|matches[password]');
+			$password = $this->input->post('password');
 		}
 
+		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
 		$this->form_validation->set_rules('facility_person_in_charge', 'Verantwortliche Person', 'trim|required');
 		$this->form_validation->set_rules('facility_phone', 'Telefon', 'trim');
 		$this->form_validation->set_rules('facility_name', 'Facility Name', 'trim|required');
@@ -248,22 +237,38 @@ class User extends CI_Controller {
 		$this->form_validation->set_rules('facility_city', 'Facility City', 'trim|required');
 		$this->form_validation->set_rules('facility_country', 'Facility Country', 'trim|required');
 
-		$facility = new stdClass;
-		$facility->person_in_charge = $this->input->post('facility_person_in_charge');
-		$facility->phone = $this->input->post('facility_phone');
-		$facility->name = $this->input->post('facility_name');
-		$facility->organisation = $this->input->post('facility_organisation');
-		$facility->address = $this->input->post('facility_address');
-		$facility->zip = $this->input->post('facility_zip');
-		$facility->city = $this->input->post('facility_city');
-		$facility->country = $this->input->post('facility_country');
+		if ($this->form_validation->run() != false) {
 
-		$user = new stdClass;
-		$user->username   = $username;
-		$user->email      = $email;
-		if($password) $user->password   = $password;
+			$facility->person_in_charge = $this->input->post('facility_person_in_charge');
+			$facility->phone = $this->input->post('facility_phone');
+			$facility->name = $this->input->post('facility_name');
+			$facility->organisation = $this->input->post('facility_organisation');
+			$facility->address = $this->input->post('facility_address');
+			$facility->zip = $this->input->post('facility_zip');
+			$facility->city = $this->input->post('facility_city');
+			$facility->country = $this->input->post('facility_country');
 
-		//@TODO: Save the records
+			$user = new stdClass;
+			$user->email      = $email;
+			$user->username      = $username;
+			if($password) $user->password   = $password;
+
+			$this->facility_model->update_facility($facility);
+			$this->user_model->update_user($user->user_id, $user);
+			
+			$this->load->view('header');
+			
+			if($is_signup) $this->load->view('user/register/progressbar', array('step' => 3));
+			
+			$this->load->view('user/register/step3', array('user' => $user, 'facility' => $facility));
+			$this->load->view('footer');
+
+		}else{
+			$this->load->view('header');
+			if($is_signup) $this->load->view('user/register/progressbar', array('step' => 3));
+			$this->load->view('user/register/step3', array('user' => $user, 'facility' => $facility));
+			$this->load->view('footer');
+		}
 
 	}
 
