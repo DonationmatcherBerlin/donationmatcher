@@ -1,55 +1,57 @@
 <div class="container">
   <?php echo form_open(); ?>
 
-    <!-- alert panel -->
-    <!--
-    <div class="row">
-      <div class="col-sm-6 col-sm-offset-3">
-      
-        <div class="alert alert-danger text-center" style="margin: 50px 0px;" role="alert">
-          <b>Hey Name!</b> Deine Bedarfsliste wurde das letzte mal am geupdatet.
-        </div>
-        
-      </div>
-    </div>
-    -->
-
     <!-- local contact -->
-    <div class="panel panel-success">
-      <div class="panel-heading">
-        <h3 class="panel-title text-center"><?=$facility->name?></h3>
-      </div>
-      <div class="panel-body text-center">
-        <div class="row">
-          <div class="col-sm-12">
-            <h4><b>Adresse:</b> <?=$facility->address?></h4>
+    <div class="row" style="margin: 50px 0;">
+      <div class="col-sm-6 col-sm-offset-3">
+        <div class="panel panel-success">
+          <div class="panel-heading">
+            <h3 class="text-center"><?=$facility->name?></h3>
           </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-12">
-            <h4><b>Mail:</b> <?=$facility->email?></h4>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-12">
-            <h4><b>Telefon:</b> <?=$facility->phone?></h4>
+          <div class="panel-body text-center">
+            <div class="row">
+              <div class="col-sm-12">
+                <h4><b>Adresse:</b> <?=$facility->address?></h4>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <h4><b>Mail:</b> <?=$facility->email?></h4>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <h4><b>Telefon:</b> <?=$facility->phone?></h4>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <h4 style="color: #558ED8; margin-top: 30px;"><b>Letztes Update der Bedarfsliste:</b> TODO<!-- TODO: Backend, Date wann das letzte Mal geupdatet wurde --></h4>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
 
     <!-- table -->
+    <div class="row" style="margin-bottom: 30px;">
+      <div class="col-sm-12 text-center" >
+        <h2>Bearbeitung Ihrer lokalen Bedarfsliste</h2>
+        <p style="color: #558ED8; text-align: center;">Sie müssen Änderungen unten mit dem Knopf "Speichern" bestätigen.</p>
+      </div>
+    </div>
     <div class="row">
       <div class="col-sm-12">
         <table class="table table-hover text-center">
         <thead>
           <tr>
-            <th class="th-green">Spende</th>
-            <th class="th-green">Wird gebraucht</th>
-            <th class="th-green">Nicht gebraucht</th>
-            <th class="th-green">Zu viel vorhanden</th>
-            <th class="th-green">Anzahl vorhanden (optional)</th>
-            <th class="th-green">Kommentar (optional)</th>
+            <th>Bezeichnung</th>
+            <th>Bedarf</th>
+            <th>OK</th>
+            <th>Überschuss</th>
+            <th>Anzahl vorhanden (optional)</th>
+            <th>Kommentar (optional)</th>
           </tr>
         </thead>
         <tbody>
@@ -86,7 +88,7 @@
                     </td>
                     <td>
                         <div class="form-group">
-                            <input type="text" class="form-control" value="<?=$entry['comment']?>" name="comment[<?=$entry['stock_list_entry_id']?>]">
+                            <textarea type="text" class="form-control" value="<?=$entry['comment']?>" name="comment[<?=$entry['stock_list_entry_id']?>]" style="max-width: 200px; min-width: 100px;"></textarea>
                         </div>
                     </td>
                 </tr>
@@ -94,9 +96,7 @@
         <?php endforeach; ?>
         <tr>
           <td colspan="6">
-            <div class="form-group">
-              <input type="submit" class="form-control btn btn-primary" value="Speichern" >
-            </div>
+              <input type="submit" class="btn btn-success btn-lg btn-block" value="Speichern" style="margin-top: 20px;">
           </td>
         </tr>
         </tbody>
