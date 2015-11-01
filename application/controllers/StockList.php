@@ -39,10 +39,14 @@ class StockList extends CI_Controller
 
         }
 
-        $stocklist = $this->stock_list_model->get_grouped_entries($id,$this->category_model->get_tree());
+        $entries = $this->stock_list_model->get_grouped_entries($id,$this->category_model->get_tree());
 
         $this->load->view('header');
-        $this->load->view('local_view', array('stocklist' => $stocklist, 'facility' => $facility));
+        $this->load->view('local_view', array(
+            'stocklist' => $stocklist,
+            'entries' => $entries,
+            'facility' => $facility
+        ));
         $this->load->view('footer');
     }
 }

@@ -44,7 +44,7 @@
           </tr>
         </thead>
         <tbody>
-        <?php foreach ($stocklist as $category) : ?>
+        <?php foreach ($entries as $category) : ?>
             <tr>
                 <td colspan="6">
                     <h3 style="text-align: left"><?= $category['name'] ?></h3>
