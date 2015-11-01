@@ -56,12 +56,12 @@
         <table class="table table-hover text-center">
         <thead>
           <tr>
-            <th>Bezeichnung</th>
-            <th>Bedarf</th>
-            <th>OK</th>
-            <th>Überschuss</th>
-            <th>Anzahl vorhanden (optional)</th>
-            <th>Kommentar (optional)</th>
+            <th class="text-center">Bezeichnung</th>
+            <th class="text-center">Bedarf</th>
+            <th class="text-center">OK</th>
+            <th class="text-center">Überschuss</th>
+            <th class="text-center">Anzahl vorhanden (optional)</th>
+            <th class="text-center">Kommentar (optional)</th>
           </tr>
         </thead>
         <tbody>
@@ -91,10 +91,13 @@
                         </div>
                     </td>
                     <td>
-                        <button type="button" class="btn btn-default list-entry-count-button">Anzahl eingeben</button>
-                        <div class="input-group hidden" style="max-width:150px;">
-                            <input value="<?=$entry['count']?>" name="count[<?=$entry['stock_list_entry_id']?>]" type="number" class="form-control" placeholder="(optional)">
-                            <div class="input-group-addon">Stück</div>
+                        <button type="button" class="btn btn-default list-entry-count-button" id="<?=$entry['stock_list_entry_id']?>" style="margin-top: 10px;" onclick="showCountInput(this.id)">Anzahl eingeben</button>
+                        <div class="hidden" id="inputGroup<?=$entry['stock_list_entry_id']?>">
+                          <div class="input-group" style="max-width:150px; margin-left: 125px;">
+                              <input value="<?=$entry['count']?>" name="count[<?=$entry['stock_list_entry_id']?>]" type="number" class="form-control" placeholder="(optional)">
+                              <div class="input-group-addon">Stück</div>
+                          </div>
+                          <button type="button" class="btn btn-default list-entry-count-button" id="<?=$entry['stock_list_entry_id']?>" style="margin-top: 10px;" onclick="hideCountInput(this.id)">Anzahlfeld entfernen</button>
                         </div>
                     </td>
                     <td>
@@ -116,3 +119,26 @@
     </div>
   </form>
 </div>
+
+
+
+<script type="text/javascript">
+
+  function showCountInput(id){
+    var buttonID = "#" + id;
+    $( buttonID ).addClass( "hidden" );
+
+    var inputGroupName = "#inputGroup" + id;
+    $(inputGroupName).removeClass('hidden');
+  }
+
+  function hideCountInput(id){
+    var buttonID = "#" + id;
+    $( buttonID ).removeClass( "hidden" );
+
+    var inputGroupName = "#inputGroup" + id;
+    $(inputGroupName).addClass('hidden');
+  }
+
+
+</script>
