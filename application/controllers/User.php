@@ -87,7 +87,7 @@ class User extends CI_Controller {
 
 				$facility->User = $user_id;
 				$this->facility_model->create_facility($facility); // @TODO: error handling
-				$this->send_email($email,$username,'confirm',array('confirmation_key' => $confirmation_key));
+				$this->send_email($email,$username,'confirm',array('confirmation_key' => $user->confirmation_key));
 
 				// user creation ok
 				$this->load->view('header', array('current_view' => 'register'));
