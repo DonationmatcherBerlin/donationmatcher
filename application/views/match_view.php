@@ -33,20 +33,22 @@ function list_entries(array $facilities,$list_entries)
 <div class="row">
     <div class="col-sm-12 text-left">
       <p>Diese Hilfsgruppen brauchen noch spenden, die ihr zuviel habt!</p>
-        <table class="table">
-            <thead>
-            <tr>
-                <th><h4>Hilfsgruppe</h4></th>
-                <th><h4>Ueberschuss</h4></th>
-				<th><h4>Telefon</h4></th>
-				<th><h4>Email</h4></th>
-				<th><h4>Adresse</h4></th>
-            </tr>
-            </thead>
-            <tbody>
-            <?php list_entries($facilities,$demand) ?>
-            </tbody>
-        </table>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th><h4>Hilfsgruppe</h4></th>
+                    <th><h4>Überschuss</h4></th>
+                    <th><h4>Telefon</h4></th>
+                    <th><h4>Email</h4></th>
+                    <th><h4>Adresse</h4></th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php list_entries($facilities,$demand) ?>
+                </tbody>
+            </table>
+        </div>
     </div>
   </div>
 
@@ -63,20 +65,22 @@ function list_entries(array $facilities,$list_entries)
   <div class="row">
     <div class="col-sm-12 text-left">
       <p>Diese Hilfsgruppen brauchen noch spenden, die ihr zuviel habt!</p>
-        <table class="table">
-            <thead>
-            <tr>
-                <th><h4>Hilfsgruppe</h4></th>
-                <th><h4>Ueberschuss</h4></th>
-                <th><h4>Telefon</h4></th>
-                <th><h4>Email</h4></th>
-                <th><h4>Adresse</h4></th>
-            </tr>
-            </thead>
-            <tbody>
-            <?php list_entries($facilities,$offers) ?>
-            </tbody>
-        </table>
+        <div class="table-responsive">
+            <<table class="table table-striped">
+                <thead>
+                <tr>
+                    <th><h4>Hilfsgruppe</h4></th>
+                    <th><h4>Überschuss</h4></th>
+                    <th><h4>Telefon</h4></th>
+                    <th><h4>Email</h4></th>
+                    <th><h4>Adresse</h4></th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php list_entries($facilities,$offers) ?>
+                </tbody>
+            </table>
+        </div>
     </div>
   </div>
 </div>

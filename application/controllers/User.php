@@ -191,7 +191,7 @@ class User extends CI_Controller {
 				$this->set_session($user);
 
 				// user login ok
-				redirect('/stocklist');
+				redirect('/stockList');
 
 			} else {
 
