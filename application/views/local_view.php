@@ -26,7 +26,7 @@
             </div>
             <div class="row">
               <div class="col-sm-12">
-                <h4 style="color: #558ED8; margin-top: 30px;"><b>Letztes Update der Bedarfsliste:</b> <?= $stocklist['updated_at'] ?: 'Diese Liste wurde noch nie bearbeitet.'; ?></h4>
+                <h4 style="color: #558ED8; margin-top: 30px;"><b>Letztes Update der Bedarfsliste:</b> <?= $stocklist['updated_at'] ?: 'Liste wurde noch nie bearbeitet.'; ?></h4>
               </div>
             </div>
           </div>
@@ -53,6 +53,11 @@
 
     <div class="row">
       <div class="col-sm-12">
+
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
         <table class="table table-hover text-center">
         <thead>
           <tr>
@@ -65,7 +70,7 @@
           </tr>
         </thead>
         <tbody>
-        <?php foreach ($stocklist as $category) : ?>
+        <?php foreach ($entries as $category) : ?>
             <tr>
                 <td colspan="6">
                     <h3 style="text-align: left"><?= $category['name'] ?></h3>

@@ -169,21 +169,29 @@
 function initMap() {
 	//data from DB
 	var addresses = [
-    'Hauptstr.13 Berlin Germany',
-    'Turmstr.13 Berlin Germany',
-    'Eisenacherstr.13 Berlin 10777 Germany' //needed format zipcode important because of double street entries
+    'Hauptstr.1 Berlin 10823 Germany',
+    'Turmstr.1 Berlin Germany',
+    'Eisenacherstr.1 Berlin 10777 Germany',
+	'Hauptstr.20 Berlin 10823 Germany',
+    'Turmstr.20 Berlin Germany',
+    'Eisenacherstr.70 Berlin 10777 Germany',
+	'Hauptstr.30 Berlin 10823 Germany',
+    'Turmstr.30 Berlin Germany',
+    'Eisenacherstr.30 Berlin 10777 Germany',
+	'Hauptstr.40 Berlin 10823 Germany',
+	'Hauptstr.70 Berlin 10823 Germany' //needed format zipcode important because of double street entries
 	];	
 	//build new map
 	var map = new google.maps.Map(document.getElementById('map'), {
     zoom: 11,
     center: {lat: 52.493830, lng: 13.423598}
-	});
-	  for (i = 0; i < addresses.length; i++) {
-		  
-		var geocoder = new google.maps.Geocoder();     //new geocoder (needed to get geolocation)
-		var address = addresses[i];			 
-
-			geocoder.geocode( { 'address': address }, function(results, status) { //get the geocode
+	});		  
+	var myFunctions = [];
+			function geo(i){
+				var geocoder = new google.maps.Geocoder();//new geocoder (needed to get geolocation)
+				var address = addresses[i];		
+			
+				geocoder.geocode( { 'address': address }, function(results, status) { //get the geocode
 			if ( status == google.maps.GeocoderStatus.OK ){
 				var marker = new google.maps.Marker( { 		//build new marker
 				position: results[0].geometry.location,     //comes from geocoder
@@ -197,10 +205,22 @@ function initMap() {
 				} 
 				else     
 				alert("Geocode was not successful for the following reason: " + status);        
-		});
-	  }
-}
+				});
+			}
+			
+			for (var i = 0; i < addresses.length; i++) {
+				myFunctions[i] = geo(i);
+			}
+			
+			for (var j = 0; j < addresses.length; j++) {
+				alert(addresses.length);
+				myFunctions[j]();    // and now let's run each one to see
 
+			}
+
+			
+
+}
     </script>
 
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBJ1d7DryuY_ypyZ-NIZvwla-XfJ9EiTmE&signed_in=true&callback=initMap"></script>

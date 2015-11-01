@@ -9,6 +9,7 @@ INSERT INTO users (`username`, `email`, `password`, `created_at`, `is_admin`, `i
   ("admin_111", "admin111@localhost", "$2y$10$jPrKWhqYI7IJv3o0WFJ1P.PMEs0QUHxkAdmwkvQ3ok9ZD16WPm1Eu", "2015-10-25 23:01:47", 1, 1, 1, "confirmation_key"),
   ("user1", "user1@localhost", "$2y$10$jPrKWhqYI7IJv3o0WFJ1P.PMEs0QUHxkAdmwkvQ3ok9ZD16WPm1Eu", "2015-10-25 23:01:47", 0, 1, 0, "confirmation_key"),
   ("user2", "user2@localhost", "$2y$10$jPrKWhqYI7IJv3o0WFJ1P.PMEs0QUHxkAdmwkvQ3ok9ZD16WPm1Eu", "2015-10-25 23:01:47", 0, 1, 0, "confirmation_key"),
+  ("user3", "user3@localhost", "$2y$10$jPrKWhqYI7IJv3o0WFJ1P.PMEs0QUHxkAdmwkvQ3ok9ZD16WPm1Eu", "2015-10-25 23:01:47", 0, 1, 0, "confirmation_key"),
   ("user_011", "user011@localhost", "$2y$10$jPrKWhqYI7IJv3o0WFJ1P.PMEs0QUHxkAdmwkvQ3ok9ZD16WPm1Eu", "2015-10-25 23:01:47", 0, 1, 1, "confirmation_key"),
   ("user_001", "user001@localhost", "$2y$10$jPrKWhqYI7IJv3o0WFJ1P.PMEs0QUHxkAdmwkvQ3ok9ZD16WPm1Eu", "2015-10-25 23:01:47", 0, 0, 1, "confirmation_key")
 ;
@@ -25,7 +26,8 @@ INSERT INTO facility (`User`, `name`, `association`, `organisation`, `homepage`,
   (3, "Die Wohnanlage am Ostpreußendamm 108", null, "Evangelischer Diakonieverein Berlin-Zehlendorf e.V.", "http://www.diakonieverein.de/diakonieverein/unterstuetzen-und-helfen/spenden/spendenprojekte/fluechtlingsbetreuung.html", "info@diakonieverein.de", "Tel: (030) 80 99 70-0", "Mo-Fr- 8-17", NULL, "WH", "2015-10-25 23:01:47", "Glockenstraße 8", "14163", "Berlin"),
   (4, "Notunterkunft für Flüchtlinge", "Willkommen in Marzan", "Christliches Jugenddorf Deutschlands e.V.:", "http://www.diakonie-portal.de/arbeitsbereiche/existenzsicherung-integration/spenden-fuer-fluechtlinge/fluechtlingsunterkunft-mitte", "info.glambeckerring@cjd-berlin.de", "T: 0176 817 875 21", NULL, NULL, "NUK", "2015-10-25 23:01:47", "Grünweg 18", "12679", "Berlin-Marzahn"),
   (5, "name", "association", "organisation", "homepage", "email", "phone", "opening_hours", "person_in_charge", "type", "2015-10-25 23:01:47", "address", "zip", "city"),
-  (6, "name", "association", "organisation", "homepage", "email", "phone", "opening_hours", "person_in_charge", "type", "2015-10-25 23:01:47", "address", "zip", "city")
+  (6, "name", "association", "organisation", "homepage", "email", "phone", "opening_hours", "person_in_charge", "type", "2015-10-25 23:01:47", "address", "zip", "city"),
+  (7, "name", "association", "organisation", "homepage", "email", "phone", "opening_hours", "person_in_charge", "type", "2015-10-25 23:01:47", "address", "zip", "city")
 ;
 
 #
@@ -40,7 +42,8 @@ INSERT INTO stock_list (`Facility`, `created_at`) VALUES
   (3, "2015-10-25 23:01:47"),
   (4, "2015-10-25 23:01:47"),
   (5, "2015-10-25 23:01:47"),
-  (6, "2015-10-25 23:01:47")
+  (6, "2015-10-25 23:01:47"),
+  (7, "2015-10-25 23:01:47")
 ;
 
 #
@@ -79,5 +82,14 @@ INSERT INTO stock_list_entry (`StockList`, `Category`, `demand`, `name`, `create
   (4, 3, -1, "Aftershave", "2015-10-25 23:01:47"),
   (4, 3, 1, "Allzwecktücher", "2015-10-25 23:01:47"),
   (4, 4, -1, "Armbanduhren", "2015-10-25 23:01:47"),
-  (4, 4, -1, "Bälle", "2015-10-25 23:01:47")
+  (4, 4, -1, "Bälle", "2015-10-25 23:01:47"),
+
+  (5, 1, 1, "Gurken", "2015-10-25 23:01:47"),
+  (5, 1, 1, "Kekse", "2015-10-25 23:01:47"),
+  (5, 2, -1, "Strumpfhosen", "2015-10-25 23:01:47"),
+  (5, 2, 1, "Babycreme", "2015-10-25 23:01:47"),
+  (5, 3, 1, "Aftershave", "2015-10-25 23:01:47"),
+  (5, 3, 1, "Allzwecktücher", "2015-10-25 23:01:47"),
+  (5, 4, 1, "Armbanduhren", "2015-10-25 23:01:47"),
+  (5, 4, -1, "Bälle", "2015-10-25 23:01:47")
 ;

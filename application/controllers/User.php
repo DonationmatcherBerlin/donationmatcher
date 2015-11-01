@@ -120,13 +120,22 @@ class User extends CI_Controller {
 	 */
 	public function confirm($confirmation_key,$username){
 
+			$this->load->model(array('stock_list_entry_model','stock_list_model'));
 			$user_id = $this->user_model->get_user_id_from_username($username);
 			$user = $this->user_model->get_user($user_id);
+
+			if($user->is_confirmed == 1) redirect('/user/profile');
 
 			if($confirmation_key == $user->confirmation_key){
 				$data = new stdClass;
 				$data->is_confirmed = 1;
 				$this->user_model->update_user($user_id, $data);
+
+				$facility = $this->facility_model->get_facility_by_user_id($user_id);
+				
+				// create initial stocklist entries
+				$this->stock_list_model->createStockList($facility->facility_id);
+				$this->stock_list_entry_model->insert_empty_stocklist_entries($facility->facility_id);
 
 				$user->is_confirmed = 1;
 				$user->logged_in = 1;
