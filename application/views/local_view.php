@@ -58,54 +58,54 @@
     </div>
     <div class="row">
       <div class="col-sm-12">
-        <table class="table table-hover text-center">
+        <table class="table table-hover stickytable">
         <thead>
           <tr>
-            <th class="text-center">Bezeichnung</th>
+            <th class="">Bezeichnung</th>
             <th class="text-center">Bedarf</th>
             <th class="text-center">OK</th>
             <th class="text-center">Überschuss</th>
-            <th class="text-center">Anzahl vorhanden (optional)</th>
-            <th class="text-center">Kommentar (optional)</th>
+            <th class="text-center responsive-invisibility">Anzahl vorhanden (optional)</th>
+            <th class="text-center responsive-invisibility">Kommentar (optional)</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody class="text-center">
         <?php foreach ($entries as $category) : ?>
             <tr>
-                <td colspan="6">
+                <td colspan="4">
                     <h3 style="text-align: left"><?= $category['name'] ?></h3>
+                </td>
+                <td colspan="2" class"responsive-invisibility">
                 </td>
             </tr>
             <?php foreach ($category['entries'] as $entry) : ?>
                 <?php $checked = $entry['demand']; ?>
                 <tr>
-                    <th><?=$entry['name']?></th>
-                    <td>
+                    <th class="entryname "><?=$entry['name']?></th>
+                    <td class="">
                         <div class="radio">
                             <label><input <?php if($checked=='-1'){echo 'checked="checked"';};?> value="-1" type="radio" name="demand[<?=$entry['stock_list_entry_id']?>]"></label>
                         </div>
                     </td>
-                    <td>
+                    <td class="">
                         <div class="radio" >
                             <label><input <?php if($checked=='0'){echo 'checked="checked"';};?> value="0" type="radio" name="demand[<?=$entry['stock_list_entry_id']?>]"></label>
                         </div>
                     </td>
-                    <td>
+                    <td class="">
                         <div class="radio" >
                             <label><input <?php if($checked=='1'){echo 'checked="checked"';};?> value="1" type="radio" name="demand[<?=$entry['stock_list_entry_id']?>]"></label>
                         </div>
                     </td>
-                    <td>
-                        <button type="button" class="btn btn-default list-entry-count-button" id="<?=$entry['stock_list_entry_id']?>" style="margin-top: 10px;" onclick="showCountInput(this.id)">Anzahl eingeben</button>
-                        <div class="hidden" id="inputGroup<?=$entry['stock_list_entry_id']?>">
-                          <div class="input-group" style="max-width:150px; margin-left: 125px;">
-                              <input value="<?=$entry['count']?>" name="count[<?=$entry['stock_list_entry_id']?>]" type="number" class="form-control" placeholder="(optional)">
-                              <div class="input-group-addon">Stück</div>
-                          </div>
-                          <button type="button" class="btn btn-default list-entry-count-button" id="<?=$entry['stock_list_entry_id']?>" style="margin-top: 10px;" onclick="hideCountInput(this.id)">Anzahlfeld entfernen</button>
-                        </div>
+                    <td class="responsive-invisibility">
+                        
+                      <div class="input-group" style="max-width:150px; margin-left: 125px;">
+                          <input value="<?=$entry['count']?>" name="count[<?=$entry['stock_list_entry_id']?>]" type="number" class="form-control" placeholder="(optional)">
+                          <div class="input-group-addon">Stück</div>
+                      </div>
+                      
                     </td>
-                    <td>
+                    <td class="responsive-invisibility">
                         <div class="form-group">
                             <textarea type="text" class="form-control" value="<?=$entry['comment']?>" name="comment[<?=$entry['stock_list_entry_id']?>]" style="max-width: 200px; min-width: 100px;"></textarea>
                         </div>
@@ -124,8 +124,6 @@
     </div>
   </form>
 </div>
-
-
 
 <script type="text/javascript">
 

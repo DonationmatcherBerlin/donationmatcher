@@ -4,8 +4,25 @@
     min-width: 320px;
 }
 
+.entryname {
+	overflow: hidden;
+  	text-overflow: ellipsis;
+	width:30px;
+}
+
+table.stickytable thead {
+    border-top: none;
+    border-bottom: none;
+    background-color: #FFF;
+}
+
 /* Mobile styles */
 
 @media (max-width: 767px){
-
+	.responsive-invisibility {
+	  display: none !important;
+	  tr& { display: none !important; }
+	  th&,
+	  td& { display: none !important; }
+	}
 }
