@@ -19,7 +19,6 @@ function list_entries(array $facilities,$list_entries)
 }
 ?>
 <div class="container">
-<div class="container">
     <div class="row">
         <div class="col-sm-8">
             <h2 style="color:#337ab7;">Wo gibt es Spenden, die wir benötigen?</h2>
@@ -28,7 +27,6 @@ function list_entries(array $facilities,$list_entries)
             <a data-print class="btn btn-primary btn-lg btn-lg" href="<?= site_url('local/pdf'); ?>" style="width: 100%;"> <i class="fa fa-print"></i> Ausdrucken</a>
         </div>
     </div>
-</div>
   
 <div class="row">
     <div class="col-sm-12 text-left">
@@ -66,7 +64,7 @@ function list_entries(array $facilities,$list_entries)
     <div class="col-sm-12 text-left">
       <p>Diese Hilfsgruppen brauchen noch spenden, die ihr zuviel habt!</p>
         <div class="table-responsive">
-            <<table class="table table-striped">
+            <table class="table table-striped">
                 <thead>
                 <tr>
                     <th><h4>Hilfsgruppe</h4></th>

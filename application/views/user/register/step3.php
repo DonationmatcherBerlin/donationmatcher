@@ -31,7 +31,7 @@
 					</div>
 					<div class="form-group">
 						<label for="email">Email</label>
-						<input style="max-width: 500px;" type="email" class="form-control" id="email" value="<?php echo set_value('email', $user->email); ?>" name="email" placeholder="E-Mail eingeben">
+						<input style="max-width: 500px;" type="email" class="form-control" id="facility_email" value="<?php echo set_value('facility_email', $facility->email); ?>" name="facility_email" placeholder="E-Mail eingeben">
 						<small class="help-block" style="color: #337ab7;">Eine gültige E-Mail Adresse</small>
 					</div>
 					<div class="form-group">
@@ -95,12 +95,12 @@
 						<small class="help-block" style="color: #337ab7;">Verantworltiche Person</small>
 					</div>
 					<div class="form-group">
-						<label for="password">Passwort</label>
+						<label for="password">Neues Passwort</label>
 						<input style="max-width: 500px;" type="password" class="form-control" id="password" name="password" value="<?php echo set_value('password'); ?>" placeholder="Passwort eingeben">
 						<small class="help-block" style="color: #337ab7;">Mindestens 6 Zeichen! - Leer lassen für keine Änderung</small>
 					</div>
 					<div class="form-group">
-						<label for="password_confirm">Passwort wiederholen</label>
+						<label for="password_confirm">Neues Passwort wiederholen</label>
 						<input style="max-width: 500px;" type="password" class="form-control" id="password_confirm" name="password_confirm" value="<?php echo set_value('password'); ?>" placeholder="Passwort wiederholen">
 						<small class="help-block" style="color: #337ab7;">Muss mit dem Passwort übereinstimmen</small>
 					</div>

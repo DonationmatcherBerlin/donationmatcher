@@ -50,7 +50,9 @@ class User_model extends CI_Model {
 	 * @return bool true on success, false on failure
 	 */
 	public function update_user($user_id, $data) {
-		
+
+        $data->password = $this->hash_password($data->password);
+
 		$this->db->where('id', $user_id);
 		return $this->db->update('users', $data);
 		
