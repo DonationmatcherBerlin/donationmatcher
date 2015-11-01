@@ -8,7 +8,7 @@
                   <div class="text-center bs-wizard-stepnum">Schritt 1</div>
                   <div class="progress"><div class="progress-bar"></div></div>
                   <a href="#" class="bs-wizard-dot"></a>
-                  <div class="bs-wizard-info text-center">Gib deine Daten ein.</div>
+                  <div class="bs-wizard-info text-center">Gib deine Daten ein</div>
                 </div>
 
                 <div class="col-xs-3 bs-wizard-step <?php if($step == 1){ echo 'disabled';} elseif($step == 2){echo 'active';} elseif($step == 3) { echo 'complete'; } ?>"><!-- complete -->
