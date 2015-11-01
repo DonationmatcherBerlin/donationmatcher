@@ -13,7 +13,7 @@
 
 	<!-- Styles: General -->
 	<?php /* <link href="<?= base_url('assets/css/local/local.css') ?>" rel="stylesheet"> */ ?>
-	<link href="<?= base_url('assets/css/bootstrap.min_v1.css') ?>" rel="stylesheet">
+	<link href="<?= base_url('assets/css/bootstrap.min_v2.css') ?>" rel="stylesheet">
 	<link href="<?= base_url('assets/css/jquery.businessHours.css') ?>" rel="stylesheet">
 	<link href="<?= base_url('assets/css/font-awesome/css/font-awesome.min.css') ?>" rel="stylesheet">
 	<link href="//cdn.datatables.net/1.10.9/css/jquery.dataTables.min.css" rel="stylesheet">

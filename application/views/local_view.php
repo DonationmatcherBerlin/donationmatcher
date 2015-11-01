@@ -37,33 +37,36 @@
     <!-- table -->
     <div class="row">
       <div class="col-sm-12 text-center" >
-        <h2>Bearbeitung Ihrer lokalen Bedarfsliste</h2>
+        <h1>Bearbeitung Ihrer lokalen Bedarfsliste</h1>
         <p style="color: #558ED8; text-align: center;">Sie müssen Änderungen unten mit dem Knopf "Speichern" bestätigen.</p>
       </div>
     </div>
 
-    <div class="row" style="margin: 50px 0px;">
-        <ul>
-        <?php foreach(array_column($entries, 'name') as $category) : ?>
-            <li><a href="#cat_<?= $category ?>"><?= $category ?></a></li>
-        <?php endforeach ?>
-        </ul>
-      <div class="col-sm-3 col-sm-offset-3">
-        <a class="btn btn-primary btn-lg btn-lg" href="<?= site_url('stocklist/public_pdf/'.$facility->facility_id); ?>" style="width: 100%;" target="_blank">Link Bedarfsliste</a>
+    <div class="row" style="margin-top: 20px; margin-bottom: 100px;">
+      <div class="col-sm-6">
+        <div class="row">
+          <div class="col-sm-12 text-center">
+            <a class="btn btn-primary btn-lg btn-lg" href="<?= site_url('stocklist/public_pdf/'.$facility->facility_id); ?>" style="min-width: 300px; margin: 35px auto;"  target="_blank">Link Bedarfsliste</a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12 text-center">
+            <a class="btn btn-primary btn-lg btn-lg" href="<?= site_url('stocklist/pdf/'.$facility->facility_id); ?>" style="min-width: 300px;"> <i class="fa fa-print"></i> Jetzt ausdrucken</a>
+          </div>
+        </div>
       </div>
-      <div class="col-sm-3">
-        <a class="btn btn-primary btn-lg btn-lg" href="<?= site_url('stocklist/pdf/'.$facility->facility_id); ?>" style="width: 100%;"> <i class="fa fa-print"></i> Jetzt ausdrucken</a>
+
+      <div class="col-sm-6">
+        <h3 class="text-center">Springe direkt zur Kategorie:</h3>
+          <?php foreach(array_column($entries, 'name') as $category) : ?>
+            <a href="#cat_<?= $category ?>" class="btn btn-default"><?= $category ?></a>
+          <?php endforeach ?>
       </div>
     </div>
 
     <div class="row">
       <div class="col-sm-12">
-
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-12">
-        <table class="table table-hover stickytable">
+        <table class="table table-hover stickytable localTable">
         <thead>
           <tr>
             <th class="">Bezeichnung</th>
@@ -103,16 +106,16 @@
                         </div>
                     </td>
                     <td class="responsive-invisibility">
-                        
+
                       <div class="input-group" style="max-width:150px; margin-left: 125px;">
                           <input value="<?=$entry['count']?>" name="count[<?=$entry['stock_list_entry_id']?>]" type="number" class="form-control" placeholder="(optional)">
                           <div class="input-group-addon">Stück</div>
                       </div>
-                      
+
                     </td>
                     <td class="responsive-invisibility">
                         <div class="form-group">
-                            <textarea class="form-control" name="comment[<?=$entry['stock_list_entry_id']?>]" style="max-width: 200px; min-width: 100px;"><?=$entry['comment']?></textarea>
+                            <textarea class="form-control" name="comment[<?=$entry['stock_list_entry_id']?>]" style="max-width: 275px; min-width: 100px; margin-top: 10px;"><?=$entry['comment']?></textarea>
                         </div>
                     </td>
                 </tr>

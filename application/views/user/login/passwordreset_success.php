@@ -4,7 +4,7 @@
 
 <head>
 
-    <link href="<?= base_url('assets/css/bootstrap.min_v1.css') ?>" rel="stylesheet">
+    <link href="<?= base_url('assets/css/bootstrap.min_v2.css') ?>" rel="stylesheet">
     <link href="<?= base_url('assets/css/font-awesome/css/font-awesome.min.css') ?>" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->

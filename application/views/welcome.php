@@ -4,7 +4,7 @@
 
 <head>
 
-    <link href="<?= base_url('assets/css/bootstrap.min_v1.css') ?>" rel="stylesheet">
+    <link href="<?= base_url('assets/css/bootstrap.min_v2.css') ?>" rel="stylesheet">
     <link href="<?= base_url('assets/css/font-awesome/css/font-awesome.min.css') ?>" rel="stylesheet">
     <link href="<?= base_url('assets/css/welcome/welcom_v5.css') ?>" rel="stylesheet">
 
