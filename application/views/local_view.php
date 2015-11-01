@@ -1,18 +1,4 @@
 <div class="container">
-  <?php echo form_open(); ?>
-
-    <!-- alert panel -->
-    <!--
-    <div class="row">
-      <div class="col-sm-6 col-sm-offset-3">
-      
-        <div class="alert alert-danger text-center" style="margin: 50px 0px;" role="alert">
-          <b>Hey Name!</b> Deine Bedarfsliste wurde das letzte mal am geupdatet.
-        </div>
-        
-      </div>
-    </div>
-    -->
 
     <!-- local contact -->
     <div class="panel panel-success">
@@ -41,13 +27,18 @@
     <!-- table -->
     <div class="row">
       <div class="col-sm-12">
+        
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
         <table class="table table-hover text-center">
         <thead>
           <tr>
-            <th class="th-green">Spende</th>
-            <th class="th-green">Wird gebraucht</th>
-            <th class="th-green">Nicht gebraucht</th>
-            <th class="th-green">Zu viel vorhanden</th>
+            <th class="th-green">Bezeichnung</th>
+            <th class="th-green">Bedarf</th>
+            <th class="th-green">OK</th>
+            <th class="th-green">Überschuss</th>
             <th class="th-green">Anzahl vorhanden (optional)</th>
             <th class="th-green">Kommentar (optional)</th>
           </tr>
@@ -86,7 +77,7 @@
                     </td>
                     <td>
                         <div class="form-group">
-                            <input type="text" class="form-control" value="<?=$entry['comment']?>" name="comment[<?=$entry['stock_list_entry_id']?>]">
+                            <textarea type="text" class="form-control" value="<?=$entry['comment']?>" name="comment[<?=$entry['stock_list_entry_id']?>]" style="max-width: 200px; min-width: 100px;"></textarea>
                         </div>
                     </td>
                 </tr>

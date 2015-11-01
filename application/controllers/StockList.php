@@ -8,22 +8,13 @@ class StockList extends CI_Controller
      */
     public function index()
     {
-        check_role('confirmed');
-        $this->load->model('stock_list_model');
-        print_r($this->stock_list_model->get_all());
-    }
 
-    /**
-     * Shows full stock list view with entries grouped by category
-     */
-    public function get()
-    {
         check_role('confirmed');
 
         $this->load->model(array('facility_model', 'category_model', 'stock_list_model', 'stock_list_entry_model'));
         $facility = $this->facility_model->get_facility_by_user_id($_SESSION['user_id']);
         $stocklist = $this->stock_list_model->get_by_facility($facility->facility_id);
-        
+
         $id = $stocklist->stock_list_id;
 
         $this->load->helper('form');

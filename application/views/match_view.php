@@ -19,22 +19,26 @@ function list_entries($list_entries)
 
 <div class="container">
 
-<div class="row" style="margin:20px 0px;">
+<!-- <div class="row" style="margin:20px 0px;">
   <div class="col-sm-4 col-sm-offset-4">
     <button type="button" class="btn btn-success btn-lg" style="width:100%;"> <i class="fa fa-print"></i> Ausdrucken</button>
   </div>
-</div>
+</div> -->
 
 
   <div class="row">
-    <div class="col-sm-12 pull-left">
-      <h2 style="color:green;">Wo gibt es was?</h2>
+    <div class="col-sm-12 text-center">
+      <h2 style="color:#337ab7;">Wo gibt es Spenden, die wir benötigen?</h2>
     </div>
   </div>
   <div class="row">
-    <div class="col-sm-12 pull-left">
-      <p>Diese Hilfsgruppen haben noch etwas im Lager, was du gebrauchten könntest!</p>
-        <?php list_entries($demand) ?>
+    <div class="col-sm-12 text-center">
+      <p>Diese Hilfsgruppen können Euch dabei helfen Euren Bedarf zu decken.</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <?php list_entries($demand) ?>
     </div>
   </div>
 
