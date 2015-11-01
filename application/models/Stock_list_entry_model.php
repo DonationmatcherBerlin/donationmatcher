@@ -2,8 +2,8 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Stock_list_entry_model extends CI_Model {
-
+class Stock_list_entry_model extends CI_Model
+{
     public function __construct()
     {
         // Call the Model constructor
@@ -19,7 +19,14 @@ class Stock_list_entry_model extends CI_Model {
     public function get_demand($stock_list_id)
     {
         $category_ids = $this->get_categories($stock_list_id, -1);
-        return $this->get_demand_list($stock_list_id, 1, array_column($category_ids, 'category_id'));
+        if (empty($category_ids)) {
+            return [];
+        }
+
+        $foreign_list = $this->get_demand_list($stock_list_id, 1, array_column($category_ids, 'category_id'));
+        return $this->group(
+            $this->handle_exact_match($stock_list_id, $foreign_list, 1)
+        );
     }
 
     /**
@@ -31,7 +38,85 @@ class Stock_list_entry_model extends CI_Model {
     public function get_offers($stock_list_id)
     {
         $category_ids = $this->get_categories($stock_list_id, 1);
-        return $this->get_demand_list($stock_list_id, -1, array_column($category_ids, 'category_id'));
+        if (empty($category_ids)) {
+            return [];
+        }
+
+        $foreign_list = $this->get_demand_list($stock_list_id, -1, array_column($category_ids, 'category_id'));
+
+        return $this->group(
+            $this->handle_exact_match($stock_list_id, $foreign_list, -1)
+        );
+    }
+
+    /**
+     * Returns all stock list entries of given stock list
+     *
+     * @param int $stock_list_id
+     * @return array
+     */
+    public function get_by_stock_list($stock_list_id)
+    {
+        $query = $this->db->query(
+            '
+              SELECT
+                *
+              FROM
+                stock_list_entry sle
+              WHERE
+                sle.StockList = ?
+            ',
+            [
+                (int) $stock_list_id,
+            ]
+        );
+
+        return $query->result_array();
+    }
+
+    /**
+     * Removes or highlights exact matches
+     *
+     * @param $stock_list_id
+     * @param $foreign_list
+     */
+    private function handle_exact_match($stock_list_id, $foreign_list, $demand)
+    {
+        $own_list = $this->get_by_stock_list($stock_list_id);
+        foreach ($foreign_list as $i => $foreign_row) {
+            foreach ($own_list as $own_row) {
+                if ($own_row['name'] == $foreign_row['name']) {
+                    switch ((int) $own_row['demand']) {
+                        case '0':
+                        case $demand:
+                            unset($foreign_list[$i]);
+                            continue 2;
+                            break;
+                        case $demand*-1:
+                            $foreign_list[$i]['exact'] = true;
+                            break;
+                    }
+                }
+            }
+        }
+
+        return $foreign_list;
+    }
+
+    /**
+     * Grouped by facility
+     *
+     * @param array $list
+     * @return array
+     */
+    private function group(array $list)
+    {
+        $grouped = [];
+        foreach ($list as $entry) {
+            $grouped[$entry['facility']][$entry['category_name']][] = $entry;
+        }
+
+        return $grouped;
     }
 
     /**
@@ -69,7 +154,8 @@ class Stock_list_entry_model extends CI_Model {
             '
               SELECT
                 sle.name AS `name`,
-                c.name AS category,
+                c.category_id AS `category_id`,
+                c.name AS category_name,
                 CONCAT(f.name, " / ", CONCAT_WS(" ", f.address, f.zip, f.city)) AS facility
               FROM stock_list_entry sle
                 INNER JOIN stock_list sl ON sl.stock_list_id = sle.StockList
@@ -87,12 +173,7 @@ class Stock_list_entry_model extends CI_Model {
         );
         $results = $query->result_array();
 
-        $grouped = [];
-        foreach ($results as $entry) {
-            $grouped[$entry['facility']][$entry['category']][] = $entry['name'];
-        }
-
-        return $grouped;
+        return $results;
     }
 
     /**
