@@ -1,0 +1,31 @@
+/* General styles */
+
+.register{
+	margin-bottom: 50px;
+}
+.register__label{
+	cursor: pointer;
+}
+.register__input{
+	max-width: 100%;
+}
+.register__help{
+	display: inline-block;
+	margin-top: 5px;
+	font-size: 0.85em;
+	color: #558ED8;
+}
+.register__submit{
+	margin-top: 25px;
+	padding-left: 3.5em;
+	padding-right: 3.5em;
+}
+
+/* Mobile styles */
+
+@media (max-width:767px){
+	.register__submit{
+		margin-top: 0;
+		width: 100%;
+	}
+}
