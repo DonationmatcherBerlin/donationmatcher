@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" style="min-height: 100%;">
   <?php echo form_open('/stocklist'); ?>
 
     <!-- local contact -->

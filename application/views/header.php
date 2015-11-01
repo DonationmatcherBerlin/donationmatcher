@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="min-height: 100%; position: relative;">
 <head>
 	<!-- Meta -->
 	<meta charset="utf-8">
@@ -36,7 +36,7 @@
 		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 	<![endif]-->
 </head>
-<body>
+<body style="min-height: 100%; margin: 0 0 50px;">
 	<header id="site-header" class="site-header">
 		<div class="container">
 			<nav class="navbar navbar-default" role="navigation">

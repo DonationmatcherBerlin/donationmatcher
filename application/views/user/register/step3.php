@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 
-<div class="container">
+<div class="container" style="min-height: 100%;">
 	<div class="row">
 		<?php if (validation_errors()) : ?>
 			<div class="col-md-12">

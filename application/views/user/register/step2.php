@@ -2,7 +2,7 @@
 <div class="container">
 	<div class="row" style="margin-bottom: 200px;">
 		<div class="col-md-12">
-			<div class="page-header">
+			<div class="page-header" style="border-bottom: none;">
 				<div style="background-color: lightgreen;">
 				<div class="jumbotron" style="background-color: lightgreen ;">
 					<div class="container">
