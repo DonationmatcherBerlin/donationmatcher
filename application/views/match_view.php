@@ -12,7 +12,8 @@ function list_entries(array $facilities,$list_entries)
         echo "<td>{$facilities[$facility_id]->name}</td>";
 		echo "<td>" . implode(', ', array_column($entries, 'name')) . "</td>";
 		echo "<td>{$facilities[$facility_id]->phone}</td>";
-		echo "<td>{$facilities[$facility_id]->address},{$facilities[$facility_id]->zip}{$facilities[$facility_id]->city}</td>";
+		echo "<td>{$facilities[$facility_id]->email}</td>";
+		echo "<td>{$facilities[$facility_id]->address},{$facilities[$facility_id]->zip} {$facilities[$facility_id]->city}</td>";
         echo "</tr>";
     }
 }
@@ -38,6 +39,7 @@ function list_entries(array $facilities,$list_entries)
                 <th><h4>Hilfsgruppe</h4></th>
                 <th><h4>Ueberschuss</h4></th>
 				<th><h4>Telefon</h4></th>
+				<th><h4>Email</h4></th>
 				<th><h4>Adresse</h4></th>
             </tr>
             </thead>
@@ -64,10 +66,11 @@ function list_entries(array $facilities,$list_entries)
         <table class="table">
             <thead>
             <tr>
-                <th>Hilfsgruppe</th>
-                <th>Ueberschuss</th>
-				<th>Telefon</th>
-				<th>Adresse</th>
+                <th><h4>Hilfsgruppe</h4></th>
+                <th><h4>Ueberschuss</h4></th>
+				<th><h4>Telefon</h4></th>
+				<th><h4>Email</h4></th>
+				<th><h4>Adresse</h4></th>
             </tr>
             </thead>
             <tbody>
