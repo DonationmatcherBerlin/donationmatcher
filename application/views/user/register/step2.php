@@ -6,7 +6,7 @@
         <div style="background-color: lightgreen;">
 				<div class="jumbotron" style="background-color: lightgreen ;">
           <div class="container">
-            <h2>Vielen Dank für Eure Anmelduung!</h2>
+            <h2>Vielen Dank für Eure Anmeldung!</h2>
             <p>Wir überprüfen so schnell wie möglich Eure Angaben und schicken euch per E-Mail einen Link, den Ihr anklicken könnt, um die Regietrierung abzuschließen.</p>
             <p>Warum machen wir das ?</p>
 			<p>Wir wollen sicherstellen, dass wirklich nur Hilfsgruppen bei bedarfsplaner.org sich miteinander vernetzen.</p>

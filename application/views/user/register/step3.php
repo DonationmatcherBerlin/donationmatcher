@@ -31,52 +31,49 @@
 					</div>
 					<div class="form-group">
 						<label for="email">Email</label>
-						<input style="max-width: 500px;" type="email" class="form-control" id="email" value="<?php echo set_value('email', $user->email); ?>" name="email" placeholder="Enter your email">
-						<small class="help-block" style="color: #337ab7;">A valid email address</small>
+						<input style="max-width: 500px;" type="email" class="form-control" id="email" value="<?php echo set_value('email', $user->email); ?>" name="email" placeholder="E-Mail eingeben">
+						<small class="help-block" style="color: #337ab7;">Eine gültige E-Mail Adresse</small>
 					</div>
 					<div class="form-group">
-						<label for="facility_name">Facility Name</label>
-						<input style="max-width: 500px;" type="text" class="form-control" id="facility_name" value="<?php echo set_value('facility_name', $facility->name); ?>" name="facility_name" placeholder="Enter your facility name">
-						<small class="help-block" style="color: #337ab7;">Your name</small>
+						<label for="facility_name">Name der Organisation</label>
+						<input style="max-width: 500px;" type="text" class="form-control" id="facility_name" value="<?php echo set_value('facility_name', $facility->name); ?>" name="facility_name" placeholder="Name eingeben">
+						<small class="help-block" style="color: #337ab7;">Zum Beispiel Notunterkunft oder Annahmestelle</small>
 					</div>
 					<div class="form-group">
-						<label for="facility_name">Dach Organization (Optional)</label>
-						<input style="max-width: 500px;" type="text" class="form-control" id="facility_name" value="<?php echo set_value('facility_organisation', $facility->organisation); ?>" name="facility_organisation" placeholder="Enter your facility name">
-						<small class="help-block" style="color: #337ab7;">Your name</small>
+						<label for="facility_name">Dachorganisation (Optional)</label>
+						<input style="max-width: 500px;" type="text" class="form-control" id="facility_name" value="<?php echo set_value('facility_organisation', $facility->organisation); ?>" name="facility_organisation" placeholder="Name eingeben">
+						<small class="help-block" style="color: #337ab7;">Name der übergeordneten Organisation</small>
 					</div>
 				</div>
 				<div class="col-sm-6">
 						<div class="form-group">
-						<label for="facility_address">Address</label>
+						<label for="facility_address">Adresse</label>
 						<input style="max-width: 500px;" type="text" class="form-control" id="facility_address" value="<?php echo set_value('facility_address', $facility->address); ?>" name="facility_address" placeholder="">
-						<small class="help-block" style="color: #337ab7;">Your Address</small>
+						<small class="help-block" style="color: #337ab7;">Adresse der Organisation</small>
 					</div>
 					<div class="form-group">
 						<div class="row">
 							<div class="col-sm-6">
-								<label for="facility_zip">ZIP</label>
+								<label for="facility_zip">Postleitzahl</label>
 								<input style="max-width: 200px;" type="text" class="form-control" id="facility_zip" value="<?php echo set_value('facility_zip', $facility->zip); ?>" name="facility_zip" placeholder="">
-								<small class="help-block" style="color: #337ab7;">Your ZIP</small>
 							</div>
 							<div class="col-sm-6">
 								<div class="form-group">
-									<label for="facility_city">City</label>
+									<label for="facility_city">Stadt</label>
 									<input style="max-width: 200px;" type="text" class="form-control" id="facility_city" value="<?php echo set_value('facility_city', $facility->city); ?>" name="facility_city" placeholder="">
-									<small class="help-block" style="color: #337ab7;">Your City</small>
 								</div>
 							</div>
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="facility_country">Country</label>
+						<label for="facility_country">Land</label>
 						<input style="max-width: 500px;" type="text" class="form-control" id="facility_country" value="<?php echo set_value('facility_country', $facility->country); ?>" name="facility_country" placeholder="">
-						<small class="help-block" style="color: #337ab7;">Your Country</small>
 					</div>
 
 					<div class="form-group">
-						<label for="facility_phone">Telefon</label>
+						<label for="facility_phone">Telefonnummer</label>
 						<input style="max-width: 500px;" type="text" class="form-control" id="facility_phone" value="<?php echo set_value('facility_phone', $facility->phone); ?>" name="facility_phone" placeholder="">
-						<small class="help-block" style="color: #337ab7;">Your Phone</small>
+						<small class="help-block" style="color: #337ab7;">Telefonnummer der Organisation</small>
 					</div>
 				</div>
 			</div>
@@ -85,18 +82,18 @@
 				<div class="col-sm-6">
 					<div class="form-group">
 						<label for="facility_person_in_charge">Verantwortliche Person (Vor- und Nachname)</label>
-						<input style="max-width: 500px;" type="text" class="form-control" id="facility_person_in_charge" value="<?php echo set_value('facility_person_in_charge', $facility->person_in_charge); ?>" name="facility_person_in_charge" placeholder="Enter the name of the responsible person">
+						<input style="max-width: 500px;" type="text" class="form-control" id="facility_person_in_charge" value="<?php echo set_value('facility_person_in_charge', $facility->person_in_charge); ?>" name="facility_person_in_charge" placeholder="Name einer Ansprechsperson">
 						<small class="help-block" style="color: #337ab7;">Verantworltiche Person</small>
 					</div>
 					<div class="form-group">
-						<label for="password">Password</label>
-						<input style="max-width: 500px;" type="password" class="form-control" id="password" name="password" value="<?php echo set_value('password'); ?>" placeholder="Enter a password">
-						<small class="help-block" style="color: #337ab7;">At least 6 characters - Leer lassen für keine Änderung</small>
+						<label for="password">Passwort</label>
+						<input style="max-width: 500px;" type="password" class="form-control" id="password" name="password" value="<?php echo set_value('password'); ?>" placeholder="Passwort eingeben">
+						<small class="help-block" style="color: #337ab7;">Mindestens 6 Zeichen! - Leer lassen für keine Änderung</small>
 					</div>
 					<div class="form-group">
-						<label for="password_confirm">Confirm password</label>
-						<input style="max-width: 500px;" type="password" class="form-control" id="password_confirm" name="password_confirm" value="<?php echo set_value('password'); ?>" placeholder="Confirm your password">
-						<small class="help-block" style="color: #337ab7;">Must match your password</small>
+						<label for="password_confirm">Passwort wiederholen</label>
+						<input style="max-width: 500px;" type="password" class="form-control" id="password_confirm" name="password_confirm" value="<?php echo set_value('password'); ?>" placeholder="Passwort wiederholen">
+						<small class="help-block" style="color: #337ab7;">Muss mit dem Passwort übereinstimmen</small>
 					</div>
 				</div>
 				<div class="col-sm-6">

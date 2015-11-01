@@ -53,7 +53,7 @@
 								<li class="<?php echo !isset($current_view) ? 'active' : ''; ?>"><a href="<?= base_url(); ?>">Bedarfsplan Berlin</a></li>
 							<?php if (isset($_SESSION['username']) && $_SESSION['logged_in'] === true) : ?>
 								<li><a href="<?= base_url('/stockList') ?>">Deine Bedarfsliste</a></li>
-                                <li><a href="<?= base_url('/user/profile') ?>">Deine Profil</a></li>
+                                <li><a href="<?= base_url('/user/profile') ?>">Dein Profil</a></li>
 								<li><a href="<?= base_url('/user/logout') ?>">Logout</a></li>
 							<?php else : ?>
 								<li class="<?php echo isset($current_view) && $current_view === 'register' ? 'active' : ''; ?>"><a href="<?= base_url('/user/register') ?>">Register</a></li>

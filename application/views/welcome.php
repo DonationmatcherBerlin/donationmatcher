@@ -41,7 +41,7 @@
                     <small style="color:#337ab7; margin-left:5%;">Wo werden meine Sachen benötigt?</small>
                 </div>
                 <div class="col-sm-6">
-                    <a href="<?=site_url('/user/login')?>" class="btn btn-success btn-lg" style="min-width:100%; padding:30px 0px;" ><p style="margin:0;">Ich bin Teil einer Hilfsgruppe</p></a>
+                    <a href="<?=site_url('/stocklist')?>" class="btn btn-success btn-lg" style="min-width:100%; padding:30px 0px;" ><p style="margin:0;">Ich bin Teil einer Hilfsgruppe</p></a>
                     <small style="color:#337ab7; margin-left:5%;">Bedarfslisten erstellen und mit anderen Hilfsgruppen vernetzen.</small>
                 </div>
             </div>
