@@ -357,6 +357,12 @@ class User extends CI_Controller {
 
 	}
 
+	public function wait_for_confirmation(){
+		$this->load->view('header');
+		$this->load->view('user/register/wait_for_confirmation');
+		$this->load->view('footer');
+	}
+
 
 	private function send_email($email,$username,$template,$data=false){
 

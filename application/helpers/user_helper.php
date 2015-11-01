@@ -6,6 +6,7 @@ if(! function_exists('check_role')){
 
 		if($role == 'logged_out'){
 
+			if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] && $_SESSION['is_confirmed']==0) redirect('/user/wait_for_confirmation');
 			if (isset($_SESSION['logged_in']) && $_SESSION['logged_in']) redirect('/user/profile');
 			return true;
 		}
