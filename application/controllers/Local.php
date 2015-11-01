@@ -24,4 +24,26 @@ class Local extends CI_Controller {
         ]);
         $this->load->view('footer');
     }
+
+    public function pdf()
+    {
+        check_role('confirmed');
+
+        $this->load->model(array('stock_list_entry_model', 'stock_list_model', 'facility_model'));
+        $this->load->library('pdf');
+
+        $stocklist = $this->stock_list_model->get_by_user($_SESSION['user_id']);
+
+        $demand = $this->stock_list_entry_model->get_demand($stocklist['stock_list_id']);
+        $offers = $this->stock_list_entry_model->get_offers($stocklist['stock_list_id']);
+
+        $this->pdf->load_view('match_pdf', [
+            'demand' => $demand,
+            'offers' => $offers,
+            'facilities' => $this->facility_model->get_all(),
+        ]);
+        $this->pdf->set_paper('A4', 'landscape');
+        $this->pdf->render();
+        $this->pdf->stream('bedarfsplaner-'.date('Ymd_Hi').'.pdf', array('Attachment' => 0));
+    }
 }

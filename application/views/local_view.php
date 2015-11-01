@@ -26,7 +26,7 @@
             </div>
             <div class="row">
               <div class="col-sm-12">
-                <h4 style="color: #558ED8; margin-top: 30px;"><b>Letztes Update der Bedarfsliste:</b> <?= $stocklist->updated_at ? $stocklist->updated_at->format('d.m.Y H:i') : 'Liste wurde noch nie bearbeitet.'; ?></h4>
+                <h4 style="color: #558ED8; margin-top: 30px;"><b>Letztes Update der Bedarfsliste:</b> <?= $stocklist->updated_at ? $stocklist->updated_at->format('d.m.Y H:i') : 'Noch nie!'; ?></h4>
               </div>
             </div>
           </div>
@@ -43,11 +43,16 @@
     </div>
 
     <div class="row" style="margin: 50px 0px;">
+        <ul>
+        <?php foreach(array_column($entries, 'name') as $category) : ?>
+            <li><a href="#cat_<?= $category ?>"><?= $category ?></a></li>
+        <?php endforeach ?>
+        </ul>
       <div class="col-sm-3 col-sm-offset-3">
-        <button type="button" class="btn btn-primary btn-lg btn-lg" style="width: 100%;">Link Bedarfsliste</button>
+        <a class="btn btn-primary btn-lg btn-lg" href="<?= site_url('stocklist/public_pdf/'.$facility->facility_id); ?>" style="width: 100%;" target="_blank">Link Bedarfsliste</a>
       </div>
       <div class="col-sm-3">
-        <button type="button" class="btn btn-primary btn-lg btn-lg" style="width: 100%;"> <i class="fa fa-print"></i> Jetzt ausdrucken</button>
+        <a class="btn btn-primary btn-lg btn-lg" href="<?= site_url('stocklist/pdf/'.$facility->facility_id); ?>" style="width: 100%;"> <i class="fa fa-print"></i> Jetzt ausdrucken</a>
       </div>
     </div>
 
@@ -72,7 +77,7 @@
         <tbody class="text-center">
         <?php foreach ($entries as $category) : ?>
             <tr>
-                <td colspan="4">
+                <td colspan="4" id="cat_<?= $category['name'] ?>">
                     <h3 style="text-align: left"><?= $category['name'] ?></h3>
                 </td>
                 <td colspan="2" class"responsive-invisibility">
@@ -107,7 +112,7 @@
                     </td>
                     <td class="responsive-invisibility">
                         <div class="form-group">
-                            <textarea type="text" class="form-control" value="<?=$entry['comment']?>" name="comment[<?=$entry['stock_list_entry_id']?>]" style="max-width: 200px; min-width: 100px;"></textarea>
+                            <textarea class="form-control" name="comment[<?=$entry['stock_list_entry_id']?>]" style="max-width: 200px; min-width: 100px;"><?=$entry['comment']?></textarea>
                         </div>
                     </td>
                 </tr>

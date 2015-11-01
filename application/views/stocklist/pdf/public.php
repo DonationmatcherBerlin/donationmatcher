@@ -41,13 +41,14 @@
     <h1>Bedarfsliste</h1>
     <span>
         Stand: <?= date('d.m.Y H:i'); ?><br />
-        Letztes Update: <?= $stock_list->updated_at ?  date('d.m.Y H:i', $stock_list->updated_at) : ' -- '; ?>
+        Letztes Update: <?= $stock_list->updated_at ?  date('d.m.Y H:i', $stock_list->updated_at) : ' - '; ?>
     </span>
 
     <div class="facility">
         <?= $facility->name; ?><br />
         <?= $facility->organisation; ?><br />
         <?= $facility->address . ', ' .$facility->zip . ' ' . $facility->city; ?><br />
+        Öffnungszeiten: <?= $facility->opening_hours; ?><br />
         <?= $facility->phone; ?><br />
         <?= $facility->email; ?><br />
     </div>

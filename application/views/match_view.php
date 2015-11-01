@@ -12,7 +12,8 @@ function list_entries(array $facilities,$list_entries)
         echo "<td>{$facilities[$facility_id]->name}</td>";
 		echo "<td>" . implode(', ', array_column($entries, 'name')) . "</td>";
 		echo "<td>{$facilities[$facility_id]->phone}</td>";
-		echo "<td>{$facilities[$facility_id]->address},{$facilities[$facility_id]->zip}{$facilities[$facility_id]->city}</td>";
+		echo "<td>{$facilities[$facility_id]->email}</td>";
+		echo "<td>{$facilities[$facility_id]->address},{$facilities[$facility_id]->zip} {$facilities[$facility_id]->city}</td>";
         echo "</tr>";
     }
 }
@@ -24,7 +25,7 @@ function list_entries(array $facilities,$list_entries)
             <h2 style="color:#337ab7;">Wo gibt es Spenden, die wir benötigen?</h2>
         </div>
         <div class="col-sm-3">
-            <button type="button" class="btn btn-primary btn-lg btn-lg" style="width: 100%;"> <i class="fa fa-print"></i> Ausdrucken</button>
+            <a data-print class="btn btn-primary btn-lg btn-lg" href="<?= site_url('local/pdf'); ?>" style="width: 100%;"> <i class="fa fa-print"></i> Ausdrucken</a>
         </div>
     </div>
 </div>
@@ -32,19 +33,22 @@ function list_entries(array $facilities,$list_entries)
 <div class="row">
     <div class="col-sm-12 text-left">
       <p>Diese Hilfsgruppen brauchen noch spenden, die ihr zuviel habt!</p>
-        <table class="table">
-            <thead>
-            <tr>
-                <th><h4>Hilfsgruppe</h4></th>
-                <th><h4>Ueberschuss</h4></th>
-				<th><h4>Telefon</h4></th>
-				<th><h4>Adresse</h4></th>
-            </tr>
-            </thead>
-            <tbody>
-            <?php list_entries($facilities,$demand) ?>
-            </tbody>
-        </table>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th><h4>Hilfsgruppe</h4></th>
+                    <th><h4>Überschuss</h4></th>
+                    <th><h4>Telefon</h4></th>
+                    <th><h4>Email</h4></th>
+                    <th><h4>Adresse</h4></th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php list_entries($facilities,$demand) ?>
+                </tbody>
+            </table>
+        </div>
     </div>
   </div>
 
@@ -61,19 +65,22 @@ function list_entries(array $facilities,$list_entries)
   <div class="row">
     <div class="col-sm-12 text-left">
       <p>Diese Hilfsgruppen brauchen noch spenden, die ihr zuviel habt!</p>
-        <table class="table">
-            <thead>
-            <tr>
-                <th>Hilfsgruppe</th>
-                <th>Ueberschuss</th>
-				<th>Telefon</th>
-				<th>Adresse</th>
-            </tr>
-            </thead>
-            <tbody>
-            <?php list_entries($facilities,$offers) ?>
-            </tbody>
-        </table>
+        <div class="table-responsive">
+            <<table class="table table-striped">
+                <thead>
+                <tr>
+                    <th><h4>Hilfsgruppe</h4></th>
+                    <th><h4>Überschuss</h4></th>
+                    <th><h4>Telefon</h4></th>
+                    <th><h4>Email</h4></th>
+                    <th><h4>Adresse</h4></th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php list_entries($facilities,$offers) ?>
+                </tbody>
+            </table>
+        </div>
     </div>
   </div>
 </div>
