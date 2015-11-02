@@ -71,7 +71,11 @@ class Stock_list_model extends CI_Model {
             [(int) $user_id]
         );
 
-        return $query->result_array()[0];
+        $row = $query->result()[0];
+        $row->created_at = new \DateTime($row->created_at);
+        $row->updated_at = $row->updated_at !== null ? new \DateTime($row->updated_at) : null;
+
+        return $row;
     }
 
     /**
@@ -167,7 +171,12 @@ class Stock_list_model extends CI_Model {
     }
 
     public function createStockList($facility_id){
-        $sql = "insert into stock_list (Facility,created_at) values (".$facility_id.",'".date("Y-m-d H:i:s")."');";
-        $this->db->query($sql);
+        $sql = "insert into stock_list (Facility,created_at) values (?, ?);";
+        $this->db->query($sql, [
+            (int) $facility_id,
+            date("Y-m-d H:i:s")
+        ]);
+
+        return $this->db->insert_id();
     }
 }

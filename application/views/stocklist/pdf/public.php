@@ -40,8 +40,7 @@
 
     <h1>Bedarfsliste</h1>
     <span>
-        Stand: <?= date('d.m.Y H:i'); ?><br />
-        Letztes Update: <?= $stock_list->updated_at ?  date('d.m.Y H:i', $stock_list->updated_at) : ' - '; ?>
+        Letzter Stand: <?= $stock_list->updated_at ?  $stock_list->updated_at->format('d.m.Y H:i') : $stock_list->created_at->format('d.m.Y H:i'); ?> Uhr
     </span>
 
     <div class="facility">
@@ -54,13 +53,14 @@
     </div>
 
     <?php foreach($grouped_stock_list as $category): ?>
+        <?php if (!empty($category['entries'])) : ?>
         <div class="stocklist">
             <strong><?= $category['name']; ?></strong>
-            <table>
+            <table border="0">
                 <?php foreach($category['entries'] as $entry): ?>
                     <tr>
                         <td style="width: 85%">
-                            <?= $entry['name']; ?><?= $entry['comment'] ? ': ' . $entry['comment'] : ''; ?>
+                            <?= $entry['name']; ?><?= $entry['comment'] ? ' (' . $entry['comment'] . ')' : ''; ?>
                         </td>
                         <td style="width: 15%" class="demand<?= $entry['demand']; ?>">
                             <?= isset($demand_label[$entry['demand']]) ? $demand_label[$entry['demand']] : ''; ?>
@@ -69,6 +69,7 @@
                 <?php endforeach; ?>
             </table>
         </div>
+        <?php endif; ?>
     <?php endforeach; ?>
 
     <div id="footer">

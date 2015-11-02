@@ -45,17 +45,13 @@
             <div style="padding-top:30px" class="panel-body">
 
                 <?php if (validation_errors()) : ?>
-                    <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12">
-                        <div class="alert alert-danger" role="alert">
-                            <?= validation_errors() ?>
-                        </div>
+                    <div class="alert alert-danger" role="alert">
+                        <?= validation_errors() ?>
                     </div>
                 <?php endif; ?>
                 <?php if (isset($error)) : ?>
-                    <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12">
-                        <div class="alert alert-danger" role="alert">
-                            <?= $error ?>
-                        </div>
+                    <div class="alert alert-danger" role="alert">
+                        <?= $error ?>
                     </div>
                 <?php endif; ?>
 
@@ -90,7 +86,7 @@
                                     Registriere dich hier
                                 </a>
                                 </div>
-                                <div style="float:left; font-size: 80%; position: relative;"><a href="<?=site_url('/user/passwordreset')?>">Passwort vergessen?</a></div>
+<!--                                <div style="float:left; font-size: 80%; position: relative;"><a href="--><?//=site_url('/user/passwordreset')?><!--">Passwort vergessen?</a></div>-->
                             </div>
                         </div>
                     </form>

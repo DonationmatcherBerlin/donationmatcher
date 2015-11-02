@@ -30,7 +30,7 @@
 						<small class="help-block" style="color: #337ab7;">Der Username kann nicht geändert werden</small>
 					</div>
 					<div class="form-group">
-						<label for="email">Email</label>
+						<label for="email">Öffentliche Email</label>
 						<input style="max-width: 500px;" type="email" class="form-control" id="facility_email" value="<?php echo set_value('facility_email', $facility->email); ?>" name="facility_email" placeholder="E-Mail eingeben">
 						<small class="help-block" style="color: #337ab7;">Eine gültige E-Mail Adresse</small>
 					</div>

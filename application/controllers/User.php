@@ -52,7 +52,7 @@ class User extends CI_Controller {
 		$this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[6]');
 		$this->form_validation->set_rules('password_confirm', 'Confirm Password', 'trim|required|min_length[6]|matches[password]');
 
-		$this->form_validation->set_rules('facility_person_in_charge', 'Verantwortliche Person', 'trim|required');
+		$this->form_validation->set_rules('facility_person_in_charge', 'Verantwortliche Person', 'trim');
 		$this->form_validation->set_rules('facility_phone', 'Telefon', 'trim');
 		$this->form_validation->set_rules('facility_name', 'Facility Name', 'trim|required');
 
@@ -122,23 +122,26 @@ class User extends CI_Controller {
 
 			$this->load->model(array('stock_list_entry_model','stock_list_model'));
 			$user_id = $this->user_model->get_user_id_from_username($username);
+            if (!$user_id) {
+                die('Ungültiger Link');
+            }
 			$user = $this->user_model->get_user($user_id);
 
 			if($user->is_confirmed == 1) redirect('/user/profile');
 
 			if($confirmation_key == $user->confirmation_key){
-				$data = new stdClass;
-				$data->is_confirmed = 1;
-				$this->user_model->update_user($user_id, $data);
-
 				$facility = $this->facility_model->get_facility_by_user_id($user_id);
 				
 				// create initial stocklist entries
-				$this->stock_list_model->createStockList($facility->facility_id);
-				$this->stock_list_entry_model->insert_empty_stocklist_entries($facility->facility_id);
+				$stock_list_id = $this->stock_list_model->createStockList($facility->facility_id);
+				$this->stock_list_entry_model->insert_empty_stocklist_entries($stock_list_id);
 
+                $data = new stdClass;
+                $data->is_confirmed = 1;
 				$user->is_confirmed = 1;
 				$user->logged_in = 1;
+                $this->user_model->update_user($user_id, $data);
+
 				$this->set_session($user);
 				redirect('/user/step3');
 			}else{ // @TODO: Handle also already confirmed users.
@@ -183,6 +186,8 @@ class User extends CI_Controller {
 			$username = $this->input->post('username');
 			$password = $this->input->post('password');
 
+            //var_dump($username,$this->user_model->resolve_user_login($username, $password), $password); die();
+
 			if ($this->user_model->resolve_user_login($username, $password)) {
 
 				$user_id = $this->user_model->get_user_id_from_username($username);
@@ -196,10 +201,10 @@ class User extends CI_Controller {
 			} else {
 
 				// login failed
-				$data->error = 'Wrong username or password.';
-
 				// send error to the view
-				$this->load->view('user/login/login', $data);
+				$this->load->view('user/login/login', [
+                    'error' => 'Wrong username or password.'
+                ]);
 
 
 			}
@@ -398,8 +403,8 @@ class User extends CI_Controller {
 		$this->ci_email->subject('Bedarfplaner Bestätigungsemail');
 
 		switch ($template) {
-			case 'confirmation':
-				$this->ci_email->message('Bitte Email-Adresse mit folgendem Link bestätigen: '.$data->confirmation_key);
+			case 'confirm':
+				$this->ci_email->message('Bitte Email-Adresse mit folgendem Link bestätigen: '.$data['confirmation_key']);
 				break;
 
 			case 'passwordreset':

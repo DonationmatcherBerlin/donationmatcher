@@ -40,8 +40,7 @@
 
     <h1>Bedarfsliste</h1>
     <span>
-        Stand: <?= date('d.m.Y H:i'); ?><br />
-        Letztes Update: <?= $stock_list->updated_at ?  date('d.m.Y H:i', $stock_list->updated_at) : ' - '; ?>
+        Letzter Stand: <?= $stock_list->updated_at ?  $stock_list->updated_at->format('d.m.Y H:i') : $stock_list->created_at->format('d.m.Y H:i'); ?> Uhr
     </span>
 
     <div class="facility">

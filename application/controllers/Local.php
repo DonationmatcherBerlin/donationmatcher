@@ -13,8 +13,8 @@ class Local extends CI_Controller {
         $this->load->model(array('stock_list_entry_model', 'stock_list_model', 'facility_model'));
         $stocklist = $this->stock_list_model->get_by_user($_SESSION['user_id']);
 
-        $demand = $this->stock_list_entry_model->get_demand($stocklist['stock_list_id']);
-        $offers = $this->stock_list_entry_model->get_offers($stocklist['stock_list_id']);
+        $demand = $this->stock_list_entry_model->get_demand($stocklist->stock_list_id);
+        $offers = $this->stock_list_entry_model->get_offers($stocklist->stock_list_id);
 
         $this->load->view('header');
         $this->load->view('match_view', [
@@ -34,10 +34,11 @@ class Local extends CI_Controller {
 
         $stocklist = $this->stock_list_model->get_by_user($_SESSION['user_id']);
 
-        $demand = $this->stock_list_entry_model->get_demand($stocklist['stock_list_id']);
-        $offers = $this->stock_list_entry_model->get_offers($stocklist['stock_list_id']);
+        $demand = $this->stock_list_entry_model->get_demand($stocklist->stock_list_id);
+        $offers = $this->stock_list_entry_model->get_offers($stocklist->stock_list_id);
 
         $this->pdf->load_view('match_pdf', [
+            'stock_list' => $stocklist,
             'demand' => $demand,
             'offers' => $offers,
             'facilities' => $this->facility_model->get_all(),

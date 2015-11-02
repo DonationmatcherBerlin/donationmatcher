@@ -1,10 +1,10 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class StockList extends CI_Controller
+class Stocklist extends CI_Controller
 {
     /**
-     * Lists all stock lists
+     * local stock list
      */
     public function index()
     {
@@ -51,7 +51,7 @@ class StockList extends CI_Controller
     }
 
 
-    public function pdf($facility_id)
+    public function pdf()
     {
         check_role('confirmed');
 
@@ -60,8 +60,8 @@ class StockList extends CI_Controller
         $this->load->helper('opening_hours');
 
 
-        $facility = $this->facility_model->get_facility($facility_id);
-        $stock_list = $this->stock_list_model->get_by_facility($facility_id);
+        $facility = $this->facility_model->get_facility_by_user_id($_SESSION['user_id']);
+        $stock_list = $this->stock_list_model->get_by_user($_SESSION['user_id']);
         $grouped_stock_list = $this->stock_list_model->get_grouped_entries($stock_list->stock_list_id,$this->category_model->get_tree());
 
         $clean_facility_name = preg_replace('/[^\da-z]/i', '_', $facility->name);
@@ -90,7 +90,7 @@ class StockList extends CI_Controller
 
         $facility = $this->facility_model->get_facility($facility_id);
         $stock_list = $this->stock_list_model->get_by_facility($facility_id);
-        $grouped_stock_list = $this->stock_list_model->get_grouped_demanded_entries($stock_list->stock_list_id,$this->category_model->get_tree());
+        $grouped_stock_list = $this->stock_list_model->get_grouped_demanded_entries($stock_list->stock_list_id, $this->category_model->get_tree());
 
         $clean_facility_name = preg_replace('/[^\da-z]/i', '_', $facility->name);
         $pdf_name = 'bedarfsliste-fuer-spender-' . date('Ymd_Hi') . '-' . strtolower($clean_facility_name) . '.pdf';

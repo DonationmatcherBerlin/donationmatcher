@@ -9,8 +9,8 @@ function list_entries(array $facilities,$list_entries)
 	
     foreach ($group as $facility_id => $entries) {
         echo "<tr>";
+        echo "<td><strong>" . implode(', ', array_column($entries, 'name')) . "</strong></td>";
         echo "<td>{$facilities[$facility_id]->name}</td>";
-		echo "<td>" . implode(', ', array_column($entries, 'name')) . "</td>";
 		echo "<td>{$facilities[$facility_id]->phone}</td>";
 		echo "<td>{$facilities[$facility_id]->email}</td>";
 		echo "<td>{$facilities[$facility_id]->address},{$facilities[$facility_id]->zip} {$facilities[$facility_id]->city}</td>";
@@ -19,25 +19,23 @@ function list_entries(array $facilities,$list_entries)
 }
 ?>
 <div class="container" style="min-height:800px">
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-8">
-					<h2 style="color:#337ab7;">Wo gibt es Spenden, die wir benötigen?</h2>
-				</div>
-				<div class="col-sm-3">
-					<a data-print class="btn btn-primary btn-lg btn-lg" href="<?= site_url('local/pdf'); ?>" style="width: 100%;"> <i class="fa fa-print"></i> Ausdrucken</a>
-				</div>
-			</div>
-		</div>  
+    <div class="row">
+        <div class="col-sm-8">
+            <h2 style="color:#337ab7;">Wo gibt es Spenden, die wir benötigen?</h2>
+        </div>
+        <div class="col-sm-3">
+            <a data-print class="btn btn-primary btn-lg btn-lg" href="<?= site_url('local/pdf'); ?>" style="width: 100%;" target="_blank"> Planung ausdrucken</a>
+        </div>
+    </div>
 	<div class="row">
 		<div class="col-sm-12 text-left">
 			<p>Diese Hilfsgruppen brauchen noch spenden, die ihr zuviel habt!</p>
 				<div class="table-responsive">
-					<table class="table table-striped">
+					<table class="table table-striped table-condensed">
 						<thead>
 							<tr>
+								<th><h4>Bedarf</h4></th>
 								<th><h4>Hilfsgruppe</h4></th>
-								<th><h4>Überschuss</h4></th>
 								<th><h4>Telefon</h4></th>
 								<th><h4>Email</h4></th>
 								<th><h4>Adresse</h4></th>
@@ -63,7 +61,7 @@ function list_entries(array $facilities,$list_entries)
 		<div class="col-sm-12 text-left">
 			<p>Diese Hilfsgruppen brauchen noch spenden, die ihr zuviel habt!</p>
 				<div class="table-responsive">
-					<table class="table table-striped">
+					<table class="table table-striped table-condensed">
 						<thead>
 							<tr>
 								<th><h4>Hilfsgruppe</h4></th>

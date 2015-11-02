@@ -1,6 +1,12 @@
 <div class="container" style="min-height: 100%;">
   <?php echo form_open('/stocklist'); ?>
 
+    <div class="row">
+        <div class="col-sm-12 text-center" >
+            <h1>Bearbeitung Ihrer lokalen Bedarfsliste</h1>
+        </div>
+    </div>
+
     <!-- local contact -->
     <div class="row" style="margin: 50px 0;">
       <div class="col-sm-6 col-sm-offset-3">
@@ -26,40 +32,38 @@
             </div>
             <div class="row">
               <div class="col-sm-12">
-                <h4 style="color: #558ED8; margin-top: 30px;"><b>Letztes Update der Bedarfsliste:</b> <?= $stocklist->updated_at ? $stocklist->updated_at->format('d.m.Y H:i') : 'Noch nie!'; ?></h4>
+                <h4 style="color: #558ED8; margin-top: 30px;"><b>Letztes Update der Bedarfsliste:</b> <?= $stocklist->updated_at ? $stocklist->updated_at->format('d.m.Y H:i') : $stocklist->created_at->format('d.m.Y H:i'); ?> Uhr</h4>
               </div>
             </div>
+              <div class="row">
+                  <div class="col-sm-12">
+                      <p style="color: #558ED8; text-align: center;">Sie müssen Änderungen immer mit dem Knopf "Speichern" bestätigen.</p>
+                  </div>
+              </div>
           </div>
         </div>
       </div>
     </div>
 
     <!-- table -->
-    <div class="row">
-      <div class="col-sm-12 text-center" >
-        <h1>Bearbeitung Ihrer lokalen Bedarfsliste</h1>
-        <p style="color: #558ED8; text-align: center;">Sie müssen Änderungen unten mit dem Knopf "Speichern" bestätigen.</p>
-      </div>
-    </div>
-
     <div class="row" style="margin-top: 20px; margin-bottom: 100px;">
       <div class="col-sm-6">
         <div class="row">
           <div class="col-sm-12 text-center">
-            <a class="btn btn-primary btn-lg btn-lg" href="<?= site_url('stocklist/public_pdf/'.$facility->facility_id); ?>" style="min-width: 300px; margin: 35px auto;"  target="_blank">Link Bedarfsliste</a>
+            <a class="btn btn-primary btn-lg btn-lg" href="<?= site_url('stocklist/public_pdf/'.$facility->facility_id); ?>" style="min-width: 300px; margin: 35px auto;"  target="_blank">Öffentliche Liste drucken</a>
           </div>
         </div>
         <div class="row">
           <div class="col-sm-12 text-center">
-            <a class="btn btn-primary btn-lg btn-lg" href="<?= site_url('stocklist/pdf/'.$facility->facility_id); ?>" style="min-width: 300px;"> <i class="fa fa-print"></i> Jetzt ausdrucken</a>
+            <a class="btn btn-primary btn-lg btn-lg" href="<?= site_url('stocklist/pdf/'.$facility->facility_id); ?>" style="min-width: 300px;" target="_blank">Interne Liste drucken</a>
           </div>
         </div>
       </div>
 
       <div class="col-sm-6">
-        <h3 class="text-center">Springe direkt zur Kategorie:</h3>
+        <h3>Springe direkt zur Kategorie:</h3>
           <?php foreach(array_column($entries, 'name') as $category) : ?>
-            <a href="#cat_<?= $category ?>" class="btn btn-default"><?= $category ?></a>
+            <a href="#cat_<?= $category ?>" class="btn btn-default" style="margin: 5px;"><?= $category ?></a>
           <?php endforeach ?>
       </div>
     </div>
@@ -69,7 +73,7 @@
         <table class="table table-hover stickytable localTable">
         <thead>
           <tr>
-            <th class="">Bezeichnung</th>
+            <th><input type="submit" class="btn btn-success btn-sm" value="Speichern">Bezeichnung</th>
             <th class="text-center">Bedarf</th>
             <th class="text-center">OK</th>
             <th class="text-center">Überschuss</th>
@@ -82,8 +86,6 @@
             <tr>
                 <td colspan="4" id="cat_<?= $category['name'] ?>">
                     <h3 style="text-align: left"><?= $category['name'] ?></h3>
-                </td>
-                <td colspan="2" class"responsive-invisibility">
                 </td>
             </tr>
             <?php foreach ($category['entries'] as $entry) : ?>

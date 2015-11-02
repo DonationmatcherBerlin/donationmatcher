@@ -51,7 +51,9 @@ class User_model extends CI_Model {
 	 */
 	public function update_user($user_id, $data) {
 
-        $data->password = $this->hash_password($data->password);
+        if (property_exists($data, 'password')) {
+            $data->password = $this->hash_password($data->password);
+        }
 
 		$this->db->where('id', $user_id);
 		return $this->db->update('users', $data);
@@ -72,7 +74,7 @@ class User_model extends CI_Model {
 		$this->db->from('users');
 		$this->db->where('username', $username);
 		$hash = $this->db->get()->row('password');
-		
+
 		return $this->verify_password_hash($password, $hash);
 		
 	}

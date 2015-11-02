@@ -18,7 +18,7 @@
 
     <h1>Bedarfsplaner</h1>
     <span>
-        Stand: <?= date('d.m.Y H:i'); ?><br />
+        Stand: <?= $stock_list->updated_at ?  $stock_list->updated_at->format('d.m.Y H:i') : $stock_list->created_at->format('d.m.Y H:i'); ?> Uhr
     </span>
 
     <?php $this->load->view('match_view'); ?>
