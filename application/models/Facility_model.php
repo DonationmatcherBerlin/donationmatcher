@@ -43,7 +43,7 @@ class Facility_model extends CI_Model {
      */
     public function create_facility($data) {
 
-        $data->created_at = date('Y-m-j H:i:s');        
+        $data->created_at = date('Y-m-d H:i:s');
         return $this->db->insert('facility', $data);
         
     }
@@ -57,7 +57,7 @@ class Facility_model extends CI_Model {
      */
     public function update_facility($data) {
 
-        $data->updated_at = date('Y-m-j H:i:s');
+        $data->updated_at = date('Y-m-d H:i:s');
         $this->db->where('facility_id', $data->facility_id);
         unset($data->facility_id);
         return $this->db->update('facility', $data);

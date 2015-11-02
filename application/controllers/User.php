@@ -86,8 +86,10 @@ class User extends CI_Controller {
 			if($user_id = $this->user_model->create_user($user)){
 
 				$facility->User = $user_id;
-				$this->facility_model->create_facility($facility); // @TODO: error handling
-				$this->send_email($email,$username,'confirm',array('confirmation_key' => $user->confirmation_key));
+				$this->facility_model->create_facility($facility);
+
+                // send confirm email to bim
+				$this->send_email('Tran.noack@gmail.com', $username, 'confirm', $user->confirmation_key);
 
 				// user creation ok
 				$this->load->view('header', array('current_view' => 'register'));
@@ -118,38 +120,37 @@ class User extends CI_Controller {
 	 * @access public
 	 * @return void
 	 */
-	public function confirm($confirmation_key,$username){
+	public function confirm($confirmation_key, $username)
+    {
+        $username = $result = preg_replace("/[^a-zA-Z0-9]+/", "", $username);
 
-			$this->load->model(array('stock_list_entry_model','stock_list_model'));
-			$user_id = $this->user_model->get_user_id_from_username($username);
-            if (!$user_id) {
-                die('Ungültiger Link');
-            }
-			$user = $this->user_model->get_user($user_id);
+        $this->load->model(array('stock_list_entry_model','stock_list_model'));
+        $user_id = $this->user_model->get_user_id_from_username($username);
+        if (!$user_id) {
+            die('Ungültiger Benutzername');
+        }
+        $user = $this->user_model->get_user($user_id);
 
-			if($user->is_confirmed == 1) redirect('/user/profile');
+        if($user->is_confirmed == 1) redirect('/user/profile');
 
-			if($confirmation_key == $user->confirmation_key){
-				$facility = $this->facility_model->get_facility_by_user_id($user_id);
-				
-				// create initial stocklist entries
-				$stock_list_id = $this->stock_list_model->createStockList($facility->facility_id);
-				$this->stock_list_entry_model->insert_empty_stocklist_entries($stock_list_id);
+        if($confirmation_key === $user->confirmation_key){
+            $facility = $this->facility_model->get_facility_by_user_id($user_id);
 
-                $data = new stdClass;
-                $data->is_confirmed = 1;
-				$user->is_confirmed = 1;
-				$user->logged_in = 1;
-                $this->user_model->update_user($user_id, $data);
+            // create initial stocklist entries
+            $stock_list_id = $this->stock_list_model->createStockList($facility->facility_id);
+            $this->stock_list_entry_model->insert_empty_stocklist_entries($stock_list_id);
 
-				$this->set_session($user);
-				redirect('/user/step3');
-			}else{ // @TODO: Handle also already confirmed users.
-				$data = new stdClass;
-				$data->error = 'Ungültiger Confirmation Code';
-				//print_r($data); // @TODO: Load error view
-			}
+            $data = new stdClass;
+            $data->is_confirmed = 1;
+            $user->is_confirmed = 1;
+            $user->logged_in = 1;
+            $this->user_model->update_user($user_id, $data);
 
+            $this->set_session($user);
+            redirect('/user/step3');
+        }else{
+            die('Ungültiger Confirmation Code');
+        }
 	}
 
 
@@ -404,7 +405,8 @@ class User extends CI_Controller {
 
 		switch ($template) {
 			case 'confirm':
-				$this->ci_email->message('Bitte Email-Adresse mit folgendem Link bestätigen: '.$data['confirmation_key']);
+                $url = site_url(['user', 'confirm', $data, $username]);
+				$this->ci_email->message('Bitte Email-Adresse mit folgendem Link bestätigen: '. $url);
 				break;
 
 			case 'passwordreset':

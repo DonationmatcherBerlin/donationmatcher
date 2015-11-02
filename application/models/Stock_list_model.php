@@ -71,7 +71,12 @@ class Stock_list_model extends CI_Model {
             [(int) $user_id]
         );
 
-        $row = $query->result()[0];
+        $row = $query->result();
+        if (!$row) {
+            return null;
+        }
+
+        $row = $row[0];
         $row->created_at = new \DateTime($row->created_at);
         $row->updated_at = $row->updated_at !== null ? new \DateTime($row->updated_at) : null;
 
@@ -178,5 +183,20 @@ class Stock_list_model extends CI_Model {
         ]);
 
         return $this->db->insert_id();
+    }
+
+    /**
+     * update function.
+     *
+     * @access public
+     * @param array $data
+     * @return bool true on success, false on failure
+     */
+    public function update($data) {
+        $data->updated_at = date('Y-m-d H:i:s');
+        $this->db->where('stock_list_id', $data->stock_list_id);
+        unset($data->stock_list_id);
+        return $this->db->update('stock_list', $data);
+
     }
 }

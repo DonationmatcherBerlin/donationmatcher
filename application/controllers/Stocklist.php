@@ -8,7 +8,6 @@ class Stocklist extends CI_Controller
      */
     public function index()
     {
-
         check_role('confirmed');
 
         $this->load->model(array('facility_model', 'category_model', 'stock_list_model', 'stock_list_entry_model'));
@@ -36,6 +35,7 @@ class Stocklist extends CI_Controller
             }
 
             $this->stock_list_entry_model->update($entries);
+            $this->stock_list_model->update($stocklist);
             redirect('/stocklist');
         }
 

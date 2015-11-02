@@ -33,7 +33,7 @@ class User_model extends CI_Model {
 	public function create_user($data) {
 
 		$data->password = $this->hash_password($data->password);
-		$data->created_at = date('Y-m-j H:i:s');
+		$data->created_at = date('Y-m-d H:i:s');
 		
 		$this->db->insert('users', $data);
 		return $this->db->insert_id();
@@ -54,6 +54,7 @@ class User_model extends CI_Model {
         if (property_exists($data, 'password')) {
             $data->password = $this->hash_password($data->password);
         }
+        $data->updated_at = date('Y-m-d H:i:s');
 
 		$this->db->where('id', $user_id);
 		return $this->db->update('users', $data);
