@@ -1,39 +1,46 @@
-  <head>
-    <style>
-      #map {
-        height: 250px;
-      }
-    </style>
-  </head>
+<?php
+function list_entries(array $facilities)
+{
+  foreach ($facilities as $facility => $entry) {
+    echo '<tr>';
+    echo '<td></td>';
+    echo '<td>'.$entry["name"].'</td>';
+    echo '<td>'.$entry["url"].'</td>';
+    echo '<td>usw.</td>';
+    echo '<td>usw.</td>';
+    echo '</tr>';
+  }
+}
+?>
+
+<head>
+  <style>
+    #map {
+      height: 250px;
+    }
+  </style>
+</head>
+
 <body>
 
 <h2 class="headline">Liste der Hilfsgruppen in Berlin</h2>
 <div class="table-responsive">
-    <table class="table table-bordered table-striped responsive-utilities">
+    <table class="table table-striped table-condensed">
       <thead>
         <tr>
           <th></th>
-          <th>
-            Hilfsgruppenname
-          </th>
-          <th>
-            Bedarfsliste
-          </th>
-          <th>
-           Spendenzuviel
-          </th>
-          <th>
-            Spenden benötigt
-          </th>
-		  <th>
-            Telefon
-          </th>
-		  <th>
-            Adresse
-          </th>
+          <th>Hilfsgruppenname</th>
+          <th>Bedarfsliste</th>
+          <th>Spendenzuviel</th>
+          <th>Spenden benötigt</th>
+          <th>Telefon</th>
+          <th>Adresse</th>
         </tr>
       </thead>
       <tbody>
+
+        <?php list_entries($facilities)?>
+
         <tr>
           <th scope="row"><code>.visible-xs-*</code></th>
           <td class="is-visible">Visible</td>
