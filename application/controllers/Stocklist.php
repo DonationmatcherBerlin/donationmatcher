@@ -107,7 +107,7 @@ class Stocklist extends CI_Controller
         ));
         $this->pdf->set_paper('A4', 'portrait');
         $this->pdf->render();
-        $this->pdf->stream($pdf_name);
+        $this->pdf->stream($pdf_name, array('Attachment' => 0));
     }
 
 }
