@@ -75,6 +75,7 @@ class User extends CI_Controller {
 			$facility->person_in_charge = $this->input->post('facility_person_in_charge');
 			$facility->phone = $this->input->post('facility_phone');
 			$facility->name = $this->input->post('facility_name');
+			$facility->businesshours = '[{"isActive":false,"timeFrom":null,"timeTill":null},{"isActive":false,"timeFrom":null,"timeTill":null},{"isActive":false,"timeFrom":null,"timeTill":null},{"isActive":false,"timeFrom":null,"timeTill":null},{"isActive":false,"timeFrom":null,"timeTill":null},{"isActive":false,"timeFrom":null,"timeTill":null},{"isActive":false,"timeFrom":null,"timeTill":null}]';
 
 			$user = new stdClass;
 			$user->username   = $username;
