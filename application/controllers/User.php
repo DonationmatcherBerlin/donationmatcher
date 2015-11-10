@@ -253,6 +253,8 @@ class User extends CI_Controller {
 		$this->form_validation->set_rules('facility_zip', 'Facility ZIP', 'trim|required');
 		$this->form_validation->set_rules('facility_city', 'Facility City', 'trim|required');
 		$this->form_validation->set_rules('facility_country', 'Facility Country', 'trim|required');
+		$this->form_validation->set_rules('public_givenow', 'Givenow zustimmung', 'is_natural');
+		$this->form_validation->set_rules('public_internal', 'Interne Liste', 'is_natural');
 		$this->form_validation->set_rules('businesshours', 'Öffnungszeiten', 'trim');
 
 		if ($this->form_validation->run() != false) {
@@ -267,6 +269,8 @@ class User extends CI_Controller {
 			$facility->country = $this->input->post('facility_country');
             $facility->email = $this->input->post('facility_email');
 			$facility->opening_hours = $this->input->post('businesshours');
+			$facility->public_givenow = $this->input->post('public_givenow');
+			$facility->public_internal = $this->input->post('public_internal');
 
             if($this->input->post('password') != '') {
                 $user_update = new stdClass;
