@@ -1,0 +1,14 @@
+insert into category (category_id,name,Parent) VALUES (1,'Baby',NULL);
+insert into category (category_id,name,Parent) VALUES (2,'Kleidung',NULL);
+insert into category (category_id,name,Parent) VALUES (3,'Männer Kleidung',NULL);
+insert into category (category_id,name,Parent) VALUES (4,'Frauen Kleidung',NULL);
+insert into category (category_id,name,Parent) VALUES (5,'Kosmetikartikel',NULL);
+insert into category (category_id,name,Parent) VALUES (6,'Putzen, Reinigen & Ordnen',NULL);
+insert into category (category_id,name,Parent) VALUES (7,'Technische Geräte',NULL);
+insert into category (category_id,name,Parent) VALUES (8,'Haushaltsgegenstände',NULL);
+insert into category (category_id,name,Parent) VALUES (9,'Freizeit Gegenstände',NULL);
+insert into category (category_id,name,Parent) VALUES (10,'Medizinischer Bedarf',NULL);
+insert into category (category_id,name,Parent) VALUES (11,'Frische Lebensmittel',NULL);
+insert into category (category_id,name,Parent) VALUES (12,'Haltbare Lebensmittel',NULL);
+insert into category (category_id,name,Parent) VALUES (13,'Büro & Sortieren',NULL);
+insert into category (category_id,name,Parent) VALUES (14,'Geldspenden & Gutscheine',NULL);
