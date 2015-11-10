@@ -110,18 +110,16 @@
 
 					<div class="form-group">						
 					<?php $givenow = $facility->public_givenow==1?TRUE:FALSE; ?>
-						<input type="checkbox" name="public_givenow" value="1" <?php echo set_checkbox('public_givenow', "1", $givenow); ?> />
-						<label for="password_confirm"> Meine Organisation soll in der GiveNow Liste veröffentlicht werden.</label>
+						<label for="public_givenow"><input type="checkbox" id="public_givenow" name="public_givenow" value="1" <?php echo set_checkbox('public_givenow', "1", $givenow); ?> /> Meine Organisation soll in der GiveNow Liste veröffentlicht werden.</label>
 						<small class="help-block" style="color: #337ab7;">GiveNow ist eine einfache App mit der Spender sehen koennen welche Spenden am dringendsten in ihrer Stadt benoetigt werden. Die Sachspenden werden von ihnen zuhause abgeholt und direkt zu den Hilfsorganisationen gebracht. <br><br><a href="http://www.givenow.io/" target="_blank">www.givenow.io</a></small>
 					</div>
 					<div class="form-group">
 					<?php $internal = $facility->public_internal==1?TRUE:FALSE; ?>
-						<input type="checkbox" name="public_internal" value="1" <?php echo set_checkbox('public_internal', "1", $internal); ?> />
-						<label for="password_confirm"> Meine Organisation soll in der Internen Liste veröffentlicht werden.</label>
-						<small class="help-block" style="color: #337ab7;">Weitere Informationen: </small>
+						<label for="public_internal"><input type="checkbox" name="public_internal" id="public_internal" value="1" <?php echo set_checkbox('public_internal', "1", $internal); ?> /> Meine Organisation soll in der internen Liste aller Hilfsorganisationen bei Bedarfsplaner aufgeührt werden.</label>
+						<small class="help-block" style="color: #337ab7;">Das erleichtert die Kontaktaufnahme.</small>
 					</div>
 
-					<div class="form-group" style="margin-top: 40%;">
+					<div class="form-group" style="">
 						<input id="save" style="max-width: 500px;" type="submit" class="btn btn-success btn-block" value="Speichern" >
 					</div>
 				</div>

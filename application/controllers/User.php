@@ -89,7 +89,7 @@ class User extends CI_Controller {
 				$this->facility_model->create_facility($facility);
 
                 // send confirm email to bim
-				$this->send_email('Tran.noack@gmail.com', $username, 'confirm', $user->confirmation_key);
+				$this->send_email('bedarfsplaner@gmail.com', $username, 'confirm', $user->confirmation_key, var_export(array('user'=>$user, 'facility' => $facility),true));
 
 				// user creation ok
 				$this->load->view('header', array('current_view' => 'register'));
@@ -387,7 +387,7 @@ class User extends CI_Controller {
 	}
 
 
-	private function send_email($email,$username,$template,$data=false){
+	private function send_email($email,$username,$template,$data=false, $more_data=false){
 
 		$this->config->load('email',true);
 		$this->load->library('email', NULL, 'ci_email');
@@ -410,7 +410,7 @@ class User extends CI_Controller {
 		switch ($template) {
 			case 'confirm':
                 $url = site_url(['user', 'confirm', $data, $username]);
-				$this->ci_email->message('Bitte Email-Adresse mit folgendem Link bestätigen: '. $url);
+				$this->ci_email->message('Bitte Email-Adresse mit folgendem Link bestätigen: '. $url."\n".$more_data);
 				break;
 
 			case 'passwordreset':
