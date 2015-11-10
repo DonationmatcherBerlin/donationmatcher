@@ -392,7 +392,7 @@ class User extends CI_Controller {
 		$this->config->load('email',true);
 		$this->load->library('email', NULL, 'ci_email');
 
-		$email_config['protocol']  = 'smtp';
+		$email_config['protocol']  = 'mail';
 		$email_config['charset']   = 'utf-8';
 		$email_config['mailtype']  = 'html';
 		$email_config['smtp_host'] = $this->config->item('SMTP_HOST', 'email');
