@@ -11,6 +11,22 @@ class Stock_list_entry_model extends CI_Model
     }
 
     /**
+     * Returns stock list entries of all stock lists that offers needed stuff with priority
+     *
+     * @param $stock_list_id
+     * @return array
+     */
+    public function get_overall_demand($stock_list_id)
+    {
+        // all items ordered by priority
+        // @TODO
+        $overall_demand = array(array('item_name' => 'Foo', 'priority' => 1),
+                                array('item_name' => 'Bar', 'priority' => 2));
+
+        return $overall_demand;
+    }
+
+    /**
      * Returns stock list entries of other stock lists that offers stuff you need
      *
      * @param $stock_list_id
