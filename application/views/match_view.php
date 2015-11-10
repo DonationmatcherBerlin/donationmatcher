@@ -64,8 +64,8 @@ function list_entries(array $facilities,$list_entries)
 					<table class="table table-striped table-condensed">
 						<thead>
 							<tr>
-								<th><h4>Hilfsgruppe</h4></th>
 								<th><h4>Überschuss</h4></th>
+								<th><h4>Hilfsgruppe</h4></th>
 								<th><h4>Telefon</h4></th>
 								<th><h4>Email</h4></th>
 								<th><h4>Adresse</h4></th>

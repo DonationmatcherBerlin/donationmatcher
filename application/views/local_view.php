@@ -50,7 +50,7 @@
       <div class="col-sm-6">
         <div class="row">
           <div class="col-sm-12 text-center">
-            <a class="btn btn-primary btn-lg btn-lg" href="<?= site_url('stocklist/public_pdf/'.$facility->facility_id); ?>" style="min-width: 300px; margin: 35px auto;"  target="_blank">Öffentliche Liste drucken</a>
+            <a class="btn btn-primary btn-lg btn-lg" href="<?= site_url('stocklist/public_pdf/'.$facility->facility_id);?>" style="min-width: 300px; margin: 35px auto;" target="_blank">Link Bedarfsliste</a>
           </div>
         </div>
         <div class="row">
