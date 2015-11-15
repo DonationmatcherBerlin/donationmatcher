@@ -16,11 +16,11 @@ class Local extends CI_Controller {
         $demand = $this->stock_list_entry_model->get_demand($stocklist->stock_list_id);
         $offers = $this->stock_list_entry_model->get_offers($stocklist->stock_list_id);
 
-        $this->load->view('header');
+        $this->load->view('header', ['current_view' => 'match_view']);
         $this->load->view('match_view', [
             'demand' => $demand,
             'offers' => $offers,
-            'facilities' => $this->facility_model->get_all()
+            'facilities' => $this->facility_model->get_all(),
         ]);
         $this->load->view('footer');
     }

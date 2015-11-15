@@ -13,16 +13,6 @@ function list_entries(array $facilities)
 }
 ?>
 
-<head>
-  <style>
-    #map {
-      height: 250px;
-    }
-  </style>
-</head>
-
-<body>
-
 <h2 class="headline">Liste der Hilfsgruppen in Berlin</h2>
 <div class="table-responsive">
     <table class="table table-striped table-condensed">

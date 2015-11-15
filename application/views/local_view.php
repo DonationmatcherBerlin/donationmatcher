@@ -77,7 +77,7 @@
             <th class="text-center">Bedarf</th>
             <th class="text-center">OK</th>
             <th class="text-center">Überschuss</th>
-            <th class="text-center responsive-invisibility">Anzahl vorhanden (optional)</th>
+            <th class="text-center responsive-invisibility">Anzahl (optional)</th>
             <th class="text-center responsive-invisibility">Kommentar (optional)</th>
           </tr>
         </thead>
@@ -85,7 +85,7 @@
         <?php foreach ($entries as $category) : ?>
             <tr>
                 <td colspan="4" id="cat_<?= $category['name'] ?>">
-                    <h3 style="text-align: left"><?= $category['name'] ?></h3>
+                    <h3 style="text-align: left; text-decoration: underline;"><?= $category['name'] ?></h3>
                 </td>
             </tr>
             <?php foreach ($category['entries'] as $entry) : ?>
