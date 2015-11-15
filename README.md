@@ -1,16 +1,10 @@
-# donationmatcher
-
-TODO description
-
 ## Install
 
-Install [VirtualBox](https://www.virtualbox.org/) and [Vagrant ](https://www.vagrantup.com/)
+Install [VirtualBox](https://www.virtualbox.org/) and [Vagrant](https://www.vagrantup.com/)
 
-run `vagrant up` in directory of this file to download and setup the VM.
+run `vagrant up` to download and setup the VM.
 
-go to http://192.168.50.4/
-
-## Install database and dummy data
+### Install database and dummy data
 
 Login to VM with `vagrant ssh`
 
@@ -20,10 +14,27 @@ curl http://localhost/migrate
 mysql -uroot -proot donationmatcher < dummies.sql
 ```
 
-## URLS
+go to http://192.168.50.4/
 
-**user profile**: http://192.168.50.4/user/profile
+## Users
 
-**stock list**: http://192.168.50.4/stockList/get
+Password is always: `test`
+ 
+### Normal users
 
-**match**: http://192.168.50.4/local/match
+```
+admin
+user1
+user2
+user3
+```
+ 
+### Technical users
+
+```
+admin111 - confirmed + deleted
+user011  - confirmed + deleted
+user000  - not confirmed
+user001  - not confirmed + deleted
+```
+

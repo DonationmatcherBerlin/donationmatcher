@@ -16,6 +16,7 @@
 	<link href="<?= base_url('assets/css/bootstrap.min_v2.css') ?>" rel="stylesheet">
 	<link href="<?= base_url('assets/css/jquery.businessHours.css') ?>" rel="stylesheet">
 	<link href="<?= base_url('assets/css/font-awesome/css/font-awesome.min.css') ?>" rel="stylesheet">
+    <link href="<?= base_url('assets/css/jquery.ioslist.css') ?>" rel="stylesheet">
 	<link href="//cdn.datatables.net/1.10.9/css/jquery.dataTables.min.css" rel="stylesheet">
 
 	<!-- Styles: Shared components -->
@@ -24,7 +25,7 @@
 	<link href="<?= base_url('assets/css/components/footer.css') ?>" rel="stylesheet">
 	<link href="<?= base_url('assets/css/components/progressbar.css') ?>" rel="stylesheet">
 
-	<script src="<?= base_url('assets/js/jquery-2.1.4.min.js') ?>"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 
 	<!-- Styles: Components -->
 	<?php if (isset($current_view) && $current_view === 'register') : ?>

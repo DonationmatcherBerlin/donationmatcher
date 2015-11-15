@@ -47,7 +47,6 @@
         <?= $facility->name; ?><br />
         <?= $facility->organisation; ?><br />
         <?= $facility->address . ', ' .$facility->zip . ' ' . $facility->city; ?><br />
-        Öffnungszeiten: <?= $facility->opening_hours; ?><br />
         <?= $facility->phone; ?><br />
         <?= $facility->email; ?><br />
     </div>

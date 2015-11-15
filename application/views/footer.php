@@ -19,6 +19,7 @@
         <script src="<?= base_url('assets/js/bootstrap.min.js') ?>"></script>
         <script src="<?= base_url('assets/js/jquery.stickyheader.js') ?>"></script>
         <script src="<?= base_url('assets/js/jquery.businessHours.min.js') ?>"></script>
+        <script src="<?= base_url('assets/js/jquery.ioslist.min.js') ?>"></script>
 
         <script src="//cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js"></script>
         <script src="<?= base_url('assets/js/map_user_input.js') ?>"></script>
@@ -31,6 +32,10 @@
                     $('.stickytable').stickyTableHeaders();
 
                 });
+
+                <?php if (isset($current_view) && $current_view === 'match_view') : ?>
+                $(".match_list").ioslist();
+                <?php endif; ?>
             })( jQuery, window, window.document );
         </script>
     </body>
