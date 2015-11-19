@@ -18,6 +18,19 @@ class Facility_model extends CI_Model {
 
         return $result;
     }
+	
+	
+	function get_stock()
+    {
+        $query = $this->db->get('stock_list_entry');
+
+        $result = [];
+        foreach ($query->result() as $row) {
+            $result[$row->facility_id] = $row;
+        }
+
+        return $result;
+    }
 
     public function get_facility($facility_id)
     {
@@ -25,6 +38,7 @@ class Facility_model extends CI_Model {
         $this->db->where('facility_id', $facility_id);
         return $this->db->get()->row();
     }
+	
 
 
     public function get_facility_by_user_id($user_id)

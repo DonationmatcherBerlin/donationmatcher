@@ -11,9 +11,21 @@ class Facility extends CI_Controller {
 		check_role('confirmed');
 
 		$this->load->model('facility_model');
-		print_r($this->facility_model->get_all());
+		//print_r($this->facility_model->get_all());
+		
+		$facilitz = [];
+		
+		foreach($this->facility_model->get_all() as $row){
+			$array = [];
+			$array = json_decode(json_encode($row),true);
+			$facilitz[] = $array;
+		}
+		
+		
+		
+		//print_r($facilitz);
 
-        $facilities = array(
+        /* $facilities = array(
             array(
                 'name' => 'Organisation 1',
                 'url' => 'http://www.google.de',
@@ -36,9 +48,9 @@ class Facility extends CI_Controller {
                 'lon' => 13.999945,
             ),
         );
-
+ */
 		$this->load->view('header');
-		$this->load->view('facility', array('facilities' => $facilities));
+		$this->load->view('facility', array('facilities' => $facilitz));
 		$this->load->view('footer');
 	}
 
