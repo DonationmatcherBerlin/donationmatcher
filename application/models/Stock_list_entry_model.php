@@ -11,19 +11,44 @@ class Stock_list_entry_model extends CI_Model
     }
 
     /**
-     * Returns stock list entries of all stock lists that offers needed stuff with priority
+     * Returns entries grouped by category
+     * and sorted by top
      *
-     * @param $stock_list_id
      * @return array
      */
-    public function get_overall_demand($stock_list_id)
+    public function get_top_demand($limit = 20)
     {
-        // all items ordered by priority
-        // @TODO
-        $overall_demand = array(array('item_name' => 'Foo', 'priority' => 1),
-                                array('item_name' => 'Bar', 'priority' => 2));
+        $query = $this->db->query('
+            SELECT
+              sle.name AS entry,
+              c.name AS category,
+              SUM(sle.demand) AS demand
+            FROM stock_list_entry sle
+              INNER JOIN category c ON sle.Category = c.category_id
+            WHERE
+              demand = 1
+            GROUP BY sle.name
+            ORDER BY demand DESC
+            LIMIT '.intval($limit).'
+        ');
 
-        return $overall_demand;
+        // group by category
+        $group = [];
+        foreach ($query->result_array() as $row) {
+            $group[$row['category']]['category'] = $row['category'];
+            $group[$row['category']]['entries'][] = $row;
+        }
+
+        // sort by cumulated category demand
+        usort($group, function($a, $b) {
+            $a = array_sum(array_column($a['entries'], 'demand'));
+            $b = array_sum(array_column($b['entries'], 'demand'));
+
+            if ($a === $b) return 0;
+            return $a < $b ? 1 : -1;
+        });
+
+        return $group;
     }
 
     /**
@@ -113,22 +138,6 @@ class Stock_list_entry_model extends CI_Model
         }
 
         return $foreign_list;
-    }
-
-    /**
-     * Grouped by facility
-     *
-     * @param array $list
-     * @return array
-     */
-    private function group(array $list)
-    {
-        $grouped = [];
-        foreach ($list as $entry) {
-            $grouped[$entry['facility']][] = $entry;
-        }
-
-        return $grouped;
     }
 
     /**

@@ -49,6 +49,9 @@
         <?= $facility->address . ', ' .$facility->zip . ' ' . $facility->city; ?><br />
         <?= $facility->phone; ?><br />
         <?= $facility->email; ?><br />
+        <?php if ($opening_hours = opening_hours($facility->opening_hours)) : ?>
+            Öffnungszeiten: <?= $opening_hours; ?><br />
+        <?php endif; ?>
     </div>
 
     <?php foreach($grouped_stock_list as $category): ?>

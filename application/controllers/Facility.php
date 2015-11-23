@@ -11,7 +11,7 @@ class Facility extends CI_Controller {
 		check_role('confirmed');
 
 		$this->load->model('facility_model');
-		print_r($this->facility_model->get_all());
+//		print_r($this->facility_model->get_all());
 
         $facilities = array(
             array(

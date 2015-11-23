@@ -62,6 +62,7 @@
             <h1>Diese Seite ist demnächst für Sie verfügbar!</h1>
             <hr>
             <p style="color:#337ab7;">Freiwillige Programmierer, die sich beim <a href="http://refugeehackathon.de">RefugeeHackathon</a> zusammengefunden haben, sind gerade dabei diese Seite vollständig zu implementieren. Bitte haben Sie noch ein wenig Geduld.</p>
+            <a href="<?= base_url('/') ?>" class="btn btn-primary">zurück</a>
         </div>
     </div>
 </div>

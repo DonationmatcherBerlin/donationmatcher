@@ -37,7 +37,7 @@
             <hr>
                         <div class="row">
                 <div class="col-sm-6">
-                    <a href="<?=site_url('/landingpage')?>" class="btn btn-primary btn-lg" style="width:100%; padding:30px 0px;">Ich möchte spenden</a>
+                    <a href="<?=site_url('/welcome/top')?>" class="btn btn-primary btn-lg" style="width:100%; padding:30px 0px;">Ich möchte spenden</a>
                     <small style="color:#337ab7; margin-left:5%;">Wo werden meine Sachen benötigt?</small>
                 </div>
                 <div class="col-sm-6">
