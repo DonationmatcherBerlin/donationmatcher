@@ -87,6 +87,14 @@ class User extends CI_Controller {
 			if($user_id = $this->user_model->create_user($user)){
 
 				$facility->User = $user_id;
+
+				$facility->public_givenow = 0;
+				$facility->public_internal = 0;
+				$facility->address = '';
+				$facility->zip = '';
+				$facility->city = '';
+				$facility->country = '';
+
 				$this->facility_model->create_facility($facility);
 
                 // send confirm email to bim
