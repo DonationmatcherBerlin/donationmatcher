@@ -75,7 +75,7 @@ class User extends CI_Controller {
 			$facility->person_in_charge = $this->input->post('facility_person_in_charge');
 			$facility->phone = $this->input->post('facility_phone');
 			$facility->name = $this->input->post('facility_name');
-			$facility->businesshours = '[{"isActive":false,"timeFrom":null,"timeTill":null},{"isActive":false,"timeFrom":null,"timeTill":null},{"isActive":false,"timeFrom":null,"timeTill":null},{"isActive":false,"timeFrom":null,"timeTill":null},{"isActive":false,"timeFrom":null,"timeTill":null},{"isActive":false,"timeFrom":null,"timeTill":null},{"isActive":false,"timeFrom":null,"timeTill":null}]';
+			$facility->opening_hours = '[{"isActive":false,"timeFrom":null,"timeTill":null},{"isActive":false,"timeFrom":null,"timeTill":null},{"isActive":false,"timeFrom":null,"timeTill":null},{"isActive":false,"timeFrom":null,"timeTill":null},{"isActive":false,"timeFrom":null,"timeTill":null},{"isActive":false,"timeFrom":null,"timeTill":null},{"isActive":false,"timeFrom":null,"timeTill":null}]';
 
 			$user = new stdClass;
 			$user->username   = $username;
@@ -87,13 +87,6 @@ class User extends CI_Controller {
 			if($user_id = $this->user_model->create_user($user)){
 
 				$facility->User = $user_id;
-
-				$facility->public_givenow = 0;
-				$facility->public_internal = 0;
-				$facility->address = '';
-				$facility->zip = '';
-				$facility->city = '';
-				$facility->country = '';
 
 				$this->facility_model->create_facility($facility);
 
