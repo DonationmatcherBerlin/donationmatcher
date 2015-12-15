@@ -1,79 +1,41 @@
 <div class="container" style="min-height: 100%;">
   <?php echo form_open('/stocklist'); ?>
 
-    <div class="row">
-        <div class="col-sm-12 text-center" >
-            <h1>Bearbeitung Ihrer lokalen Bedarfsliste</h1>
-        </div>
-    </div>
-
     <!-- local contact -->
-    <div class="row" style="margin: 50px 0;">
+    <div class="row">
       <div class="col-sm-6 col-sm-offset-3">
-        <div class="panel panel-success">
-          <div class="panel-heading">
-            <h3 class="text-center"><?=$facility->name?></h3>
-          </div>
-          <div class="panel-body text-center">
-            <div class="row">
-              <div class="col-sm-12">
-                <h4><b>Adresse:</b> <?=$facility->address?></h4>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-sm-12">
-                <h4><b>E-Mail:</b> <?=$facility->email?></h4>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-sm-12">
-                <h4><b>Telefon:</b> <?=$facility->phone?></h4>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-sm-12">
-                <h4 style="color: #558ED8; margin-top: 30px;"><b>Letztes Update der Bedarfsliste:</b> <?= $stocklist->updated_at ? $stocklist->updated_at->format('d.m.Y H:i') : $stocklist->created_at->format('d.m.Y H:i'); ?> Uhr</h4>
-              </div>
-            </div>
-              <div class="row">
-                  <div class="col-sm-12">
-                      <p style="color: #558ED8; text-align: center;">Sie müssen Änderungen immer mit dem Knopf "Speichern" bestätigen.</p>
-                  </div>
-              </div>
-          </div>
-        </div>
       </div>
     </div>
 
     <!-- table -->
-    <div class="row" style="margin-top: 20px; margin-bottom: 100px;">
-      <div class="col-sm-6">
-        <div class="row">
-          <div class="col-sm-12 text-center">
-            <a class="btn btn-primary btn-lg btn-lg" href="<?= site_url('stocklist/public_pdf/'.$facility->facility_id);?>" style="min-width: 300px; margin: 35px auto;" target="_blank">Link Bedarfsliste</a>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-12 text-center">
-            <a class="btn btn-primary btn-lg btn-lg" href="<?= site_url('stocklist/pdf/'.$facility->facility_id); ?>" style="min-width: 300px;" target="_blank">Interne Liste drucken</a>
-          </div>
+    <div class="row">
+      <div class="col-sm-12" >
+        <h1>Bearbeitung Ihrer lokalen Bedarfsliste:</h1>
+        <div class="bg-info">
+          <h4><b>Letztes Update der Bedarfsliste:</b> <?= $stocklist->updated_at ? $stocklist->updated_at->format('d.m.Y H:i') : $stocklist->created_at->format('d.m.Y H:i'); ?> Uhr</h4>
         </div>
       </div>
-
-      <div class="col-sm-6">
-        <h3>Springe direkt zur Kategorie:</h3>
-          <?php foreach(array_column($entries, 'name') as $category) : ?>
-            <a href="#cat_<?= $category ?>" class="btn btn-default" style="margin: 5px;"><?= $category ?></a>
-          <?php endforeach ?>
+      <div class="col-sm-offset-3 col-sm-9">
+        <a class="btn btn-primary btn-lg btn-lg" href="<?= site_url('stocklist/public_pdf/'.$facility->facility_id);?>" style="min-width: 300px; margin: 35px auto;" target="_blank">Link Bedarfsliste</a> 
+        <a class="btn btn-primary btn-lg btn-lg" href="<?= site_url('stocklist/pdf/'.$facility->facility_id); ?>" style="min-width: 300px;" target="_blank">Interne Liste drucken</a>
       </div>
     </div>
 
     <div class="row">
-      <div class="col-sm-12">
+      <div class="col-sm-3" id="leftCol">
+        <ul class="nav nav-stacked" id="sidebar">
+          <li><input type="submit" class="btn btn-success btn-mini btn-block" value="Speichern"></li>
+          <?php foreach($entries as $category) : ?>
+            <li><a href="#cat_<?= $category['category_id'] ?>" class="btn btn-default btn-mini btn-block"><?= $category['name'] ?></a></li>
+          <?php endforeach ?>
+          <li><input type="submit" class="btn btn-success btn-mini btn-block" value="Speichern"></li>
+        </ul>
+      </div>
+      <div class="col-sm-9">
         <table class="table table-hover stickytable localTable">
         <thead>
           <tr>
-            <th><input type="submit" class="btn btn-success btn-sm" value="Speichern">Bezeichnung</th>
+            <th>Bezeichnung</th>
             <th class="text-center">Bedarf</th>
             <th class="text-center">OK</th>
             <th class="text-center">Überschuss</th>
@@ -81,16 +43,17 @@
             <th class="text-center responsive-invisibility">Kommentar (optional)</th>
           </tr>
         </thead>
-        <tbody class="text-center">
+        <tbody class="text-center" id="demandlist-table">
         <?php foreach ($entries as $category) : ?>
-            <tr>
-                <td colspan="4" id="cat_<?= $category['name'] ?>">
+
+            <tr class="toogleCategory">
+                <td colspan="6" id="cat_<?= $category['category_id'] ?>">
                     <h3 style="text-align: left; text-decoration: underline;"><?= $category['name'] ?></h3>
                 </td>
             </tr>
             <?php foreach ($category['entries'] as $entry) : ?>
                 <?php $checked = $entry['demand']; ?>
-                <tr>
+                <tr style="display:none;">
                     <th class="entryname "><?=$entry['name']?></th>
                     <td class="">
                         <div class="radio">
@@ -123,11 +86,6 @@
                 </tr>
             <?php endforeach; ?>
         <?php endforeach; ?>
-        <tr>
-          <td colspan="6">
-              <input type="submit" class="btn btn-success btn-lg btn-block" value="Speichern" style="margin: 40px 0px;">
-          </td>
-        </tr>
         </tbody>
       </table>
       </div>
@@ -152,6 +110,44 @@
     var inputGroupName = "#inputGroup" + id;
     $(inputGroupName).addClass('hidden');
   }
+
+  $(document).ready(function()
+   {
+      $(".toogleCategory").click(function() { $(this).nextUntil(".toogleCategory").toggle();});
+
+        /* activate sidebar */
+        $('#sidebar').affix({
+          offset: {
+            top: 235
+          }
+        });
+
+        /* activate scrollspy menu */
+        var $body   = $(document.body);
+        var navHeight = $('.navbar').outerHeight(true) + 10;
+
+        $body.scrollspy({
+          target: '#leftCol',
+          offset: navHeight
+        });
+
+        /* smooth scrolling sections */
+        $('a[href*=#]:not([href=#])').click(function() {
+            if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+              var target = $(this.hash);
+              target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+              if (target.length) {
+                $('html,body').animate({
+                  scrollTop: target.offset().top - 50
+                }, 1000);
+                return false;
+              }
+            }
+        });
+   });
+
+
+
 
 
 </script>

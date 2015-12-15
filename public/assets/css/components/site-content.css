@@ -22,11 +22,56 @@ div#businessHoursContainer {
 
 /* Mobile styles */
 
-@media (max-width: 767px){
+@media (max-width: 1200px){
 	.responsive-invisibility {
 	  display: none !important;
 	  tr& { display: none !important; }
 	  th&,
 	  td& { display: none !important; }
 	}
+}
+
+.toogleCategory {
+	cursor: pointer;
+}
+
+.affix-top,.affix{
+ position: static;
+}
+
+@media (min-width: 979px) {
+  #sidebar.affix-top {
+  	top:10px;
+    position: static;
+  	width:228px;
+  }
+  
+  #sidebar.affix {
+  	top:10px;
+    position: fixed;
+    width:228px;
+  }
+}
+
+#sidebar li.active {
+  border:0 #eee solid;
+  border-right-width:5px;
+}
+
+
+
+.toogleCategory td {
+	padding-left:10px;
+}
+
+#demandlist-table th {
+	padding-left:10px;
+}
+
+#demandlist-table h3 {
+	font-size:18px;
+}
+
+.nav>li>a {
+	padding:5px;
 }
