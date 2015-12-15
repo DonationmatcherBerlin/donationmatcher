@@ -34,7 +34,9 @@ class Welcome extends CI_Controller {
         $this->load->view('all_facilities', array(
             'facilities' => $all_facilities,
         ));
+        $this->load->view('givenow', array(
 
+        ));
         $this->load->view('footer');
     }
 
