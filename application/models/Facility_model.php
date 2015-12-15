@@ -9,6 +9,7 @@ class Facility_model extends CI_Model {
     
     function get_all()
     {
+        $this->db->where('public_flag',1);
         $query = $this->db->get('facility');
 
         $result = [];
