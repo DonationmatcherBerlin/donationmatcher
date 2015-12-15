@@ -16,8 +16,8 @@ class Welcome extends CI_Controller {
      */
     public function top()
     {
-        $this->load->view('under_construction_view');
-        return;
+        //$this->load->view('under_construction_view');
+        //return;
 
         $this->load->helper('opening_hours');
         $this->load->model(array('stock_list_entry_model', 'facility_model'));
