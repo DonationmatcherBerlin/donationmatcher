@@ -26,7 +26,7 @@ class Stock_list_entry_model extends CI_Model
             FROM stock_list_entry sle
               INNER JOIN category c ON sle.Category = c.category_id
             WHERE
-              demand = 1
+              demand = -1
             GROUP BY sle.name
             ORDER BY demand DESC
             LIMIT '.intval($limit).'
