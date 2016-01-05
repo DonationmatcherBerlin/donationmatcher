@@ -369,6 +369,8 @@ class User extends CI_Controller {
 				$user_id = $this->user_model->get_user_id_from_username($username);
 				$user    = $this->user_model->get_user($user_id);
 
+				if($user->is_confirmed == 0) die('NOPE!');
+
 				$data = new stdClass;
 				$data->confirmation_key = hash('sha256',rand().uniqid()); // @TODO: Is this secure or stupid?
 				$this->user_model->update_user($user_id, $data);
