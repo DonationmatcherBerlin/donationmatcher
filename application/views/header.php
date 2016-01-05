@@ -38,6 +38,16 @@
 	<![endif]-->
 </head>
 <body style="min-height: 100%; margin: 0 0 50px;">
+
+
+	<?php if(array_key_exists('su',$_SESSION)){ ?>
+						
+		<div class="alert alert-danger">
+			<a href="<?php echo site_url('admin/exit_su'); ?>"> &lt;&lt; Zurück zum Admin</a>
+		</div>
+	
+	<?php } ?>
+
 	<header id="site-header" class="site-header">
 		<div class="container">
 			<nav class="navbar navbar-default" role="navigation">
@@ -71,4 +81,3 @@
 	</header><!-- #site-header -->
 
 	<main id="site-content" class="site-content" role="main">
-

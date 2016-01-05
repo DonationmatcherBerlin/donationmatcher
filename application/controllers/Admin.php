@@ -9,10 +9,12 @@ class Admin extends CI_Controller {
 		$this->load->database();
 		$this->load->helper('url');
 
-		check_role('admin');
 	}
 
 	public function users(){
+
+		check_role('admin');
+		
 		$this->load->model('user_model');
 		$this->load->view('header');
 		
@@ -44,15 +46,28 @@ class Admin extends CI_Controller {
 		$this->load->view('footer');
 	}
 
-	private function set_su_session($user, $admin_id){
+	public function exit_su(){
+
+		$this->load->model('user_model');
+		$user = $this->user_model->get_user($_SESSION['su_id']);
+		$this->set_su_session($user);
+		redirect('admin/users');
+	}
+
+	private function set_su_session($user, $admin_id=false){
 		// set session user datas
 		$_SESSION['user_id']      = (int)$user->id;
 		$_SESSION['username']     = (string)$user->username;
 		$_SESSION['logged_in']    = (bool)true;
 		$_SESSION['is_confirmed'] = (bool)$user->is_confirmed;
 		$_SESSION['is_admin']     = (bool)$user->is_admin;
-		$_SESSION['su']     = true;
-		$_SESSION['su_id']     = $admin_id;
+		if($admin_id == false){
+			unset($_SESSION['su']);
+			unset($_SESSION['su_id']);
+		}else{
+			$_SESSION['su']     = true;
+			$_SESSION['su_id']     = $admin_id;
+		}
 	}
 
 	
