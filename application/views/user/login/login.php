@@ -86,7 +86,7 @@
                                     Registriere dich hier
                                 </a>
                                 </div>
-<!--                                <div style="float:left; font-size: 80%; position: relative;"><a href="--><?//=site_url('/user/passwordreset')?><!--">Passwort vergessen?</a></div>-->
+                                <div style="float:left; font-size: 80%; position: relative;"><a href="<?=site_url('/user/passwordreset')?>">Passwort vergessen?</a></div>
                             </div>
                         </div>
                     </form>

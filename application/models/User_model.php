@@ -111,6 +111,19 @@ class User_model extends CI_Model {
 		return $this->db->get()->row();
 		
 	}
+
+	/**
+	 * get_users function.
+	 * 
+	 * @access public
+	 * @return object the user object
+	 */
+	public function get_users() {
+		
+		$this->db->from('users');
+		return $this->db->get()->result();
+		
+	}
 	
 	/**
 	 * hash_password function.
